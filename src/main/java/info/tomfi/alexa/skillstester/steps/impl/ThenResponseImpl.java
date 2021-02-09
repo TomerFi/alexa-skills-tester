@@ -9,8 +9,7 @@ import com.amazon.ask.model.RequestEnvelope;
 import com.amazon.ask.model.ResponseEnvelope;
 import info.tomfi.alexa.skillstester.steps.ThenFollowup;
 import info.tomfi.alexa.skillstester.steps.ThenResponse;
-import java.util.Arrays;
-import java.util.Map.Entry;
+import java.util.Map;
 
 public final class ThenResponseImpl extends ThenResponse {
   public ThenResponseImpl(final Skill skill, final RequestEnvelope requestEnvelope, final ResponseEnvelope responseEnvelope) {
@@ -88,12 +87,12 @@ public final class ThenResponseImpl extends ThenResponse {
   }
 
   public ThenResponseImpl notWaitForFollowup() {
-    assert responseEnvelope.getResponse().getShouldEndSession() : "Session is not marked as over";
+    assert responseEnvelope.getResponse().getShouldEndSession() : "Session is marked as opened";
     return this;
   }
 
   public ThenResponseImpl waitForFollowup() {
-    assert !responseEnvelope.getResponse().getShouldEndSession() : "Session is marked as over";
+    assert !responseEnvelope.getResponse().getShouldEndSession() : "Session is marked as closed";
     return this;
   }
 
@@ -147,7 +146,7 @@ public final class ThenResponseImpl extends ThenResponse {
     var card = responseEnvelope.getResponse().getCard();
     assert nonNull(card) : "Card object is null";
     var optText = extractCardText(card);
-    assert optText.isPresent() : "Card title is empty";
+    assert optText.isPresent() : "Card text is empty";
     assert optText.get().equals(testText) : String.format("Card text '%s' is not '%s'", optText.get(), testText);
     return this;
   }
@@ -155,8 +154,8 @@ public final class ThenResponseImpl extends ThenResponse {
   public ThenResponseImpl haveCardTextThatStartsWith(final String testText) {
     var card = responseEnvelope.getResponse().getCard();
     assert nonNull(card) : "Card object is null";
-    var optText = extractCardTitle(card);
-    assert optText.isPresent() : "Card title is empty";
+    var optText = extractCardText(card);
+    assert optText.isPresent() : "Card text is empty";
     assert optText.get().startsWith(testText) : String.format("Card text '%s' should start with '%s'", optText.get(), testText);
     return this;
   }
@@ -164,8 +163,8 @@ public final class ThenResponseImpl extends ThenResponse {
   public ThenResponseImpl haveCardTextThatEndsWith(final String testText) {
     var card = responseEnvelope.getResponse().getCard();
     assert nonNull(card) : "Card object is null";
-    var optText = extractCardTitle(card);
-    assert optText.isPresent() : "Card title is empty";
+    var optText = extractCardText(card);
+    assert optText.isPresent() : "Card text is empty";
     assert optText.get().endsWith(testText) : String.format("Card text '%s' should end with '%s'", optText.get(), testText);
     return this;
   }
@@ -173,8 +172,8 @@ public final class ThenResponseImpl extends ThenResponse {
   public ThenResponseImpl haveCardTextThatContains(final String testText) {
     var card = responseEnvelope.getResponse().getCard();
     assert nonNull(card) : "Card object is null";
-    var optText = extractCardTitle(card);
-    assert optText.isPresent() : "Card title is empty";
+    var optText = extractCardText(card);
+    assert optText.isPresent() : "Card text is empty";
     assert optText.get().contains(testText) : String.format("Card text '%s' does not contain '%s'", optText.get(), testText);
     return this;
   }
@@ -184,24 +183,22 @@ public final class ThenResponseImpl extends ThenResponse {
     return this;
   }
 
-  public ThenResponseImpl haveSessionAttributeOf(final Entry<String, ? extends Object> entry) {
+  public ThenResponseImpl haveSessionAttributeOf(final String key, final Object value) {
     var attribs = responseEnvelope.getSessionAttributes();
     assert !attribs.isEmpty() : "Session attributes map is empty";
-    assert attribs.containsKey(entry.getKey()) : String.format("Session attributes map does not contains key '%s'", entry.getKey());
-    assert attribs.get(entry.getKey()).equals(entry.getValue()) : String.format("Session attribute value of '%s', is not '%s'", entry.getKey(), entry.getValue().toString());
+    assert attribs.containsKey(key) : String.format("Session attributes map does not contain key '%s'", key);
+    assert attribs.get(key).equals(value) : String.format("Session attribute value of '%s', is not '%s'", key, value.toString());
     return this;
   }
 
-  @SafeVarargs
-  public final ThenResponseImpl haveSessionAttributesOf(final Entry<String, ? extends Object>... entries) {
-    assert entries.length > 0 : "Entries to verify are empty";
+  public ThenResponseImpl haveSessionAttributesOf(final Map<String, Object> values) {
+    assert values.size() > 0 : "Entries to verify are empty";
     var attribs = responseEnvelope.getSessionAttributes();
     assert !attribs.isEmpty() : "Session attributes map is empty";
-    Arrays.stream(entries).forEach(entry -> {
-      assert nonNull(entry) : "Entry is null";
-      assert attribs.containsKey(entry.getKey()) : String.format("Session attributes map does not contains key '%s'", entry.getKey());
+    for (var entry : values.entrySet()) {
+      assert attribs.containsKey(entry.getKey()) : String.format("Session attributes map does not contain key '%s'", entry.getKey());
       assert attribs.get(entry.getKey()).equals(entry.getValue()) : String.format("Session attribute value of '%s', is not '%s'", entry.getKey(), entry.getValue().toString());
-    });
+    }
     return this;
   }
 

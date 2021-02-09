@@ -14,7 +14,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
 @Tag("unit-tests")
-final class GivenSkillImplTest {
+final class GivenSkillImpl_Test {
   @Mock Skill skill;
   @InjectMocks GivenSkillImpl sut;
 

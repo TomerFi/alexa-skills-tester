@@ -3,6 +3,8 @@ package info.tomfi.alexa.skillstester.steps.impl;
 import static org.assertj.core.api.BDDAssertions.then;
 import static org.assertj.core.api.BDDAssertions.thenExceptionOfType;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 import com.amazon.ask.Skill;
 import com.amazon.ask.model.Request;
@@ -15,16 +17,16 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
-
 
 @ExtendWith(MockitoExtension.class)
 @Tag("unit-tests")
-final class ThenResponseImplTest {
+final class ThenResponseImpl_Test {
   @Mock Skill skill;
   @Mock RequestEnvelope requestEnvelope;
   @Mock ResponseEnvelope responseEnvelope;
-  @InjectMocks ThenResponseImpl sut;
+  @Spy @InjectMocks ThenResponseImpl sut;
 
   @Test
   void retrieving_a_then_followup_instance_with_an_opened_session_and_verifying_the_fields(
@@ -62,6 +64,13 @@ final class ThenResponseImplTest {
     // when invoking for next step, then an assertion error is thrown
     thenExceptionOfType(AssertionError.class)
         .isThrownBy(() -> sut.thenFollowupWith(followupRequest))
-        .withMessage("Session is marked as over");
+        .withMessage("Session is marked as closed");
+  }
+
+  @Test
+  void invoking_sugar_method_and_will_only_return_the_sut() {
+    then(sut.and()).isEqualTo(sut);
+    verify(sut).and();
+    verifyNoMoreInteractions(sut);
   }
 }

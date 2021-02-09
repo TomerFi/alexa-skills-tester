@@ -24,7 +24,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
 @Tag("unit-tests")
-final class ThenFollowupImplTest {
+final class ThenFollowupImpl_Test {
   @Mock Skill skill;
   @Mock ResponseEnvelope responseEnvelope;
   @Mock RequestEnvelope previousRequestEnvelope;

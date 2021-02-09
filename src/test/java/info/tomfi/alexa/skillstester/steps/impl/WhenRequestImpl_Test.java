@@ -17,7 +17,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
 @Tag("unit-tests")
-public class WhenRequestImplTest {
+final class WhenRequestImpl_Test {
   @Mock Skill skill;
   @Mock RequestEnvelope requestEnvelope;
   @InjectMocks WhenRequestImpl sut;
