@@ -39,7 +39,8 @@ final class ThenResponseImpl_haveOutputSpeechThatEndsWith_Test {
   @Test
   void asserting_output_speech_ends_with_ssml_will_keep_ongoing_assertion(
       @Mock final Response response, @Mock final SsmlOutputSpeech speech) {
-    given(speech.getSsml()).willReturn("<speak><prosody volume='x-loud'>fake</prosody> speech</speak>");
+    given(speech.getSsml())
+        .willReturn("<speak><prosody volume='x-loud'>fake</prosody> speech</speak>");
     given(response.getOutputSpeech()).willReturn(speech);
     given(responseEnvelope.getResponse()).willReturn(response);
     then(sut.haveOutputSpeechThatEndsWith("speech")).isEqualTo(sut);

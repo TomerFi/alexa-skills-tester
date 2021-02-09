@@ -24,8 +24,9 @@ final class WhenRequestImpl_Test {
 
   @Test
   void retrieving_a_then_response_instance_and_verifying_the_fields(
-      @Mock ResponseEnvelope responseEnvelope) throws NoSuchFieldException, SecurityException, IllegalArgumentException,
-      IllegalAccessException {
+      @Mock ResponseEnvelope responseEnvelope)
+      throws NoSuchFieldException, SecurityException, IllegalArgumentException,
+          IllegalAccessException {
     // stub skill with mock response envelope
     given(skill.invoke(eq(requestEnvelope))).willReturn(responseEnvelope);
     // when invoking for next step

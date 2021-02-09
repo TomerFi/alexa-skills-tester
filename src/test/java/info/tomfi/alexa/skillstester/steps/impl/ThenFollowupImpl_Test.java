@@ -37,8 +37,9 @@ final class ThenFollowupImpl_Test {
       @Mock final Context previousContext,
       @Mock final Application previousApplication,
       @Mock final User previousUser,
-      @Mock final ResponseEnvelope nextResponseEnvelope) throws NoSuchFieldException, SecurityException,
-      IllegalArgumentException, IllegalAccessException {
+      @Mock final ResponseEnvelope nextResponseEnvelope)
+      throws NoSuchFieldException, SecurityException, IllegalArgumentException,
+          IllegalAccessException {
     // stub response envelope with a fake session attributes map
     var responseSessionAttributes = Map.of("SessionAttribKey1", (Object) "SessionAttribValue1");
     given(responseEnvelope.getSessionAttributes()).willReturn(responseSessionAttributes);
@@ -51,16 +52,20 @@ final class ThenFollowupImpl_Test {
     given(previousRequestEnvelope.getSession()).willReturn(previousSession);
     given(previousRequestEnvelope.getVersion()).willReturn("1.0");
     // create argument matcher for stubbing the expected new request envelope
-    ArgumentMatcher<RequestEnvelope> argMatcher = re ->
-        re.getContext().equals(previousContext)
-        && re.getRequest().equals(followupRequest)
-        && re.getVersion().equals("1.0")
-        && !re.getSession().getNew()
-        && re.getSession().getApplication().equals(previousApplication)
-        && re.getSession().getAttributes().containsKey("SessionAttribKey1")
-        && re.getSession().getAttributes().get("SessionAttribKey1").equals("SessionAttribValue1")
-        && re.getSession().getSessionId().equals("amzn1.echo-api.session.fake-session-id")
-        && re.getSession().getUser().equals(previousUser);
+    ArgumentMatcher<RequestEnvelope> argMatcher =
+        re ->
+            re.getContext().equals(previousContext)
+                && re.getRequest().equals(followupRequest)
+                && re.getVersion().equals("1.0")
+                && !re.getSession().getNew()
+                && re.getSession().getApplication().equals(previousApplication)
+                && re.getSession().getAttributes().containsKey("SessionAttribKey1")
+                && re.getSession()
+                    .getAttributes()
+                    .get("SessionAttribKey1")
+                    .equals("SessionAttribValue1")
+                && re.getSession().getSessionId().equals("amzn1.echo-api.session.fake-session-id")
+                && re.getSession().getUser().equals(previousUser);
     // stub skill with mock response envelope when matched with the expected argument
     given(skill.invoke(argThat(argMatcher))).willReturn(nextResponseEnvelope);
     // when invoking for next step

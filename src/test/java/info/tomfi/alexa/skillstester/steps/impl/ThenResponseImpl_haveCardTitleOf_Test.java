@@ -53,6 +53,7 @@ final class ThenResponseImpl_haveCardTitleOf_Test {
         .isThrownBy(() -> sut.haveCardTitleOf("fake card title"))
         .withMessage("Card object is null");
   }
+
   @Test
   void asserting_card_title_of_unknown_card_type_will_throw_an_assertion_error(
       @Mock final Response response, @Mock final Card card) {

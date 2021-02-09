@@ -93,7 +93,9 @@ final class ThenResponseImpl_haveRepromptSpeechOf_Test {
       @Mock final Response response,
       @Mock final SsmlOutputSpeech speech,
       @Mock final Reprompt reprompt) {
-    given(speech.getSsml()).willReturn("<speak>great <emphasis level='strong'>fake speech</emphasis> number 1</speak>");
+    given(speech.getSsml())
+        .willReturn(
+            "<speak>great <emphasis level='strong'>fake speech</emphasis> number 1</speak>");
     given(reprompt.getOutputSpeech()).willReturn(speech);
     given(response.getReprompt()).willReturn(reprompt);
     given(responseEnvelope.getResponse()).willReturn(response);

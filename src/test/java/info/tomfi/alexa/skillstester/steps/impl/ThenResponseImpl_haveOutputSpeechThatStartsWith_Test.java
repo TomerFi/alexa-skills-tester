@@ -27,7 +27,6 @@ final class ThenResponseImpl_haveOutputSpeechThatStartsWith_Test {
   @Mock ResponseEnvelope responseEnvelope;
   @InjectMocks ThenResponseImpl sut;
 
-
   @Test
   void asserting_output_speech_starts_with_plain_text_will_keep_ongoing_assertion(
       @Mock final Response response, @Mock final PlainTextOutputSpeech speech) {
@@ -70,7 +69,9 @@ final class ThenResponseImpl_haveOutputSpeechThatStartsWith_Test {
   @Test
   void asserting_output_speech_starts_with_ssml_with_wrong_text_throws_assertion_error(
       @Mock final Response response, @Mock final SsmlOutputSpeech speech) {
-    given(speech.getSsml()).willReturn("<speak>great <emphasis level='strong'>fake speech</emphasis> number 1</speak>");
+    given(speech.getSsml())
+        .willReturn(
+            "<speak>great <emphasis level='strong'>fake speech</emphasis> number 1</speak>");
     given(response.getOutputSpeech()).willReturn(speech);
     given(responseEnvelope.getResponse()).willReturn(response);
     thenExceptionOfType(AssertionError.class)

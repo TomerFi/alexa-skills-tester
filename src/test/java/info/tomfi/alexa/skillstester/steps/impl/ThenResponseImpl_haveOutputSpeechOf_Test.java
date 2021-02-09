@@ -69,7 +69,9 @@ final class ThenResponseImpl_haveOutputSpeechOf_Test {
   @Test
   void asserting_output_speech_of_ssml_with_wrong_text_throws_assertion_error(
       @Mock final Response response, @Mock final SsmlOutputSpeech speech) {
-    given(speech.getSsml()).willReturn("<speak>great <emphasis level='strong'>fake speech</emphasis> number 1</speak>");
+    given(speech.getSsml())
+        .willReturn(
+            "<speak>great <emphasis level='strong'>fake speech</emphasis> number 1</speak>");
     given(response.getOutputSpeech()).willReturn(speech);
     given(responseEnvelope.getResponse()).willReturn(response);
     thenExceptionOfType(AssertionError.class)

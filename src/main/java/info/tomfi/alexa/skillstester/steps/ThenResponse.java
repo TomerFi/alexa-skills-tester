@@ -19,7 +19,10 @@ public abstract class ThenResponse {
 
   public abstract ThenFollowup thenFollowupWith(Request request);
 
-  protected ThenResponse(final Skill setSkill, final RequestEnvelope setRequestEnvelope, final ResponseEnvelope setResponseEnvelope) {
+  protected ThenResponse(
+      final Skill setSkill,
+      final RequestEnvelope setRequestEnvelope,
+      final ResponseEnvelope setResponseEnvelope) {
     requestEnvelope = setRequestEnvelope;
     skill = setSkill;
     responseEnvelope = setResponseEnvelope;

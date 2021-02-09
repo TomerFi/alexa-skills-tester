@@ -11,7 +11,11 @@ public abstract class ThenFollowup {
   protected final RequestEnvelope previousRequestEnvelope;
   protected final Request followupRequest;
 
-  protected ThenFollowup(final Skill setSkill, final ResponseEnvelope setResponseEnvelope, final RequestEnvelope setPreviousRequestEnvelope, final Request setFollowupRequest) {
+  protected ThenFollowup(
+      final Skill setSkill,
+      final ResponseEnvelope setResponseEnvelope,
+      final RequestEnvelope setPreviousRequestEnvelope,
+      final Request setFollowupRequest) {
     skill = setSkill;
     responseEnvelope = setResponseEnvelope;
     previousRequestEnvelope = setPreviousRequestEnvelope;

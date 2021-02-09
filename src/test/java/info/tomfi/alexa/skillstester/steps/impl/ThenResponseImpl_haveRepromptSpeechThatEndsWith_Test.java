@@ -19,7 +19,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-
 /** Assertion method haveRepromptSpeechThatEndsWith test cases. */
 @ExtendWith(MockitoExtension.class)
 @Tag("unit-tests")
@@ -46,7 +45,8 @@ final class ThenResponseImpl_haveRepromptSpeechThatEndsWith_Test {
       @Mock final Response response,
       @Mock final SsmlOutputSpeech speech,
       @Mock final Reprompt reprompt) {
-    given(speech.getSsml()).willReturn("<speak><prosody volume='x-loud'>fake</prosody> speech</speak>");
+    given(speech.getSsml())
+        .willReturn("<speak><prosody volume='x-loud'>fake</prosody> speech</speak>");
     given(reprompt.getOutputSpeech()).willReturn(speech);
     given(response.getReprompt()).willReturn(reprompt);
     given(responseEnvelope.getResponse()).willReturn(response);

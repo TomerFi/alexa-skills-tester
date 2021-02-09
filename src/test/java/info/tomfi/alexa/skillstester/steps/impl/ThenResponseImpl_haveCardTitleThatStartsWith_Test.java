@@ -18,7 +18,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-
 /** Assertion method haveCardTitleThatStartsWith test cases. */
 @ExtendWith(MockitoExtension.class)
 @Tag("unit-tests")

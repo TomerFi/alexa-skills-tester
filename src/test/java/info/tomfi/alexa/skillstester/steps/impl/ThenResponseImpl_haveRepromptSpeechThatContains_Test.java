@@ -45,7 +45,8 @@ final class ThenResponseImpl_haveRepromptSpeechThatContains_Test {
       @Mock final Response response,
       @Mock final SsmlOutputSpeech speech,
       @Mock final Reprompt reprompt) {
-    given(speech.getSsml()).willReturn("<speak><say-as interpret-as='spell-out'>fake</say-as> speech test</speak>");
+    given(speech.getSsml())
+        .willReturn("<speak><say-as interpret-as='spell-out'>fake</say-as> speech test</speak>");
     given(reprompt.getOutputSpeech()).willReturn(speech);
     given(response.getReprompt()).willReturn(reprompt);
     given(responseEnvelope.getResponse()).willReturn(response);

@@ -21,7 +21,8 @@ final class GivenSkillImpl_Test {
   @Test
   void retrieving_a_when_request_instance_and_verifying_the_fields(
       @Mock final RequestEnvelope requestEnvelope)
-      throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
+      throws NoSuchFieldException, SecurityException, IllegalArgumentException,
+          IllegalAccessException {
     // when invoking for next step
     var whenStep = sut.whenRequestIs(requestEnvelope);
     // then verify the skill field

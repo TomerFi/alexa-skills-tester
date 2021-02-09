@@ -39,7 +39,8 @@ final class ThenResponseImpl_haveOutputSpeechThatContains_Test {
   @Test
   void asserting_output_speech_contains_with_ssml_will_keep_ongoing_assertion(
       @Mock final Response response, @Mock final SsmlOutputSpeech speech) {
-    given(speech.getSsml()).willReturn("<speak><say-as interpret-as='spell-out'>fake</say-as> speech test</speak>");
+    given(speech.getSsml())
+        .willReturn("<speak><say-as interpret-as='spell-out'>fake</say-as> speech test</speak>");
     given(response.getOutputSpeech()).willReturn(speech);
     given(responseEnvelope.getResponse()).willReturn(response);
     then(sut.haveOutputSpeechThatContains("speech")).isEqualTo(sut);

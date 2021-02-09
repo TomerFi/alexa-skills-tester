@@ -31,7 +31,8 @@ final class ThenResponseImpl_Test {
   @Test
   void retrieving_a_then_followup_instance_with_an_opened_session_and_verifying_the_fields(
       @Mock final Response response, @Mock final Request followupRequest)
-      throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
+      throws NoSuchFieldException, SecurityException, IllegalArgumentException,
+          IllegalAccessException {
     // stub response to keep session open waiting for followup
     given(response.getShouldEndSession()).willReturn(false);
     given(responseEnvelope.getResponse()).willReturn(response);
@@ -46,7 +47,8 @@ final class ThenResponseImpl_Test {
     responseEnvelopeField.setAccessible(true);
     then(responseEnvelopeField.get(followupStep)).isEqualTo(responseEnvelope);
     // then verify previousRequestEnvelope field
-    var previousRequestEnvelopeField = ThenFollowup.class.getDeclaredField("previousRequestEnvelope");
+    var previousRequestEnvelopeField =
+        ThenFollowup.class.getDeclaredField("previousRequestEnvelope");
     previousRequestEnvelopeField.setAccessible(true);
     then(previousRequestEnvelopeField.get(followupStep)).isEqualTo(requestEnvelope);
     // then verify followupRequest field
