@@ -12,17 +12,46 @@
  */
 package info.tomfi.alexa.skillstester.steps;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 import com.amazon.ask.Skill;
 import com.amazon.ask.model.RequestEnvelope;
+import com.amazon.ask.request.SkillRequest;
+import com.amazon.ask.request.impl.BaseSkillRequest;
 
 /** When request step, encapsulating the Skill and the RequestEnvelope. */
 public abstract class WhenRequest {
   protected final Skill skill;
   protected final RequestEnvelope requestEnvelope;
+  protected final SkillRequest skillRequest;
+  protected final boolean inEnvelopeMode;
 
   protected WhenRequest(final Skill setSkill, final RequestEnvelope setRequestEnvelope) {
     skill = setSkill;
     requestEnvelope = setRequestEnvelope;
+    skillRequest = null;
+    inEnvelopeMode = true;
+  }
+
+  protected WhenRequest(final Skill setSkill, final String requestJsonString) {
+    skill = setSkill;
+    requestEnvelope = null;
+    skillRequest = new BaseSkillRequest(requestJsonString.getBytes(UTF_8));
+    inEnvelopeMode = false;
+  }
+
+  protected WhenRequest(final Skill setSkill, final byte[] requestJsonByte) {
+    skill = setSkill;
+    requestEnvelope = null;
+    skillRequest = new BaseSkillRequest(requestJsonByte);
+    inEnvelopeMode = false;
+  }
+
+  protected WhenRequest(final Skill setSkill, final SkillRequest setSkillRequest) {
+    skill = setSkill;
+    requestEnvelope = null;
+    skillRequest = setSkillRequest;
+    inEnvelopeMode = false;
   }
 
   /**

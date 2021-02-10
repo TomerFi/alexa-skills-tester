@@ -14,6 +14,7 @@ package info.tomfi.alexa.skillstester.steps;
 
 import com.amazon.ask.Skill;
 import com.amazon.ask.model.RequestEnvelope;
+import com.amazon.ask.request.SkillRequest;
 
 /** Given skill step, encapsulating the Skill. */
 public abstract class GivenSkill {
@@ -26,8 +27,32 @@ public abstract class GivenSkill {
   /**
    * Configure the initial request to send to the Skill.
    *
-   * @param requestEnvelope the request.
+   * @param requestEnvelope the request envelope.
    * @return the next When step of the fluent api.
    */
   public abstract WhenRequest whenRequestIs(RequestEnvelope requestEnvelope);
+
+  /**
+   * Configure the initial request to send to the Skill.
+   *
+   * @param requestJson the request json String.
+   * @return the next When step of the fluent api.
+   */
+  public abstract WhenRequest whenRequestIs(String requestJsonString);
+
+  /**
+   * Configure the initial request to send to the Skill.
+   *
+   * @param requestJson the request json byte array.
+   * @return the next When step of the fluent api.
+   */
+  public abstract WhenRequest whenRequestIs(byte[] requestJsonByte);
+
+  /**
+   * Configure the initial request to send to the Skill.
+   *
+   * @param skillRequest the skill request.
+   * @return the next When step of the fluent api.
+   */
+  public abstract WhenRequest whenRequestIs(SkillRequest skillRequest);
 }

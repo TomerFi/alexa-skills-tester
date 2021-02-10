@@ -48,10 +48,6 @@ final class When_Request_Step_Implementation_Test {
     var skillField = ThenResponse.class.getDeclaredField("skill");
     skillField.setAccessible(true);
     then(skillField.get(thenStep)).isEqualTo(skill);
-    // then verify requestEnvelope field
-    var requestEnvelopeField = ThenResponse.class.getDeclaredField("requestEnvelope");
-    requestEnvelopeField.setAccessible(true);
-    then(requestEnvelopeField.get(thenStep)).isEqualTo(requestEnvelope);
     // then verify responseEnvelope field
     var responseEnvelopeField = ThenResponse.class.getDeclaredField("responseEnvelope");
     responseEnvelopeField.setAccessible(true);

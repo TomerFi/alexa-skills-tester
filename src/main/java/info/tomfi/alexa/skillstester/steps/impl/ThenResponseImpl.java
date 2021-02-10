@@ -16,9 +16,10 @@ import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 
 import com.amazon.ask.Skill;
-import com.amazon.ask.model.Request;
 import com.amazon.ask.model.RequestEnvelope;
 import com.amazon.ask.model.ResponseEnvelope;
+import com.amazon.ask.request.SkillRequest;
+
 import info.tomfi.alexa.skillstester.steps.ThenFollowup;
 import info.tomfi.alexa.skillstester.steps.ThenResponse;
 import java.util.Map;
@@ -28,17 +29,32 @@ import java.util.Map;
  * Followup step logic.
  */
 public final class ThenResponseImpl extends ThenResponse {
-  public ThenResponseImpl(
-      final Skill skill,
-      final RequestEnvelope requestEnvelope,
-      final ResponseEnvelope responseEnvelope) {
-    super(skill, requestEnvelope, responseEnvelope);
+  public ThenResponseImpl(final Skill skill, final ResponseEnvelope responseEnvelope) {
+    super(skill, responseEnvelope);
   }
 
   @Override
-  public ThenFollowup thenFollowupWith(final Request request) {
+  public ThenFollowup thenFollowupWith(final RequestEnvelope followupRequestEnvelope) {
     waitForFollowup();
-    return new ThenFollowupImpl(skill, responseEnvelope, requestEnvelope, request);
+    return new ThenFollowupImpl(skill, responseEnvelope, followupRequestEnvelope);
+  }
+
+  @Override
+  public ThenFollowup thenFollowupWith(final String followupJsonString) {
+    waitForFollowup();
+    return new ThenFollowupImpl(skill, responseEnvelope, followupJsonString);
+  }
+
+  @Override
+  public ThenFollowup thenFollowupWith(final byte[] followupJsonByte) {
+    waitForFollowup();
+    return new ThenFollowupImpl(skill, responseEnvelope, followupJsonByte);
+  }
+
+  @Override
+  public ThenFollowup thenFollowupWith(final SkillRequest followupSkillRequest) {
+    waitForFollowup();
+    return new ThenFollowupImpl(skill, responseEnvelope, followupSkillRequest);
   }
 
   @Override

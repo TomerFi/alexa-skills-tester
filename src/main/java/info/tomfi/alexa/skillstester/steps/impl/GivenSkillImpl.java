@@ -14,6 +14,8 @@ package info.tomfi.alexa.skillstester.steps.impl;
 
 import com.amazon.ask.Skill;
 import com.amazon.ask.model.RequestEnvelope;
+import com.amazon.ask.request.SkillRequest;
+
 import info.tomfi.alexa.skillstester.steps.GivenSkill;
 import info.tomfi.alexa.skillstester.steps.WhenRequest;
 
@@ -26,5 +28,20 @@ public final class GivenSkillImpl extends GivenSkill {
   @Override
   public WhenRequest whenRequestIs(final RequestEnvelope requestEnvelope) {
     return new WhenRequestImpl(skill, requestEnvelope);
+  }
+
+  @Override
+  public WhenRequest whenRequestIs(final String requestJsonString) {
+    return new WhenRequestImpl(skill, requestJsonString);
+  }
+
+  @Override
+  public WhenRequest whenRequestIs(final byte[] requestJsonByte) {
+    return new WhenRequestImpl(skill, requestJsonByte);
+  }
+
+  @Override
+  public WhenRequest whenRequestIs(final SkillRequest skillRequest) {
+    return new WhenRequestImpl(skill, skillRequest);
   }
 }

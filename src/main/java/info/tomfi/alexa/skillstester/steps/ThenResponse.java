@@ -13,7 +13,6 @@
 package info.tomfi.alexa.skillstester.steps;
 
 import com.amazon.ask.Skill;
-import com.amazon.ask.model.Request;
 import com.amazon.ask.model.RequestEnvelope;
 import com.amazon.ask.model.ResponseEnvelope;
 import com.amazon.ask.model.ui.Card;
@@ -22,20 +21,19 @@ import com.amazon.ask.model.ui.PlainTextOutputSpeech;
 import com.amazon.ask.model.ui.SimpleCard;
 import com.amazon.ask.model.ui.SsmlOutputSpeech;
 import com.amazon.ask.model.ui.StandardCard;
+import com.amazon.ask.request.SkillRequest;
+
 import java.util.Map;
 import java.util.Optional;
 
 /** Then response step, encapsulating the Skill, the RequestEnvelope, and the ResponseEnvelope. */
 public abstract class ThenResponse {
   protected final Skill skill;
-  protected final RequestEnvelope requestEnvelope;
   protected final ResponseEnvelope responseEnvelope;
 
   protected ThenResponse(
       final Skill setSkill,
-      final RequestEnvelope setRequestEnvelope,
       final ResponseEnvelope setResponseEnvelope) {
-    requestEnvelope = setRequestEnvelope;
     skill = setSkill;
     responseEnvelope = setResponseEnvelope;
   }
@@ -43,10 +41,35 @@ public abstract class ThenResponse {
   /**
    * Optionally configure a followup Request to the current response.
    *
-   * @param request the followup Request.
+   * @param requestEnvelope the followup request envelope.
    * @return the next Then step of the fluent api.
    */
-  public abstract ThenFollowup thenFollowupWith(Request request);
+  public abstract ThenFollowup thenFollowupWith(RequestEnvelope requestEnvelope);
+
+  /**
+   * Optionally configure a followup Request to the current response.
+   *
+   * @param requestJsonString the followup request json String.
+   * @return the next Then step of the fluent api.
+   */
+  public abstract ThenFollowup thenFollowupWith(String requestJsonString);
+
+
+  /**
+   * Optionally configure a followup Request to the current response.
+   *
+   * @param requestJsonByte the followup request json byte array.
+   * @return the next Then step of the fluent api.
+   */
+  public abstract ThenFollowup thenFollowupWith(byte[] requestJsonByte);
+
+  /**
+   * Optionally configure a followup Request to the current response.
+   *
+   * @param skillRequest the followup skill request.
+   * @return the next Then step of the fluent api.
+   */
+  public abstract ThenFollowup thenFollowupWith(SkillRequest skillRequest);
 
   /**
    * Assert the skill response has output speech that is equal to testSpeech.

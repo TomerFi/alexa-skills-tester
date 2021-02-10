@@ -14,6 +14,7 @@ package info.tomfi.alexa.skillstester.steps.impl;
 
 import com.amazon.ask.Skill;
 import com.amazon.ask.model.RequestEnvelope;
+import com.amazon.ask.request.SkillRequest;
 import info.tomfi.alexa.skillstester.steps.ThenResponse;
 import info.tomfi.alexa.skillstester.steps.WhenRequest;
 
@@ -23,8 +24,21 @@ public final class WhenRequestImpl extends WhenRequest {
     super(skill, requestEnvelope);
   }
 
+  protected WhenRequestImpl(final Skill skill, final String requestJsonString) {
+    super(skill, requestJsonString);
+  }
+
+  protected WhenRequestImpl(final Skill skill, final byte[] requestJsonByte) {
+    super(skill, requestJsonByte);
+  }
+
+  protected WhenRequestImpl(final Skill skill, final SkillRequest setSkillRequest) {
+    super(skill, setSkillRequest);
+  }
+
   @Override
   public ThenResponse thenResponseShould() {
-    return new ThenResponseImpl(skill, requestEnvelope, skill.invoke(requestEnvelope));
+    var responseEnvelope = inEnvelopeMode ? skill.invoke(requestEnvelope) : skill.execute(skillRequest).getResponse();
+    return new ThenResponseImpl(skill, responseEnvelope);
   }
 }
