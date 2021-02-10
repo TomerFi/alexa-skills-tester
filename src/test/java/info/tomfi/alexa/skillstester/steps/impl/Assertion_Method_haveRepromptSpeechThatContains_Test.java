@@ -19,51 +19,51 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-/** Assertion method haveRepromptSpeechThatEndsWith test cases. */
+/** Then response step, assertion method haveRepromptSpeechThatContains test cases. */
 @ExtendWith(MockitoExtension.class)
 @Tag("unit-tests")
-final class ThenResponseImpl_haveRepromptSpeechThatEndsWith_Test {
+final class Assertion_Method_haveRepromptSpeechThatContains_Test {
   @Mock Skill skill;
   @Mock RequestEnvelope requestEnvelope;
   @Mock ResponseEnvelope responseEnvelope;
   @InjectMocks ThenResponseImpl sut;
 
   @Test
-  void asserting_reprompt_speech_ends_with_plain_text_will_keep_ongoing_assertion(
+  void asserting_a_correct_reprompt_speech_with_a_plain_type_will_keep_ongoing_assertion(
       @Mock final Response response,
       @Mock final PlainTextOutputSpeech speech,
       @Mock final Reprompt reprompt) {
-    given(speech.getText()).willReturn("fake speech");
+    given(speech.getText()).willReturn("fake speech test");
     given(reprompt.getOutputSpeech()).willReturn(speech);
     given(response.getReprompt()).willReturn(reprompt);
     given(responseEnvelope.getResponse()).willReturn(response);
-    then(sut.haveRepromptSpeechThatEndsWith("speech")).isEqualTo(sut);
+    then(sut.haveRepromptSpeechThatContains("speech")).isEqualTo(sut);
   }
 
   @Test
-  void asserting_reprompt_speech_ends_with_ssml_will_keep_ongoing_assertion(
+  void asserting_a_correct_reprompt_speech_with_an_ssml_type_will_keep_ongoing_assertion(
       @Mock final Response response,
       @Mock final SsmlOutputSpeech speech,
       @Mock final Reprompt reprompt) {
     given(speech.getSsml())
-        .willReturn("<speak><prosody volume='x-loud'>fake</prosody> speech</speak>");
+        .willReturn("<speak><say-as interpret-as='spell-out'>fake</say-as> speech test</speak>");
     given(reprompt.getOutputSpeech()).willReturn(speech);
     given(response.getReprompt()).willReturn(reprompt);
     given(responseEnvelope.getResponse()).willReturn(response);
-    then(sut.haveRepromptSpeechThatEndsWith("speech")).isEqualTo(sut);
+    then(sut.haveRepromptSpeechThatContains("speech")).isEqualTo(sut);
   }
 
   @Test
-  void asserting_reprompt_speech_ends_with_no_reprompt_object_will_throw_an_assertion_error(
+  void asserting_a_reprompt_specch_with_no_reprompt_object_will_throw_an_assertion_error(
       @Mock final Response response) {
     given(responseEnvelope.getResponse()).willReturn(response);
     thenExceptionOfType(AssertionError.class)
-        .isThrownBy(() -> sut.haveRepromptSpeechThatEndsWith("speech"))
+        .isThrownBy(() -> sut.haveRepromptSpeechThatContains("speech"))
         .withMessage("Reprompt object is null");
   }
 
   @Test
-  void asserting_reprompt_speech_ends_with_unknown_speech_type_will_throw_an_assertion_error(
+  void asserting_a_reprompt_speech_with_an_unknown_speech_type_will_throw_an_assertion_error(
       @Mock final Response response,
       @Mock final OutputSpeech speech,
       @Mock final Reprompt reprompt) {
@@ -71,12 +71,12 @@ final class ThenResponseImpl_haveRepromptSpeechThatEndsWith_Test {
     given(response.getReprompt()).willReturn(reprompt);
     given(responseEnvelope.getResponse()).willReturn(response);
     thenExceptionOfType(AssertionError.class)
-        .isThrownBy(() -> sut.haveRepromptSpeechThatEndsWith("speech"))
+        .isThrownBy(() -> sut.haveRepromptSpeechThatContains("speech"))
         .withMessage("Reprompt speech is empty");
   }
 
   @Test
-  void asserting_reprompt_speech_ends_with_plain_text_with_wrong_text_throws_assertion_error(
+  void asserting_a_wrong_reprompt_speech_with_a_plain_type_will_throw_an_assertion_error(
       @Mock final Response response,
       @Mock final PlainTextOutputSpeech speech,
       @Mock final Reprompt reprompt) {
@@ -85,21 +85,21 @@ final class ThenResponseImpl_haveRepromptSpeechThatEndsWith_Test {
     given(response.getReprompt()).willReturn(reprompt);
     given(responseEnvelope.getResponse()).willReturn(response);
     thenExceptionOfType(AssertionError.class)
-        .isThrownBy(() -> sut.haveRepromptSpeechThatEndsWith("number 231"))
-        .withMessage("Reprompt speech 'great fake speech number 1' should end with 'number 231'");
+        .isThrownBy(() -> sut.haveRepromptSpeechThatContains("number 231"))
+        .withMessage("Reprompt speech 'great fake speech number 1' does not contain 'number 231'");
   }
 
   @Test
-  void asserting_reprompt_speech_ends_with_ssml_with_wrong_text_throws_assertion_error(
+  void asserting_a_wrong_reprompt_speech_with_an_ssml_type_will_throw_an_assertion_error(
       @Mock final Response response,
       @Mock final SsmlOutputSpeech speech,
       @Mock final Reprompt reprompt) {
-    given(speech.getSsml()).willReturn("<speak>great <p>fake speech</p> number 1</speak>");
+    given(speech.getSsml()).willReturn("<speak>great <s>fake speech</s> number 1</speak>");
     given(reprompt.getOutputSpeech()).willReturn(speech);
     given(response.getReprompt()).willReturn(reprompt);
     given(responseEnvelope.getResponse()).willReturn(response);
     thenExceptionOfType(AssertionError.class)
-        .isThrownBy(() -> sut.haveRepromptSpeechThatEndsWith("number 231"))
-        .withMessage("Reprompt speech 'great fake speech number 1' should end with 'number 231'");
+        .isThrownBy(() -> sut.haveRepromptSpeechThatContains("number 231"))
+        .withMessage("Reprompt speech 'great fake speech number 1' does not contain 'number 231'");
   }
 }

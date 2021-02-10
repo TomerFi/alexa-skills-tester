@@ -11,6 +11,10 @@ import info.tomfi.alexa.skillstester.steps.ThenFollowup;
 import info.tomfi.alexa.skillstester.steps.ThenResponse;
 import java.util.Map;
 
+/**
+ * Then step, encapsulating the Skill, implementing assertion methods and the next optionally
+ * Followup step logic.
+ */
 public final class ThenResponseImpl extends ThenResponse {
   public ThenResponseImpl(
       final Skill skill,
@@ -98,7 +102,7 @@ public final class ThenResponseImpl extends ThenResponse {
   }
 
   public ThenResponseImpl notWaitForFollowup() {
-    assert responseEnvelope.getResponse().getShouldEndSession() : "Session is marked as opened";
+    assert responseEnvelope.getResponse().getShouldEndSession() : "Session is marked as open";
     return this;
   }
 

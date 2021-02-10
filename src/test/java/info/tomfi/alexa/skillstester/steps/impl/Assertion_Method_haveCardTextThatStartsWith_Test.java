@@ -18,71 +18,71 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-/** Assertion method haveCardTitleThatContains test cases. */
+/** Then response step, assertion method haveCardTextThatStartsWith test cases. */
 @ExtendWith(MockitoExtension.class)
 @Tag("unit-tests")
-final class ThenResponseImpl_haveCardTitleThatContains_Test {
+final class Assertion_Method_haveCardTextThatStartsWith_Test {
   @Mock Skill skill;
   @Mock RequestEnvelope requestEnvelope;
   @Mock ResponseEnvelope responseEnvelope;
   @InjectMocks ThenResponseImpl sut;
 
   @Test
-  void asserting_card_title_contains_simple_card_will_keep_ongoing_assertion(
+  void asserting_a_correct_card_text_with_a_simple_type_will_keep_ongoing_assertion(
       @Mock final Response response, @Mock final SimpleCard card) {
-    given(card.getTitle()).willReturn("great fake card title 1");
+    given(card.getContent()).willReturn("great fake card text 1");
     given(response.getCard()).willReturn(card);
     given(responseEnvelope.getResponse()).willReturn(response);
-    then(sut.haveCardTitleThatContains("fake card")).isEqualTo(sut);
+    then(sut.haveCardTextThatStartsWith("great fake")).isEqualTo(sut);
   }
 
   @Test
-  void asserting_card_title_contains_standard_card_will_keep_ongoing_assertion(
+  void asserting_a_correct_card_text_with_a_standard_type_will_keep_ongoing_assertion(
       @Mock final Response response, @Mock final StandardCard card) {
-    given(card.getTitle()).willReturn("great fake card title 1");
+    given(card.getText()).willReturn("great fake card text 1");
     given(response.getCard()).willReturn(card);
     given(responseEnvelope.getResponse()).willReturn(response);
-    then(sut.haveCardTitleThatContains("fake card")).isEqualTo(sut);
+    then(sut.haveCardTextThatStartsWith("great fake")).isEqualTo(sut);
   }
 
   @Test
-  void asserting_card_title_contains_no_card_object_will_throw_an_assertion_error(
+  void asserting_a_card_text_with_no_card_object_will_throw_an_assertion_error(
       @Mock final Response response) {
     given(responseEnvelope.getResponse()).willReturn(response);
     thenExceptionOfType(AssertionError.class)
-        .isThrownBy(() -> sut.haveCardTitleThatContains("card title"))
+        .isThrownBy(() -> sut.haveCardTextThatStartsWith("card text"))
         .withMessage("Card object is null");
   }
 
   @Test
-  void asserting_card_title_contains_unknown_card_type_will_throw_an_assertion_error(
+  void asserting_a_card_text_with_an_unknown_card_type_will_throw_an_assertion_error(
       @Mock final Response response, @Mock final Card card) {
     given(response.getCard()).willReturn(card);
     given(responseEnvelope.getResponse()).willReturn(response);
     thenExceptionOfType(AssertionError.class)
-        .isThrownBy(() -> sut.haveCardTitleThatContains("fake"))
-        .withMessage("Card title is empty");
+        .isThrownBy(() -> sut.haveCardTextThatStartsWith("fake"))
+        .withMessage("Card text is empty");
   }
 
   @Test
-  void asserting_card_title_contains_simple_card_with_wrong_title_throws_assertion_error(
+  void asserting_a_wrong_card_text_with_a_simple_type_will_throw_an_assertion_error(
       @Mock final Response response, @Mock final SimpleCard card) {
-    given(card.getTitle()).willReturn("great fake card title 1");
+    given(card.getContent()).willReturn("great fake card text 1");
     given(response.getCard()).willReturn(card);
     given(responseEnvelope.getResponse()).willReturn(response);
     thenExceptionOfType(AssertionError.class)
-        .isThrownBy(() -> sut.haveCardTitleThatContains("wrong card title"))
-        .withMessage("Card title 'great fake card title 1' does not contain 'wrong card title'");
+        .isThrownBy(() -> sut.haveCardTextThatStartsWith("wrong card text"))
+        .withMessage("Card text 'great fake card text 1' should start with 'wrong card text'");
   }
 
   @Test
-  void asserting_card_title_contains_standard_card_with_wrong_title_throws_assertion_error(
+  void asserting_a_wrong_card_text_with_a_standard_type_will_throw_an_assertion_error(
       @Mock final Response response, @Mock final StandardCard card) {
-    given(card.getTitle()).willReturn("great fake card title 1");
+    given(card.getText()).willReturn("great fake card text 1");
     given(response.getCard()).willReturn(card);
     given(responseEnvelope.getResponse()).willReturn(response);
     thenExceptionOfType(AssertionError.class)
-        .isThrownBy(() -> sut.haveCardTitleThatContains("wrong card title"))
-        .withMessage("Card title 'great fake card title 1' does not contain 'wrong card title'");
+        .isThrownBy(() -> sut.haveCardTextThatStartsWith("wrong card text"))
+        .withMessage("Card text 'great fake card text 1' should start with 'wrong card text'");
   }
 }

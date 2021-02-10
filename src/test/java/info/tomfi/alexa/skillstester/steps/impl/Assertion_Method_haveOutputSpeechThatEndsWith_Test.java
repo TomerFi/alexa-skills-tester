@@ -18,63 +18,63 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-/** Assertion method haveOutputSpeechThatContains test cases. */
+/** Then response step, assertion method haveOutputSpeechThatEndsWith test cases. */
 @ExtendWith(MockitoExtension.class)
 @Tag("unit-tests")
-final class ThenResponseImpl_haveOutputSpeechThatContains_Test {
+final class Assertion_Method_haveOutputSpeechThatEndsWith_Test {
   @Mock Skill skill;
   @Mock RequestEnvelope requestEnvelope;
   @Mock ResponseEnvelope responseEnvelope;
   @InjectMocks ThenResponseImpl sut;
 
   @Test
-  void asserting_output_speech_contains_plain_text_will_keep_ongoing_assertion(
+  void asserting_a_correct_output_speech_with_a_plain_type_will_keep_ongoing_assertion(
       @Mock final Response response, @Mock final PlainTextOutputSpeech speech) {
-    given(speech.getText()).willReturn("fake speech test");
+    given(speech.getText()).willReturn("fake speech");
     given(response.getOutputSpeech()).willReturn(speech);
     given(responseEnvelope.getResponse()).willReturn(response);
-    then(sut.haveOutputSpeechThatContains("speech")).isEqualTo(sut);
+    then(sut.haveOutputSpeechThatEndsWith("speech")).isEqualTo(sut);
   }
 
   @Test
-  void asserting_output_speech_contains_with_ssml_will_keep_ongoing_assertion(
+  void asserting_a_correct_output_speech_with_an_ssml_type_will_keep_ongoing_assertion(
       @Mock final Response response, @Mock final SsmlOutputSpeech speech) {
     given(speech.getSsml())
-        .willReturn("<speak><say-as interpret-as='spell-out'>fake</say-as> speech test</speak>");
+        .willReturn("<speak><prosody volume='x-loud'>fake</prosody> speech</speak>");
     given(response.getOutputSpeech()).willReturn(speech);
     given(responseEnvelope.getResponse()).willReturn(response);
-    then(sut.haveOutputSpeechThatContains("speech")).isEqualTo(sut);
+    then(sut.haveOutputSpeechThatEndsWith("speech")).isEqualTo(sut);
   }
 
   @Test
-  void asserting_output_speech_contains_with_unknown_speech_type_will_throw_an_assertion_error(
+  void asserting_an_output_speech_with_an_unknown_speech_type_will_throw_an_assertion_error(
       @Mock final Response response, @Mock final OutputSpeech speech) {
     given(response.getOutputSpeech()).willReturn(speech);
     given(responseEnvelope.getResponse()).willReturn(response);
     thenExceptionOfType(AssertionError.class)
-        .isThrownBy(() -> sut.haveOutputSpeechThatContains("speech"))
+        .isThrownBy(() -> sut.haveOutputSpeechThatEndsWith("speech"))
         .withMessage("Output speech is empty");
   }
 
   @Test
-  void asserting_output_speech_contains_with_plain_text_with_wrong_text_throws_assertion_error(
+  void asserting_a_wrong_output_speech_with_a_plain_type_will_throw_an_assertion_error(
       @Mock final Response response, @Mock final PlainTextOutputSpeech speech) {
     given(speech.getText()).willReturn("great fake speech number 1");
     given(response.getOutputSpeech()).willReturn(speech);
     given(responseEnvelope.getResponse()).willReturn(response);
     thenExceptionOfType(AssertionError.class)
-        .isThrownBy(() -> sut.haveOutputSpeechThatContains("number 231"))
-        .withMessage("Output speech 'great fake speech number 1' does not contain 'number 231'");
+        .isThrownBy(() -> sut.haveOutputSpeechThatEndsWith("number 231"))
+        .withMessage("Output speech 'great fake speech number 1' should end with 'number 231'");
   }
 
   @Test
-  void asserting_output_speech_contains_with_ssml_with_wrong_text_throws_assertion_error(
+  void asserting_a_wrong_output_speech_with_an_ssml_type_will_throw_an_assertion_error(
       @Mock final Response response, @Mock final SsmlOutputSpeech speech) {
-    given(speech.getSsml()).willReturn("<speak>great <s>fake speech</s> number 1</speak>");
+    given(speech.getSsml()).willReturn("<speak>great <p>fake speech</p> number 1</speak>");
     given(response.getOutputSpeech()).willReturn(speech);
     given(responseEnvelope.getResponse()).willReturn(response);
     thenExceptionOfType(AssertionError.class)
-        .isThrownBy(() -> sut.haveOutputSpeechThatContains("number 231"))
-        .withMessage("Output speech 'great fake speech number 1' does not contain 'number 231'");
+        .isThrownBy(() -> sut.haveOutputSpeechThatEndsWith("number 231"))
+        .withMessage("Output speech 'great fake speech number 1' should end with 'number 231'");
   }
 }

@@ -22,9 +22,13 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+/**
+ * Then followup step, encapsulating the Skill, implementing the next Then step logic test
+ * cases.
+ */
 @ExtendWith(MockitoExtension.class)
 @Tag("unit-tests")
-final class ThenFollowupImpl_Test {
+final class Then_Followup_Step_Implementation_Test {
   @Mock Skill skill;
   @Mock ResponseEnvelope responseEnvelope;
   @Mock RequestEnvelope previousRequestEnvelope;
@@ -32,7 +36,7 @@ final class ThenFollowupImpl_Test {
   @InjectMocks ThenFollowupImpl sut;
 
   @Test
-  void retrieving_a_then_response_instance_and_verifying_the_fields(
+  void the_next_then_step_will_instantiate_a_then_response_instance_encapsulating_the_arguments(
       @Mock final Session previousSession,
       @Mock final Context previousContext,
       @Mock final Application previousApplication,

@@ -15,15 +15,16 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+/** When step of the fluent api, implementing the next Then step logic test cases. */
 @ExtendWith(MockitoExtension.class)
 @Tag("unit-tests")
-final class WhenRequestImpl_Test {
+final class When_Request_Step_Implementation_Test {
   @Mock Skill skill;
   @Mock RequestEnvelope requestEnvelope;
   @InjectMocks WhenRequestImpl sut;
 
   @Test
-  void retrieving_a_then_response_instance_and_verifying_the_fields(
+  void the_next_then_step_will_instantiate_a_then_response_instance_encapsulating_the_arguments(
       @Mock ResponseEnvelope responseEnvelope)
       throws NoSuchFieldException, SecurityException, IllegalArgumentException,
           IllegalAccessException {

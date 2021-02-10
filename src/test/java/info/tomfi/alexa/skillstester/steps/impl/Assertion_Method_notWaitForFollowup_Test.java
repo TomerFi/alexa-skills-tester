@@ -8,7 +8,6 @@ import com.amazon.ask.Skill;
 import com.amazon.ask.model.RequestEnvelope;
 import com.amazon.ask.model.Response;
 import com.amazon.ask.model.ResponseEnvelope;
-import com.amazon.ask.model.ui.Reprompt;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,29 +15,30 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-/** Assertion method notWaitForFollowup test cases. */
+/** Then response step, assertion method notWaitForFollowup test cases. */
 @ExtendWith(MockitoExtension.class)
 @Tag("unit-tests")
-final class ThenResponseImpl_haveNoReprompt_Test {
+final class Assertion_Method_notWaitForFollowup_Test {
   @Mock Skill skill;
   @Mock RequestEnvelope requestEnvelope;
   @Mock ResponseEnvelope responseEnvelope;
   @InjectMocks ThenResponseImpl sut;
 
   @Test
-  void asserting_skill_response_has_no_reprompt_with_no_reprompt_object_will_keep_ongoing_assertion(
+  void asserting_with_a_closed_session_will_keep_ongoing_assertion(
       @Mock final Response response) {
+    given(response.getShouldEndSession()).willReturn(true);
     given(responseEnvelope.getResponse()).willReturn(response);
-    then(sut.haveNoReprompt()).isEqualTo(sut);
+    then(sut.notWaitForFollowup()).isEqualTo(sut);
   }
 
   @Test
-  void asserting_skill_response_has_no_reprompt_with_reprompt_object_will_throw_assertion_error(
-      @Mock final Response response, @Mock final Reprompt reprompt) {
-    given(response.getReprompt()).willReturn(reprompt);
+  void asserting_with_an_open_session_will_throw_an_assertion_error(
+      @Mock final Response response) {
+    given(response.getShouldEndSession()).willReturn(false);
     given(responseEnvelope.getResponse()).willReturn(response);
     thenExceptionOfType(AssertionError.class)
-        .isThrownBy(() -> sut.haveNoReprompt())
-        .withMessage("Found reprompt object");
+        .isThrownBy(() -> sut.notWaitForFollowup())
+        .withMessage("Session is marked as open");
   }
 }

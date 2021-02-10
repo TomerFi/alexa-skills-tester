@@ -18,71 +18,71 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-/** Assertion method haveCardTextThatEndsWith test cases. */
+/** Then response step, assertion method haveCardTitleOf test cases. */
 @ExtendWith(MockitoExtension.class)
 @Tag("unit-tests")
-final class ThenResponseImpl_haveCardTextThatEndsWith_Test {
+final class Assertion_Method_haveCardTitleOf_Test {
   @Mock Skill skill;
   @Mock RequestEnvelope requestEnvelope;
   @Mock ResponseEnvelope responseEnvelope;
   @InjectMocks ThenResponseImpl sut;
 
   @Test
-  void asserting_card_text_ends_with_simple_card_will_keep_ongoing_assertion(
+  void asserting_a_correct_card_title_with_a_simple_type_will_keep_ongoing_assertion(
       @Mock final Response response, @Mock final SimpleCard card) {
-    given(card.getContent()).willReturn("great fake card text 1");
+    given(card.getTitle()).willReturn("fake card title");
     given(response.getCard()).willReturn(card);
     given(responseEnvelope.getResponse()).willReturn(response);
-    then(sut.haveCardTextThatEndsWith("card text 1")).isEqualTo(sut);
+    then(sut.haveCardTitleOf("fake card title")).isEqualTo(sut);
   }
 
   @Test
-  void asserting_card_text_ends_with_standard_card_will_keep_ongoing_assertion(
+  void asserting_a_correct_card_title_with_a_standard_type_will_keep_ongoing_assertion(
       @Mock final Response response, @Mock final StandardCard card) {
-    given(card.getText()).willReturn("great fake card text 1");
+    given(card.getTitle()).willReturn("fake card title");
     given(response.getCard()).willReturn(card);
     given(responseEnvelope.getResponse()).willReturn(response);
-    then(sut.haveCardTextThatEndsWith("card text 1")).isEqualTo(sut);
+    then(sut.haveCardTitleOf("fake card title")).isEqualTo(sut);
   }
 
   @Test
-  void asserting_card_text_ends_with_no_card_object_will_throw_an_assertion_error(
+  void asserting_a_card_title_with_no_card_object_will_throw_an_assertion_error(
       @Mock final Response response) {
     given(responseEnvelope.getResponse()).willReturn(response);
     thenExceptionOfType(AssertionError.class)
-        .isThrownBy(() -> sut.haveCardTextThatEndsWith("card text"))
+        .isThrownBy(() -> sut.haveCardTitleOf("fake card title"))
         .withMessage("Card object is null");
   }
 
   @Test
-  void asserting_card_text_ends_with_unknown_card_type_will_throw_an_assertion_error(
+  void asserting_a_card_title_with_an_unknown_card_type_will_throw_an_assertion_error(
       @Mock final Response response, @Mock final Card card) {
     given(response.getCard()).willReturn(card);
     given(responseEnvelope.getResponse()).willReturn(response);
     thenExceptionOfType(AssertionError.class)
-        .isThrownBy(() -> sut.haveCardTextThatEndsWith("fake"))
-        .withMessage("Card text is empty");
+        .isThrownBy(() -> sut.haveCardTitleOf("fake speech"))
+        .withMessage("Card title is empty");
   }
 
   @Test
-  void asserting_card_text_ends_with_simple_card_with_wrong_title_throws_assertion_error(
+  void asserting_a_wrong_card_title_with_a_simple_type_will_throw_an_assertion_error(
       @Mock final Response response, @Mock final SimpleCard card) {
-    given(card.getContent()).willReturn("great fake card text 1");
+    given(card.getTitle()).willReturn("great fake card title 1");
     given(response.getCard()).willReturn(card);
     given(responseEnvelope.getResponse()).willReturn(response);
     thenExceptionOfType(AssertionError.class)
-        .isThrownBy(() -> sut.haveCardTextThatEndsWith("wrong card text"))
-        .withMessage("Card text 'great fake card text 1' should end with 'wrong card text'");
+        .isThrownBy(() -> sut.haveCardTitleOf("wrong fake card title"))
+        .withMessage("Card title 'great fake card title 1' is not 'wrong fake card title'");
   }
 
   @Test
-  void asserting_card_text_ends_with_standard_card_with_wrong_title_throws_assertion_error(
+  void asserting_a_wrong_card_title_with_a_standard_type_will_throw_an_assertion_error(
       @Mock final Response response, @Mock final StandardCard card) {
-    given(card.getText()).willReturn("great fake card text 1");
+    given(card.getTitle()).willReturn("great fake card title 1");
     given(response.getCard()).willReturn(card);
     given(responseEnvelope.getResponse()).willReturn(response);
     thenExceptionOfType(AssertionError.class)
-        .isThrownBy(() -> sut.haveCardTextThatEndsWith("wrong card text"))
-        .withMessage("Card text 'great fake card text 1' should end with 'wrong card text'");
+        .isThrownBy(() -> sut.haveCardTitleOf("wrong fake card title"))
+        .withMessage("Card title 'great fake card title 1' is not 'wrong fake card title'");
   }
 }

@@ -12,14 +12,15 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+/** Given step of the fluent api, implementing the next When step logic test cases. */
 @ExtendWith(MockitoExtension.class)
 @Tag("unit-tests")
-final class GivenSkillImpl_Test {
+final class Given_Skill_Step_Implementation_Test {
   @Mock Skill skill;
   @InjectMocks GivenSkillImpl sut;
 
   @Test
-  void retrieving_a_when_request_instance_and_verifying_the_fields(
+  void the_next_when_step_will_instantiate_a_when_request_instance_encapsulating_the_arguments(
       @Mock final RequestEnvelope requestEnvelope)
       throws NoSuchFieldException, SecurityException, IllegalArgumentException,
           IllegalAccessException {

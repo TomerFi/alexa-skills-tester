@@ -8,6 +8,7 @@ import com.amazon.ask.model.Session;
 import info.tomfi.alexa.skillstester.steps.ThenFollowup;
 import info.tomfi.alexa.skillstester.steps.ThenResponse;
 
+/** Then followup step, encapsulating the Skill, implementing the next Then step logic. */
 public final class ThenFollowupImpl extends ThenFollowup {
   protected ThenFollowupImpl(
       final Skill skill,

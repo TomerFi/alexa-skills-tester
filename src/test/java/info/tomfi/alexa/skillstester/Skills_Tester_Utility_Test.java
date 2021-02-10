@@ -11,20 +11,22 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+/** Static tools used as starting points for the fluent api test cases. */
 @ExtendWith(MockitoExtension.class)
 @Tag("unit-tests")
-final class SkillsTester_Test {
+final class Skills_Tester_Utility_Test {
   @Test
-  void instantiate_utility_class_with_default_ctor_throws_illegal_access_exception() {
+  void instantiating_with_default_ctor_will_throw_illegal_access_exception() {
     assertThatExceptionOfType(IllegalAccessException.class)
         .isThrownBy(() -> SkillsTester.class.getDeclaredConstructor().newInstance());
   }
 
   @Test
-  void invole_static_tool_to_retrieve_an_initial_given_skill_instance_and_verify_the_fields(
+  void starting_the_fluent_api_will_instantiate_a_given_skill_instance_encapsulating_the_skill(
       @Mock Skill skill)
       throws NoSuchFieldException, SecurityException, IllegalArgumentException,
           IllegalAccessException {
+    // when invoking the starting point of the fluent api
     var givenStep = SkillsTester.givenSkill(skill);
     // then verify the skill field
     var skillField = GivenSkill.class.getDeclaredField("skill");

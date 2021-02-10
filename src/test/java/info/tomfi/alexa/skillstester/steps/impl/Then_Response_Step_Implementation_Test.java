@@ -20,16 +20,20 @@ import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+/**
+ * Then step, encapsulating the Skill, implementing assertion methods and the next optionally
+ * Followup step logic test cases.
+ */
 @ExtendWith(MockitoExtension.class)
 @Tag("unit-tests")
-final class ThenResponseImpl_Test {
+final class Then_Response_Step_Implementation_Test {
   @Mock Skill skill;
   @Mock RequestEnvelope requestEnvelope;
   @Mock ResponseEnvelope responseEnvelope;
   @Spy @InjectMocks ThenResponseImpl sut;
 
   @Test
-  void retrieving_a_then_followup_instance_with_an_opened_session_and_verifying_the_fields(
+  void following_up_with_an_open_session_will_return_then_followup_instance_encapsulating_the_args(
       @Mock final Response response, @Mock final Request followupRequest)
       throws NoSuchFieldException, SecurityException, IllegalArgumentException,
           IllegalAccessException {
@@ -58,7 +62,7 @@ final class ThenResponseImpl_Test {
   }
 
   @Test
-  void retrieving_a_then_followup_instance_with_a_closed_session_throws_assertion_error(
+  void following_up_with_a_closed_session_will_throw_an_assertion_error(
       @Mock final Response response, @Mock final Request followupRequest) {
     // stub response with closed session not waiting for followups
     given(response.getShouldEndSession()).willReturn(true);
@@ -70,7 +74,7 @@ final class ThenResponseImpl_Test {
   }
 
   @Test
-  void invoking_sugar_method_and_will_only_return_the_sut() {
+  void invoking_the_sugar_method_named_and_will_do_nothing_but_return_the_same_instance() {
     then(sut.and()).isEqualTo(sut);
     verify(sut).and();
     verifyNoMoreInteractions(sut);

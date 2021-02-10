@@ -16,17 +16,17 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-/** Assertion method notWaitForFollowup test cases. */
+/** Then response step, assertion method haveSessionAttributesOf test cases. */
 @ExtendWith(MockitoExtension.class)
 @Tag("unit-tests")
-final class ThenResponseImpl_haveSessionAttributesOf_Test {
+final class Assertion_Method_haveSessionAttributesOf_Test {
   @Mock Skill skill;
   @Mock RequestEnvelope requestEnvelope;
   @Mock ResponseEnvelope responseEnvelope;
   @InjectMocks ThenResponseImpl sut;
 
   @Test
-  void asserting_skill_response_has_existing_session_attributes_will_keep_ongoing_assertion() {
+  void asserting_with_existing_session_attributes_will_keep_ongoing_assertion() {
     given(responseEnvelope.getSessionAttributes())
         .willReturn(
             Map.of(
@@ -36,7 +36,7 @@ final class ThenResponseImpl_haveSessionAttributesOf_Test {
   }
 
   @Test
-  void asserting_skill_response_has_non_existing_session_attributes_will_throw_assertion_error() {
+  void asserting_with_non_existing_session_attributes_will_throw_an_assertion_error() {
     given(responseEnvelope.getSessionAttributes())
         .willReturn(
             Map.of(
@@ -50,7 +50,7 @@ final class ThenResponseImpl_haveSessionAttributesOf_Test {
   }
 
   @Test
-  void asserting_skill_response_has_session_attribs_with_empty_attribs_will_throw_assert_error() {
+  void asserting_with_an_empty_response_session_attributes_map_will_throw_an_assertion_error() {
     given(responseEnvelope.getSessionAttributes()).willReturn(new HashMap<String, Object>());
     thenExceptionOfType(AssertionError.class)
         .isThrownBy(
@@ -61,7 +61,7 @@ final class ThenResponseImpl_haveSessionAttributesOf_Test {
   }
 
   @Test
-  void asserting_skill_response_has_session_attribs_with_empty_args_will_throw_assert_error() {
+  void asserting_with_an_empty_map_as_an_argument_will_throw_an_assertion_error() {
     thenExceptionOfType(AssertionError.class)
         .isThrownBy(() -> sut.haveSessionAttributesOf(new HashMap<String, Object>()))
         .withMessage("Entries to verify are empty");

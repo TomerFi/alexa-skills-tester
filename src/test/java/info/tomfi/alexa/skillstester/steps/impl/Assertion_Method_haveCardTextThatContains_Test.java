@@ -18,17 +18,17 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-/** Assertion method haveCardTextThatContains test cases. */
+/** Then response step, assertion method haveCardTextThatContains test cases. */
 @ExtendWith(MockitoExtension.class)
 @Tag("unit-tests")
-final class ThenResponseImpl_haveCardTextThatContains_Test {
+final class Assertion_Method_haveCardTextThatContains_Test {
   @Mock Skill skill;
   @Mock RequestEnvelope requestEnvelope;
   @Mock ResponseEnvelope responseEnvelope;
   @InjectMocks ThenResponseImpl sut;
 
   @Test
-  void asserting_card_text_contains_simple_card_will_keep_ongoing_assertion(
+  void asserting_a_correct_card_text_with_a_simple_type_will_keep_ongoing_assertion(
       @Mock final Response response, @Mock final SimpleCard card) {
     given(card.getContent()).willReturn("great fake card text 1");
     given(response.getCard()).willReturn(card);
@@ -37,7 +37,7 @@ final class ThenResponseImpl_haveCardTextThatContains_Test {
   }
 
   @Test
-  void asserting_card_text_contains_standard_card_will_keep_ongoing_assertion(
+  void asserting_a_correct_card_text_with_a_standard_type_will_keep_ongoing_assertion(
       @Mock final Response response, @Mock final StandardCard card) {
     given(card.getText()).willReturn("great fake card text 1");
     given(response.getCard()).willReturn(card);
@@ -46,7 +46,7 @@ final class ThenResponseImpl_haveCardTextThatContains_Test {
   }
 
   @Test
-  void asserting_card_text_contains_no_card_object_will_throw_an_assertion_error(
+  void asserting_a_card_text_with_no_card_object_will_throw_an_assertion_error(
       @Mock final Response response) {
     given(responseEnvelope.getResponse()).willReturn(response);
     thenExceptionOfType(AssertionError.class)
@@ -55,7 +55,7 @@ final class ThenResponseImpl_haveCardTextThatContains_Test {
   }
 
   @Test
-  void asserting_card_text_contains_unknown_card_type_will_throw_an_assertion_error(
+  void asserting_a_card_text_with_an_unknown_card_type_will_throw_an_assertion_error(
       @Mock final Response response, @Mock final Card card) {
     given(response.getCard()).willReturn(card);
     given(responseEnvelope.getResponse()).willReturn(response);
@@ -65,7 +65,7 @@ final class ThenResponseImpl_haveCardTextThatContains_Test {
   }
 
   @Test
-  void asserting_card_text_contains_simple_card_with_wrong_text_throws_assertion_error(
+  void asserting_a_wrong_card_text_with_a_simple_type_will_throw_an_assertion_error(
       @Mock final Response response, @Mock final SimpleCard card) {
     given(card.getContent()).willReturn("great fake card text 1");
     given(response.getCard()).willReturn(card);
@@ -76,7 +76,7 @@ final class ThenResponseImpl_haveCardTextThatContains_Test {
   }
 
   @Test
-  void asserting_card_text_contains_standard_card_with_wrong_text_throws_assertion_error(
+  void asserting_a_wrong_card_text_with_a_standard_type_will_throw_an_assertion_error(
       @Mock final Response response, @Mock final StandardCard card) {
     given(card.getText()).willReturn("great fake card text 1");
     given(response.getCard()).willReturn(card);

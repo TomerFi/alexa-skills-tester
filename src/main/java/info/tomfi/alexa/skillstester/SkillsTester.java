@@ -4,6 +4,7 @@ import com.amazon.ask.Skill;
 import info.tomfi.alexa.skillstester.steps.GivenSkill;
 import info.tomfi.alexa.skillstester.steps.impl.GivenSkillImpl;
 
+/** Static tools used as starting points for the fluent api. */
 public final class SkillsTester {
   private SkillsTester() {
     //

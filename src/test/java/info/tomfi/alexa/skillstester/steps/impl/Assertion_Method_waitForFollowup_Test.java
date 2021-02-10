@@ -15,17 +15,17 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-/** Assertion method waitForFollowup test cases. */
+/** Then response step, assertion method waitForFollowup test cases. */
 @ExtendWith(MockitoExtension.class)
 @Tag("unit-tests")
-final class ThenResponseImpl_waitForFollowup_Test {
+final class Assertion_Method_waitForFollowup_Test {
   @Mock Skill skill;
   @Mock RequestEnvelope requestEnvelope;
   @Mock ResponseEnvelope responseEnvelope;
   @InjectMocks ThenResponseImpl sut;
 
   @Test
-  void asserting_skill_waiting_for_follow_up_with_an_opend_session_will_keep_ongoing_assertion(
+  void asserting_with_an_open_session_will_keep_ongoing_assertion(
       @Mock final Response response) {
     given(response.getShouldEndSession()).willReturn(false);
     given(responseEnvelope.getResponse()).willReturn(response);
@@ -33,7 +33,7 @@ final class ThenResponseImpl_waitForFollowup_Test {
   }
 
   @Test
-  void asserting_skill_waiting_for_follow_up_with_a_closed_session_will_throw_an_assertion_err(
+  void asserting_with_a_closed_session_will_throw_an_assertion_error(
       @Mock final Response response) {
     given(response.getShouldEndSession()).willReturn(true);
     given(responseEnvelope.getResponse()).willReturn(response);

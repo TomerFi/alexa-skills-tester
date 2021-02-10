@@ -6,8 +6,8 @@ import static org.mockito.BDDMockito.given;
 
 import com.amazon.ask.Skill;
 import com.amazon.ask.model.RequestEnvelope;
-import com.amazon.ask.model.Response;
 import com.amazon.ask.model.ResponseEnvelope;
+import java.util.Map;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,30 +15,26 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-/** Assertion method notWaitForFollowup test cases. */
+/** Then response step, assertion method haveSessionAttributeOf test cases. */
 @ExtendWith(MockitoExtension.class)
 @Tag("unit-tests")
-final class ThenResponseImpl_notWaitForFollowup_Test {
+final class Assertion_Method_haveSessionAttributeOf_Test {
   @Mock Skill skill;
   @Mock RequestEnvelope requestEnvelope;
   @Mock ResponseEnvelope responseEnvelope;
   @InjectMocks ThenResponseImpl sut;
 
   @Test
-  void asserting_skill_not_waiting_for_follow_up_with_a_closed_session_will_keep_ongoing_assertion(
-      @Mock final Response response) {
-    given(response.getShouldEndSession()).willReturn(true);
-    given(responseEnvelope.getResponse()).willReturn(response);
-    then(sut.notWaitForFollowup()).isEqualTo(sut);
+  void asserting_with_an_existing_session_attribute_will_keep_ongoing_assertion() {
+    given(responseEnvelope.getSessionAttributes()).willReturn(Map.of("Key1", (Object) "Value1"));
+    then(sut.haveSessionAttributeOf("Key1", "Value1")).isEqualTo(sut);
   }
 
   @Test
-  void asserting_skill_not_waiting_for_follow_up_with_an_opend_session_will_throw_an_assertion_err(
-      @Mock final Response response) {
-    given(response.getShouldEndSession()).willReturn(false);
-    given(responseEnvelope.getResponse()).willReturn(response);
+  void asserting_with_a_non_existing_session_attribute_will_throw_an_assertion_error() {
+    given(responseEnvelope.getSessionAttributes()).willReturn(Map.of("Key1", (Object) "Value1"));
     thenExceptionOfType(AssertionError.class)
-        .isThrownBy(() -> sut.notWaitForFollowup())
-        .withMessage("Session is marked as opened");
+        .isThrownBy(() -> sut.haveSessionAttributeOf("Key2", "Value2"))
+        .withMessage("Session attributes map does not contain key 'Key2'");
   }
 }

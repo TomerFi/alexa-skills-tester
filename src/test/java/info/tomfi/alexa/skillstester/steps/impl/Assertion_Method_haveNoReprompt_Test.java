@@ -6,8 +6,9 @@ import static org.mockito.BDDMockito.given;
 
 import com.amazon.ask.Skill;
 import com.amazon.ask.model.RequestEnvelope;
+import com.amazon.ask.model.Response;
 import com.amazon.ask.model.ResponseEnvelope;
-import java.util.Map;
+import com.amazon.ask.model.ui.Reprompt;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,26 +16,29 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-/** Assertion method notWaitForFollowup test cases. */
+/** Then response step, assertion method notWaitForFollowup test cases. */
 @ExtendWith(MockitoExtension.class)
 @Tag("unit-tests")
-final class ThenResponseImpl_haveSessionAttributeOf_Test {
+final class Assertion_Method_haveNoReprompt_Test {
   @Mock Skill skill;
   @Mock RequestEnvelope requestEnvelope;
   @Mock ResponseEnvelope responseEnvelope;
   @InjectMocks ThenResponseImpl sut;
 
   @Test
-  void asserting_skill_response_has_existing_session_attribute_will_keep_ongoing_assertion() {
-    given(responseEnvelope.getSessionAttributes()).willReturn(Map.of("Key1", (Object) "Value1"));
-    then(sut.haveSessionAttributeOf("Key1", "Value1")).isEqualTo(sut);
+  void asserting_with_no_reprompt_object_will_keep_ongoing_assertion(
+      @Mock final Response response) {
+    given(responseEnvelope.getResponse()).willReturn(response);
+    then(sut.haveNoReprompt()).isEqualTo(sut);
   }
 
   @Test
-  void asserting_skill_response_has_non_existing_session_attribute_will_throw_assertion_error() {
-    given(responseEnvelope.getSessionAttributes()).willReturn(Map.of("Key1", (Object) "Value1"));
+  void asserting_with_an_existing_reprompt_object_will_throw_an_assertion_error(
+      @Mock final Response response, @Mock final Reprompt reprompt) {
+    given(response.getReprompt()).willReturn(reprompt);
+    given(responseEnvelope.getResponse()).willReturn(response);
     thenExceptionOfType(AssertionError.class)
-        .isThrownBy(() -> sut.haveSessionAttributeOf("Key2", "Value2"))
-        .withMessage("Session attributes map does not contain key 'Key2'");
+        .isThrownBy(() -> sut.haveNoReprompt())
+        .withMessage("Found reprompt object");
   }
 }

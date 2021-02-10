@@ -12,11 +12,18 @@ import com.amazon.ask.model.ui.SsmlOutputSpeech;
 import com.amazon.ask.model.ui.StandardCard;
 import java.util.Optional;
 
+/** Then response step, encapsulating the Skill, the RequestEnvelope, and the ResponseEnvelope. */
 public abstract class ThenResponse {
   protected final Skill skill;
   protected final RequestEnvelope requestEnvelope;
   protected final ResponseEnvelope responseEnvelope;
 
+  /**
+   * Optionally configure a followup Request to the current response.
+   *
+   * @param request the followup Request.
+   * @return the next Then step of the fluent api.
+   */
   public abstract ThenFollowup thenFollowupWith(Request request);
 
   protected ThenResponse(
@@ -28,6 +35,13 @@ public abstract class ThenResponse {
     responseEnvelope = setResponseEnvelope;
   }
 
+  /**
+   * Utility method for extracting plain text from either a PlainTextOutputSpeech or an
+   * SsmlOutputSpeech instances.
+   *
+   * @param speechObject the OutputSpeech implementation to extract the text from.
+   * @return an optionally nullable String of the extracted text.
+   */
   protected Optional<String> extractOutputSpeech(final OutputSpeech speechObject) {
     String retText = null;
     if (speechObject instanceof SsmlOutputSpeech) {
@@ -39,6 +53,12 @@ public abstract class ThenResponse {
     return Optional.ofNullable(retText);
   }
 
+  /**
+   * Utility method for extracting card title from either a SimpleCard or a StandardCard instances.
+   *
+   * @param responseCard the Card implementation to extract the title from.
+   * @return an optionally nullable String of the extracted title.
+   */
   protected Optional<String> extractCardTitle(final Card responseCard) {
     String retText = null;
     if (responseCard instanceof SimpleCard) {
@@ -49,6 +69,12 @@ public abstract class ThenResponse {
     return Optional.ofNullable(retText);
   }
 
+  /**
+   * Utility method for extracting card text from either a SimpleCard or a StandardCard instances.
+   *
+   * @param responseCard the Card implementation to extract the text from.
+   * @return an optionally nullable String of the extracted text.
+   */
   protected Optional<String> extractCardText(final Card responseCard) {
     String retText = null;
     if (responseCard instanceof SimpleCard) {
