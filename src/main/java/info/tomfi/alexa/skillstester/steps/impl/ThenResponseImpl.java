@@ -41,6 +41,12 @@ public final class ThenResponseImpl extends ThenResponse {
     return new ThenFollowupImpl(skill, responseEnvelope, requestEnvelope, request);
   }
 
+  /**
+   * Assert the skill response has output speech that is equal to testSpeech.
+   *
+   * @param testSpeech the String to match against.
+   * @return this instance for further assertions.
+   */
   public ThenResponseImpl haveOutputSpeechOf(final String testSpeech) {
     var optText = extractOutputSpeech(responseEnvelope.getResponse().getOutputSpeech());
     assert optText.isPresent() : "Output speech is empty";
@@ -49,6 +55,12 @@ public final class ThenResponseImpl extends ThenResponse {
     return this;
   }
 
+  /**
+   * Assert the skill response has output speech that starts with testSpeech.
+   *
+   * @param testSpeech the String to match against.
+   * @return this instance for further assertions.
+   */
   public ThenResponseImpl haveOutputSpeechThatStartsWith(final String testSpeech) {
     var optText = extractOutputSpeech(responseEnvelope.getResponse().getOutputSpeech());
     assert optText.isPresent() : "Output speech is empty";
@@ -57,6 +69,12 @@ public final class ThenResponseImpl extends ThenResponse {
     return this;
   }
 
+  /**
+   * Assert the skill response has output speech that ends with testSpeech.
+   *
+   * @param testSpeech the String to match against.
+   * @return this instance for further assertions.
+   */
   public ThenResponseImpl haveOutputSpeechThatEndsWith(final String testSpeech) {
     var optText = extractOutputSpeech(responseEnvelope.getResponse().getOutputSpeech());
     assert optText.isPresent() : "Output speech is empty";
@@ -65,6 +83,12 @@ public final class ThenResponseImpl extends ThenResponse {
     return this;
   }
 
+  /**
+   * Assert the skill response has output speech that contains testSpeech.
+   *
+   * @param testSpeech the String to match against.
+   * @return this instance for further assertions.
+   */
   public ThenResponseImpl haveOutputSpeechThatContains(final String testSpeech) {
     var optText = extractOutputSpeech(responseEnvelope.getResponse().getOutputSpeech());
     assert optText.isPresent() : "Output speech is empty";
@@ -73,6 +97,12 @@ public final class ThenResponseImpl extends ThenResponse {
     return this;
   }
 
+  /**
+   * Assert the skill response has reprompt speech that is equal to testSpeech.
+   *
+   * @param testSpeech the String to match against.
+   * @return this instance for further assertions.
+   */
   public ThenResponseImpl haveRepromptSpeechOf(final String testSpeech) {
     var reprompt = responseEnvelope.getResponse().getReprompt();
     assert nonNull(reprompt) : "Reprompt object is null";
@@ -83,6 +113,12 @@ public final class ThenResponseImpl extends ThenResponse {
     return this;
   }
 
+  /**
+   * Assert the skill response has reprompt speech that starts with testSpeech.
+   *
+   * @param testSpeech the String to match against.
+   * @return this instance for further assertions.
+   */
   public ThenResponseImpl haveRepromptSpeechThatStartsWith(final String testSpeech) {
     var reprompt = responseEnvelope.getResponse().getReprompt();
     assert nonNull(reprompt) : "Reprompt object is null";
@@ -93,6 +129,12 @@ public final class ThenResponseImpl extends ThenResponse {
     return this;
   }
 
+  /**
+   * Assert the skill response has reprompt speech that ends with testSpeech.
+   *
+   * @param testSpeech the String to match against.
+   * @return this instance for further assertions.
+   */
   public ThenResponseImpl haveRepromptSpeechThatEndsWith(final String testSpeech) {
     var reprompt = responseEnvelope.getResponse().getReprompt();
     assert nonNull(reprompt) : "Reprompt object is null";
@@ -103,6 +145,12 @@ public final class ThenResponseImpl extends ThenResponse {
     return this;
   }
 
+  /**
+   * Assert the skill response has reprompt speech that contains testSpeech.
+   *
+   * @param testSpeech the String to match against.
+   * @return this instance for further assertions.
+   */
   public ThenResponseImpl haveRepromptSpeechThatContains(final String testSpeech) {
     var reprompt = responseEnvelope.getResponse().getReprompt();
     assert nonNull(reprompt) : "Reprompt object is null";
@@ -113,26 +161,52 @@ public final class ThenResponseImpl extends ThenResponse {
     return this;
   }
 
+  /**
+   * Assert the session is closed and not waiting for followup requests (ShouldEndSession is true).
+   *
+   * @return this instance for further assertions.
+   */
   public ThenResponseImpl notWaitForFollowup() {
     assert responseEnvelope.getResponse().getShouldEndSession() : "Session is marked as open";
     return this;
   }
 
+  /**
+   * Assert the session is open and waiting for followup requests (ShouldEndSession is false).
+   *
+   * @return this instance for further assertions.
+   */
   public ThenResponseImpl waitForFollowup() {
     assert !responseEnvelope.getResponse().getShouldEndSession() : "Session is marked as closed";
     return this;
   }
 
+  /**
+   * Assert the response has no reprompt object.
+   *
+   * @return this instance for further assertions.
+   */
   public ThenResponseImpl haveNoReprompt() {
     assert isNull(responseEnvelope.getResponse().getReprompt()) : "Found reprompt object";
     return this;
   }
 
+  /**
+   * Assert the response has no card object.
+   *
+   * @return this instance for further assertions.
+   */
   public ThenResponseImpl haveNoCard() {
     assert isNull(responseEnvelope.getResponse().getCard()) : "Found card object";
     return this;
   }
 
+  /**
+   * Assert the skill response has a card with a title that is equal to testTitle.
+   *
+   * @param testTitle the String to match against.
+   * @return this instance for further assertions.
+   */
   public ThenResponseImpl haveCardTitleOf(final String testTitle) {
     var card = responseEnvelope.getResponse().getCard();
     assert nonNull(card) : "Card object is null";
@@ -143,6 +217,12 @@ public final class ThenResponseImpl extends ThenResponse {
     return this;
   }
 
+  /**
+   * Assert the skill response has a card with a title that starts with testTitle.
+   *
+   * @param testTitle the String to match against.
+   * @return this instance for further assertions.
+   */
   public ThenResponseImpl haveCardTitleThatStartsWith(final String testTitle) {
     var card = responseEnvelope.getResponse().getCard();
     assert nonNull(card) : "Card object is null";
@@ -153,6 +233,12 @@ public final class ThenResponseImpl extends ThenResponse {
     return this;
   }
 
+  /**
+   * Assert the skill response has a card with a title that ends with testTitle.
+   *
+   * @param testTitle the String to match against.
+   * @return this instance for further assertions.
+   */
   public ThenResponseImpl haveCardTitleThatEndsWith(final String testTitle) {
     var card = responseEnvelope.getResponse().getCard();
     assert nonNull(card) : "Card object is null";
@@ -163,6 +249,12 @@ public final class ThenResponseImpl extends ThenResponse {
     return this;
   }
 
+  /**
+   * Assert the skill response has a card with a title that contains testTitle.
+   *
+   * @param testTitle the String to match against.
+   * @return this instance for further assertions.
+   */
   public ThenResponseImpl haveCardTitleThatContains(final String testTitle) {
     var card = responseEnvelope.getResponse().getCard();
     assert nonNull(card) : "Card object is null";
@@ -173,6 +265,12 @@ public final class ThenResponseImpl extends ThenResponse {
     return this;
   }
 
+  /**
+   * Assert the skill response has a card with a text content that is equal to testTitle.
+   *
+   * @param testText the String to match against.
+   * @return this instance for further assertions.
+   */
   public ThenResponseImpl haveCardTextOf(final String testText) {
     var card = responseEnvelope.getResponse().getCard();
     assert nonNull(card) : "Card object is null";
@@ -183,6 +281,12 @@ public final class ThenResponseImpl extends ThenResponse {
     return this;
   }
 
+  /**
+   * Assert the skill response has a card with a text content that starts with testText.
+   *
+   * @param testText the String to match against.
+   * @return this instance for further assertions.
+   */
   public ThenResponseImpl haveCardTextThatStartsWith(final String testText) {
     var card = responseEnvelope.getResponse().getCard();
     assert nonNull(card) : "Card object is null";
@@ -193,6 +297,12 @@ public final class ThenResponseImpl extends ThenResponse {
     return this;
   }
 
+  /**
+   * Assert the skill response has a card with a text content that ends with testText.
+   *
+   * @param testText the String to match against.
+   * @return this instance for further assertions.
+   */
   public ThenResponseImpl haveCardTextThatEndsWith(final String testText) {
     var card = responseEnvelope.getResponse().getCard();
     assert nonNull(card) : "Card object is null";
@@ -203,6 +313,12 @@ public final class ThenResponseImpl extends ThenResponse {
     return this;
   }
 
+  /**
+   * Assert the skill response has a card with a text content that contains testText.
+   *
+   * @param testText the String to match against.
+   * @return this instance for further assertions.
+   */
   public ThenResponseImpl haveCardTextThatContains(final String testText) {
     var card = responseEnvelope.getResponse().getCard();
     assert nonNull(card) : "Card object is null";
@@ -213,11 +329,22 @@ public final class ThenResponseImpl extends ThenResponse {
     return this;
   }
 
+  /**
+   * Assert the skill response has no session attributes.
+   *
+   * @return this instance for further assertions.
+   */
   public ThenResponseImpl haveNoSessionAttributes() {
     assert responseEnvelope.getSessionAttributes().isEmpty() : "Found session attributes";
     return this;
   }
 
+  /**
+   * Assert the response's session attributes map contains a key with a value.
+   * @param key the key to lookup.
+   * @param value the value to match against.
+   * @return this instance for further assertions.
+   */
   public ThenResponseImpl haveSessionAttributeOf(final String key, final Object value) {
     var attribs = responseEnvelope.getSessionAttributes();
     assert !attribs.isEmpty() : "Session attributes map is empty";
@@ -228,6 +355,12 @@ public final class ThenResponseImpl extends ThenResponse {
     return this;
   }
 
+  /**
+   * Assert the response's session attributes map contains all the entries in values.
+   *
+   * @param values the map of entries to match against.
+   * @return this instance for further assertions.
+   */
   public ThenResponseImpl haveSessionAttributesOf(final Map<String, Object> values) {
     assert values.size() > 0 : "Entries to verify are empty";
     var attribs = responseEnvelope.getSessionAttributes();
@@ -243,6 +376,11 @@ public final class ThenResponseImpl extends ThenResponse {
     return this;
   }
 
+  /**
+   * A syntax sugar method, does nothing but return this instance.
+   *
+   * @return this instance for further assertions.
+   */
   public ThenResponseImpl and() {
     return this;
   }
