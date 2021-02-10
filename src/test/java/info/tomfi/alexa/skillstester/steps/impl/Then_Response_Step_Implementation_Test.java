@@ -39,10 +39,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 @Tag("unit-tests")
 final class Then_Response_Step_Implementation_Test {
-  @Mock Skill skill;
-  @Mock RequestEnvelope requestEnvelope;
-  @Mock ResponseEnvelope responseEnvelope;
-  @Spy @InjectMocks ThenResponseImpl sut;
+  @Mock private Skill skill;
+  @Mock private RequestEnvelope requestEnvelope;
+  @Mock private ResponseEnvelope responseEnvelope;
+  @Spy @InjectMocks private ThenResponseImpl sut;
 
   @Test
   void following_up_with_an_open_session_will_return_then_followup_instance_encapsulating_the_args(

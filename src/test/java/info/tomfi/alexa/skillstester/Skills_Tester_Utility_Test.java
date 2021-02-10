@@ -35,7 +35,7 @@ final class Skills_Tester_Utility_Test {
 
   @Test
   void starting_the_fluent_api_will_instantiate_a_given_skill_instance_encapsulating_the_skill(
-      @Mock Skill skill)
+      @Mock final Skill skill)
       throws NoSuchFieldException, SecurityException, IllegalArgumentException,
           IllegalAccessException {
     // when invoking the starting point of the fluent api

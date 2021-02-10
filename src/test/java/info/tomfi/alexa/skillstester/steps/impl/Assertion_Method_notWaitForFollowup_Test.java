@@ -31,10 +31,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 @Tag("unit-tests")
 final class Assertion_Method_notWaitForFollowup_Test {
-  @Mock Skill skill;
-  @Mock RequestEnvelope requestEnvelope;
-  @Mock ResponseEnvelope responseEnvelope;
-  @InjectMocks ThenResponseImpl sut;
+  @Mock private Skill skill;
+  @Mock private RequestEnvelope requestEnvelope;
+  @Mock private ResponseEnvelope responseEnvelope;
+  @InjectMocks private ThenResponseImpl sut;
 
   @Test
   void asserting_with_a_closed_session_will_keep_ongoing_assertion(@Mock final Response response) {

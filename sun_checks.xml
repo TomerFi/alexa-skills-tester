@@ -1,9 +1,15 @@
 <?xml version="1.0"?>
+<!--
 
+    Copyright (c) Bynet Communication, LTD. - All Rights Reserved Unauthorized copying of this file,
+    via any medium is strictly prohibited. Licensed under the GNU GPLv3.0. See LICENSE file in the
+    project root for full license information.
+
+-->
 <!DOCTYPE module PUBLIC "-//Puppy Crawl//DTD Check Configuration 1.3//EN"
                   "http://checkstyle.sourceforge.net/dtds/configuration_1_3.dtd">
 
-<!--Suitable for Release 8.36-->
+<!--Suitable for Release 8.40-->
 
 <module name="Checker">
   <!--Main module start: Checker-->
@@ -17,11 +23,7 @@
 
   <module name="SuppressionFilter">
     <property name="file" value="suppressions.xml"/>
-    <property name="optional" value="true"/>
-  </module>
-
-  <module name="BeforeExecutionExclusionFileFilter">
-    <property name="fileNamePattern" value="module\-info\.java$"/>
+    <property name="optional" value="false"/>
   </module>
 
   <module name="FileTabCharacter">
@@ -33,7 +35,7 @@
     <property name="ignorePattern" value="^package.*|^import.*|a href|href|http://|https://|ftp://|@Around"/>
   </module>
   <module name="NewlineAtEndOfFile"/>
-  <!--<module name="OrderedProperties"/>-->
+  <module name="OrderedProperties"/>
   <module name="RegexpSingleline">
     <property name="format" value="\s+$"/>
     <property name="minimum" value="0"/>
@@ -45,7 +47,7 @@
     <!--Sub module start: TreeWalker-->
     <module name="AbbreviationAsWordInName">
       <property name="allowedAbbreviationLength" value="2"/>
-      <property name="allowedAbbreviations" value="SIP,TCP,UDP,URI,URL,SDP,XML,RTP,API,BDD"/>
+      <property name="allowedAbbreviations" value="SIP,TCP,UDP,BDD,URI,URL,SDP,XML,RTP"/>
     </module>
     <module name="AnnotationLocation">
       <property name="id" value="AnnotationLocationMostCases"/>
@@ -57,6 +59,7 @@
       <property name="allowSamelineMultipleAnnotations" value="true"/>
     </module>
     <module name="ArrayTypeStyle"/>
+    <module name="AvoidEscapedUnicodeCharacters"/>
     <module name="AtclauseOrder">
       <property name="tagOrder" value="@param, @return, @throws, @deprecated"/>
       <property name="target" value="CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, CTOR_DEF, VARIABLE_DEF"/>
@@ -82,10 +85,7 @@
       <message key="name.invalidPattern" value="Class type name ''{0}'' must match pattern ''{1}''."/>
     </module>
     <module name="CommentsIndentation"/>
-    <module name="ConstantName">
-      <property name="format" value="^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$|^Func_*" />
-      <property name="applyToPrivate" value="false" />
-    </module>
+    <module name="ConstantName" />
     <module name="CustomImportOrder">
       <property name="sortImportsInGroupAlphabetically" value="true"/>
       <property name="separateLineBetweenGroups" value="false"/>
@@ -152,6 +152,7 @@
     <module name="JavadocMethod">
       <property name="scope" value="package"/>
     </module>
+    <module name="JavadocMissingLeadingAsterisk"/>
     <module name="JavadocMissingWhitespaceAfterAsterisk"/>
     <module name="JavadocParagraph"/>
     <module name="JavadocStyle">
@@ -163,15 +164,16 @@
       <property name="allowUnknownTags" value="true" />
     </module>
     <module name="JavadocVariable">
-      <property name="scope" value="protected"/>
+      <property name="scope" value="public"/>
       <property name="tokens" value="VARIABLE_DEF"/>
       <property name="severity" value="error" />
     </module>
+    <module name="LambdaBodyLength">
+      <property name="max" value="12"/>
+    </module>
     <module name="LambdaParameterName"/>
     <module name="LeftCurly"/>
-    <module name="LocalFinalVariableName">
-      <property name="format" value="^[a-z][a-zA-Z0-9]*$|^Func_*" />
-    </module>
+    <module name="LocalFinalVariableName"/>
     <module name="LocalVariableName">
       <property name="tokens" value="VARIABLE_DEF"/>
       <property name="format" value="^[a-z]([a-z0-9][a-zA-Z0-9]*)?$"/>
@@ -234,6 +236,7 @@
     <module name="ParameterNumber"/>
     <module name="ParenPad"/>
     <module name="PatternVariableName"/>
+    <module name="RecordComponentName"/>
     <module name="RecordComponentNumber"/>
     <module name="RecordTypeParameterName"/>
     <module name="RedundantImport"/>

@@ -31,13 +31,13 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 @Tag("unit-tests")
 final class When_Request_Step_Implementation_Test {
-  @Mock Skill skill;
-  @Mock RequestEnvelope requestEnvelope;
-  @InjectMocks WhenRequestImpl sut;
+  @Mock private Skill skill;
+  @Mock private RequestEnvelope requestEnvelope;
+  @InjectMocks private WhenRequestImpl sut;
 
   @Test
   void the_next_then_step_will_instantiate_a_then_response_instance_encapsulating_the_arguments(
-      @Mock ResponseEnvelope responseEnvelope)
+      @Mock final ResponseEnvelope responseEnvelope)
       throws NoSuchFieldException, SecurityException, IllegalArgumentException,
           IllegalAccessException {
     // stub skill with mock response envelope

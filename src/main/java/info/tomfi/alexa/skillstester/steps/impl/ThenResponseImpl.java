@@ -133,7 +133,7 @@ public final class ThenResponseImpl extends ThenResponse {
     return this;
   }
 
-  public final ThenResponseImpl haveCardTitleOf(final String testTitle) {
+  public ThenResponseImpl haveCardTitleOf(final String testTitle) {
     var card = responseEnvelope.getResponse().getCard();
     assert nonNull(card) : "Card object is null";
     var optTitle = extractCardTitle(card);

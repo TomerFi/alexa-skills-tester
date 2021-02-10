@@ -40,11 +40,11 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 @Tag("unit-tests")
 final class Then_Followup_Step_Implementation_Test {
-  @Mock Skill skill;
-  @Mock ResponseEnvelope responseEnvelope;
-  @Mock RequestEnvelope previousRequestEnvelope;
-  @Mock Request followupRequest;
-  @InjectMocks ThenFollowupImpl sut;
+  @Mock private Skill skill;
+  @Mock private ResponseEnvelope responseEnvelope;
+  @Mock private RequestEnvelope previousRequestEnvelope;
+  @Mock private Request followupRequest;
+  @InjectMocks private ThenFollowupImpl sut;
 
   @Test
   void the_next_then_step_will_instantiate_a_then_response_instance_encapsulating_the_arguments(

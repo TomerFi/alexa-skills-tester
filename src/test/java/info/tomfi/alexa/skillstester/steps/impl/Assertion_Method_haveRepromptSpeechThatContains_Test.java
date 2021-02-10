@@ -35,10 +35,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 @Tag("unit-tests")
 final class Assertion_Method_haveRepromptSpeechThatContains_Test {
-  @Mock Skill skill;
-  @Mock RequestEnvelope requestEnvelope;
-  @Mock ResponseEnvelope responseEnvelope;
-  @InjectMocks ThenResponseImpl sut;
+  @Mock private Skill skill;
+  @Mock private RequestEnvelope requestEnvelope;
+  @Mock private ResponseEnvelope responseEnvelope;
+  @InjectMocks private ThenResponseImpl sut;
 
   @Test
   void asserting_a_correct_reprompt_speech_with_a_plain_type_will_keep_ongoing_assertion(

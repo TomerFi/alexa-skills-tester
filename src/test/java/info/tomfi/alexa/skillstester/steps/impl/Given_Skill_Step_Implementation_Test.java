@@ -28,8 +28,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 @Tag("unit-tests")
 final class Given_Skill_Step_Implementation_Test {
-  @Mock Skill skill;
-  @InjectMocks GivenSkillImpl sut;
+  @Mock private Skill skill;
+  @InjectMocks private GivenSkillImpl sut;
 
   @Test
   void the_next_when_step_will_instantiate_a_when_request_instance_encapsulating_the_arguments(

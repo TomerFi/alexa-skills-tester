@@ -22,7 +22,7 @@ public final class SkillsTester {
     //
   }
 
-  public static GivenSkill givenSkill(Skill skill) {
+  public static GivenSkill givenSkill(final Skill skill) {
     return new GivenSkillImpl(skill);
   }
 }
