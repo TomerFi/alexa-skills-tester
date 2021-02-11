@@ -18,6 +18,7 @@ Take a look at the [Javadoc][5] for API documentation.</br>
   <groupId>info.tomfi.alexa</groupId>
   <artifactId>alexa-skills-tester</artifactId>
   <version>VERSION</version>
+  <scope>test</scope>
 </dependency>
 ```
 
