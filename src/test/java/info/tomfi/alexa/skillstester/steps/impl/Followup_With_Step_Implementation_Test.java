@@ -25,13 +25,13 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
 /**
- * Then followup step, encapsulating the Skill, implementing the next Then step logic test cases.
+ * Followup with step, encapsulating the Skill, implementing the next Then step logic test cases.
  */
 @Tag("unit-tests")
-final class Then_Followup_Step_Implementation_Test extends FluentStepsFixtures {
+final class Followup_With_Step_Implementation_Test extends FluentStepsFixtures {
   @Mock private ResponseEnvelope responseEnvelope;
   @Mock private RequestEnvelope followRequestEnvelope;
-  @InjectMocks private ThenFollowupImpl sut;
+  @InjectMocks private FollowupWithImpl sut;
 
   @Test
   void the_next_then_step_will_instantiate_a_then_response_instance_encapsulating_the_arguments(

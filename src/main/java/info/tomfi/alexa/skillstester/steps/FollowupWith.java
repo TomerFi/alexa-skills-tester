@@ -20,18 +20,15 @@ import com.amazon.ask.model.ResponseEnvelope;
 import com.amazon.ask.request.SkillRequest;
 import com.amazon.ask.request.impl.BaseSkillRequest;
 
-/**
- * Then followup step, encapsulating the Skill, the ResponseEnvelope, the previous RequestEnvelope,
- * and the followup Request.
- */
-public abstract class ThenFollowup {
+/** Followup with step, encapsulating the Skill, the ResponseEnvelope and the followup request. */
+public abstract class FollowupWith {
   protected final Skill skill;
   protected final ResponseEnvelope responseEnvelope;
   protected final RequestEnvelope followupRequestEnvelope;
   protected final SkillRequest followupSkillRequest;
   protected final boolean inEnvelopeMode;
 
-  protected ThenFollowup(
+  protected FollowupWith(
       final Skill setSkill,
       final ResponseEnvelope setResponseEnvelope,
       final RequestEnvelope setFollowupRequestEnvelope) {
@@ -42,7 +39,7 @@ public abstract class ThenFollowup {
     inEnvelopeMode = true;
   }
 
-  protected ThenFollowup(
+  protected FollowupWith(
       final Skill setSkill,
       final ResponseEnvelope setResponseEnvelope,
       final String followupJsonString) {
@@ -53,7 +50,7 @@ public abstract class ThenFollowup {
     inEnvelopeMode = false;
   }
 
-  protected ThenFollowup(
+  protected FollowupWith(
       final Skill setSkill,
       final ResponseEnvelope setResponseEnvelope,
       final byte[] followupJsonByte) {
@@ -64,7 +61,7 @@ public abstract class ThenFollowup {
     inEnvelopeMode = false;
   }
 
-  protected ThenFollowup(
+  protected FollowupWith(
       final Skill setSkill,
       final ResponseEnvelope setResponseEnvelope,
       final SkillRequest setSkillRequest) {

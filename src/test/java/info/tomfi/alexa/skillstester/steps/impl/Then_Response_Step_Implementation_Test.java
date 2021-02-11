@@ -20,7 +20,7 @@ import com.amazon.ask.model.RequestEnvelope;
 import com.amazon.ask.model.Response;
 import com.amazon.ask.model.ResponseEnvelope;
 
-import info.tomfi.alexa.skillstester.steps.ThenFollowup;
+import info.tomfi.alexa.skillstester.steps.FollowupWith;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -44,18 +44,18 @@ final class Then_Response_Step_Implementation_Test extends FluentStepsFixtures {
     given(response.getShouldEndSession()).willReturn(false);
     given(responseEnvelope.getResponse()).willReturn(response);
     // when invoking for next step
-    var followupStep = sut.thenFollowupWith(followupRequestEnvelope);
+    var followupStep = sut.followupWith(followupRequestEnvelope);
     // then verify the skill field
-    var skillField = ThenFollowup.class.getDeclaredField("skill");
+    var skillField = FollowupWith.class.getDeclaredField("skill");
     skillField.setAccessible(true);
     then(skillField.get(followupStep)).isEqualTo(skill);
     // then verify responseEnvelope field
-    var responseEnvelopeField = ThenFollowup.class.getDeclaredField("responseEnvelope");
+    var responseEnvelopeField = FollowupWith.class.getDeclaredField("responseEnvelope");
     responseEnvelopeField.setAccessible(true);
     then(responseEnvelopeField.get(followupStep)).isEqualTo(responseEnvelope);
     // then verify followupRequest field
     var followupRequestEnvelopeField =
-        ThenFollowup.class.getDeclaredField("followupRequestEnvelope");
+        FollowupWith.class.getDeclaredField("followupRequestEnvelope");
     followupRequestEnvelopeField.setAccessible(true);
     then(followupRequestEnvelopeField.get(followupStep)).isEqualTo(followupRequestEnvelope);
   }
@@ -68,7 +68,7 @@ final class Then_Response_Step_Implementation_Test extends FluentStepsFixtures {
     given(responseEnvelope.getResponse()).willReturn(response);
     // when invoking for next step, then an assertion error is thrown
     thenExceptionOfType(AssertionError.class)
-        .isThrownBy(() -> sut.thenFollowupWith(followupRequestEnvelope))
+        .isThrownBy(() -> sut.followupWith(followupRequestEnvelope))
         .withMessage("Session is marked as closed");
   }
 }
