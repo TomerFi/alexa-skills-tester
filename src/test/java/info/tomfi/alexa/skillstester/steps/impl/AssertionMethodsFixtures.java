@@ -20,6 +20,7 @@ import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+/** Fixture for testing the assertion methods. */
 @ExtendWith(MockitoExtension.class)
 class AssertionMethodsFixtures {
   @Mock protected Skill skill;

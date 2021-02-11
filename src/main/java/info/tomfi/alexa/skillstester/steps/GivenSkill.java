@@ -35,7 +35,7 @@ public abstract class GivenSkill {
   /**
    * Configure the initial request to send to the Skill.
    *
-   * @param requestJson the request json String.
+   * @param requestJsonString the request json String.
    * @return the next When step of the fluent api.
    */
   public abstract WhenRequest whenRequestIs(String requestJsonString);
@@ -43,7 +43,7 @@ public abstract class GivenSkill {
   /**
    * Configure the initial request to send to the Skill.
    *
-   * @param requestJson the request json byte array.
+   * @param requestJsonByte the request json byte array.
    * @return the next When step of the fluent api.
    */
   public abstract WhenRequest whenRequestIs(byte[] requestJsonByte);

@@ -36,7 +36,6 @@ final class Followup_With_Step_Implementation_Test extends FluentStepsFixtures {
 
   @Test
   void instantiating_with_a_request_envelope_and_retrieving_next_step_will_return_a_then_instance(
-      @Mock final ResponseEnvelope responseEnvelope,
       @Mock final RequestEnvelope followupRequestEnvelope)
       throws NoSuchFieldException, SecurityException, IllegalArgumentException,
           IllegalAccessException {
@@ -59,7 +58,6 @@ final class Followup_With_Step_Implementation_Test extends FluentStepsFixtures {
   @Test
   void instantiating_with_a_skill_request_and_retrieving_next_step_will_return_a_then_instance(
       @Mock final SkillResponse<ResponseEnvelope> skillResponse,
-      @Mock final ResponseEnvelope responseEnvelope,
       @Mock final SkillRequest followupSkillRequest)
       throws NoSuchFieldException, SecurityException, IllegalArgumentException,
           IllegalAccessException {
@@ -83,8 +81,7 @@ final class Followup_With_Step_Implementation_Test extends FluentStepsFixtures {
 
   @Test
   void instantiating_with_a_json_string_and_retrieving_next_step_will_return_a_then_instance(
-      @Mock final SkillResponse<ResponseEnvelope> skillResponse,
-      @Mock final ResponseEnvelope responseEnvelope)
+      @Mock final SkillResponse<ResponseEnvelope> skillResponse)
       throws NoSuchFieldException, SecurityException, IllegalArgumentException,
           IllegalAccessException {
     // stub skill response with response envelope
@@ -108,8 +105,7 @@ final class Followup_With_Step_Implementation_Test extends FluentStepsFixtures {
 
   @Test
   void instantiating_with_a_json_byte_array_and_retrieving_next_step_will_return_a_then_instance(
-      @Mock final SkillResponse<ResponseEnvelope> skillResponse,
-      @Mock final ResponseEnvelope responseEnvelope)
+      @Mock final SkillResponse<ResponseEnvelope> skillResponse)
       throws NoSuchFieldException, SecurityException, IllegalArgumentException,
           IllegalAccessException {
     // stub skill response with response envelope

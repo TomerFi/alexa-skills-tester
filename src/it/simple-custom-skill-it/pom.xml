@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>info.tomfi.alexa</groupId>
+  <artifactId>simple-custom-skill-it</artifactId>
+  <version>0.0.1</version>
+  <name>simple-custom-skill-it</name>
+  <description>Simple custom skill integration test for the Alexa Skills Tester.</description>
+  <url>https://github.com/TomerFi/alexa-skills-tester</url>
+
+  <properties>
+    <maven.compiler.release>11</maven.compiler.release>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.deploy.skip>true</maven.deploy.skip>
+    <maven.install.skip>true</maven.install.skip>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.amazon.alexa</groupId>
+      <artifactId>ask-sdk</artifactId>
+      <version>2.37.1</version>
+    </dependency>
+    <!-- TESTING DEPENDENCIES -->
+    <dependency>
+      <groupId>info.tomfi.alexa</groupId>
+      <artifactId>alexa-skills-tester</artifactId>
+      <version>@project.version@</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>5.7.0</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <defaultGoal>test</defaultGoal>
+
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+      </plugin>
+      <plugin>
+        <groupId>de.sormuras.junit</groupId>
+        <artifactId>junit-platform-maven-plugin</artifactId>
+        <version>1.1.1</version>
+        <extensions>true</extensions>
+        <configuration>
+          <isolation>ABSOLUTE</isolation>
+          <executor>JAVA</executor>
+          <parameters>
+            <junit.jupiter.execution.parallel.enabled>true</junit.jupiter.execution.parallel.enabled>
+            <junit.jupiter.displayname.generator.default>org.junit.jupiter.api.DisplayNameGenerator$ReplaceUnderscores</junit.jupiter.displayname.generator.default>
+          </parameters>
+        </configuration>
+      </plugin>
+    </plugins>
+
+  </build>
+</project>

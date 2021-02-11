@@ -19,6 +19,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+/** Fixtures for testing the fluent api steps. */
 @ExtendWith(MockitoExtension.class)
 class FluentStepsFixtures {
   protected final String dummyJsonRequestString =

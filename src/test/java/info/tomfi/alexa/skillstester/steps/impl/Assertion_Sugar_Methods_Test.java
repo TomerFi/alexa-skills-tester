@@ -18,6 +18,7 @@ import static org.mockito.BDDMockito.then;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+/** Then response step, sugar methods test cases. */
 @Tag("unit-tests")
 final class Assertion_Sugar_Methods_Test extends AssertionMethodsFixtures {
   @Test
