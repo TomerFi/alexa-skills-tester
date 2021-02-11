@@ -9,11 +9,12 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
   <name>Alexa Skill Tester</name>
-  <description>Tester tool for testing Alexa Skills written in Java.</description>
+  <description>Testing tools for Alexa Skills written in Java.</description>
   <url>https://github.com/TomerFi/alexa-skills-tester</url>
   <inceptionYear>2021</inceptionYear>
 
   <properties>
+    <automatic-module-name-entry>info.tomfi.alexa.skills.tester</automatic-module-name-entry>
     <jacoco.coverage.minimum>85%</jacoco.coverage.minimum>
     <maven.compiler.release>11</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -227,6 +228,13 @@
         <plugin>
           <artifactId>maven-jar-plugin</artifactId>
           <version>${maven-jar-plugin.version}</version>
+          <configuration>
+            <archive>
+              <manifestEntries>
+                <Automatic-Module-Name>${automatic-module-name-entry}</Automatic-Module-Name>
+              </manifestEntries>
+            </archive>
+          </configuration>
         </plugin>
         <plugin>
           <artifactId>maven-javadoc-plugin</artifactId>
@@ -522,7 +530,7 @@ limitations under the License.]]>
 
     <profile>
       <!-- Use this profile to run integration tests. -->
-      <id>its</id>
+      <id>integration-tests</id>
       <build>
         <plugins>
           <plugin>
