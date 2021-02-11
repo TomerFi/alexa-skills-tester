@@ -38,7 +38,8 @@ public final class WhenRequestImpl extends WhenRequest {
 
   @Override
   public ThenResponse thenResponseShould() {
-    var responseEnvelope = inEnvelopeMode ? skill.invoke(requestEnvelope) : skill.execute(skillRequest).getResponse();
+    var responseEnvelope =
+        inEnvelopeMode ? skill.invoke(requestEnvelope) : skill.execute(skillRequest).getResponse();
     return new ThenResponseImpl(skill, responseEnvelope);
   }
 }

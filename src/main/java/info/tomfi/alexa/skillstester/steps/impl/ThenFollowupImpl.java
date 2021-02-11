@@ -29,16 +29,12 @@ public final class ThenFollowupImpl extends ThenFollowup {
   }
 
   protected ThenFollowupImpl(
-      final Skill skill,
-      final ResponseEnvelope responseEnvelope,
-      final String followupJsonString) {
+      final Skill skill, final ResponseEnvelope responseEnvelope, final String followupJsonString) {
     super(skill, responseEnvelope, followupJsonString);
   }
 
   protected ThenFollowupImpl(
-      final Skill skill,
-      final ResponseEnvelope responseEnvelope,
-      final byte[] followupJsonByte) {
+      final Skill skill, final ResponseEnvelope responseEnvelope, final byte[] followupJsonByte) {
     super(skill, responseEnvelope, followupJsonByte);
   }
 
@@ -51,7 +47,10 @@ public final class ThenFollowupImpl extends ThenFollowup {
 
   @Override
   public ThenResponse thenResponseShould() {
-    var responseEnvelope = inEnvelopeMode ? skill.invoke(followupRequestEnvelope) : skill.execute(followupSkillRequest).getResponse();
+    var responseEnvelope =
+        inEnvelopeMode
+            ? skill.invoke(followupRequestEnvelope)
+            : skill.execute(followupSkillRequest).getResponse();
     return new ThenResponseImpl(skill, responseEnvelope);
   }
 }

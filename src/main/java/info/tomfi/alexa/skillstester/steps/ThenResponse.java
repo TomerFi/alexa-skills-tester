@@ -22,7 +22,6 @@ import com.amazon.ask.model.ui.SimpleCard;
 import com.amazon.ask.model.ui.SsmlOutputSpeech;
 import com.amazon.ask.model.ui.StandardCard;
 import com.amazon.ask.request.SkillRequest;
-
 import java.util.Map;
 import java.util.Optional;
 
@@ -31,9 +30,7 @@ public abstract class ThenResponse {
   protected final Skill skill;
   protected final ResponseEnvelope responseEnvelope;
 
-  protected ThenResponse(
-      final Skill setSkill,
-      final ResponseEnvelope setResponseEnvelope) {
+  protected ThenResponse(final Skill setSkill, final ResponseEnvelope setResponseEnvelope) {
     skill = setSkill;
     responseEnvelope = setResponseEnvelope;
   }
@@ -53,7 +50,6 @@ public abstract class ThenResponse {
    * @return the next Then step of the fluent api.
    */
   public abstract ThenFollowup thenFollowupWith(String requestJsonString);
-
 
   /**
    * Optionally configure a followup Request to the current response.
@@ -93,7 +89,7 @@ public abstract class ThenResponse {
    * @param testSpeech the String to match against.
    * @return this instance for further assertions.
    */
-  public  abstract ThenResponse haveOutputSpeechThatEndsWith(String testSpeech);
+  public abstract ThenResponse haveOutputSpeechThatEndsWith(String testSpeech);
 
   /**
    * Assert the skill response has output speech that contains testSpeech.
@@ -101,7 +97,7 @@ public abstract class ThenResponse {
    * @param testSpeech the String to match against.
    * @return this instance for further assertions.
    */
-  public  abstract ThenResponse haveOutputSpeechThatContains(String testSpeech);
+  public abstract ThenResponse haveOutputSpeechThatContains(String testSpeech);
 
   /**
    * Assert the skill response has reprompt speech that is equal to testSpeech.
@@ -236,6 +232,7 @@ public abstract class ThenResponse {
 
   /**
    * Assert the response's session attributes map contains a key with a value.
+   *
    * @param key the key to lookup.
    * @param value the value to match against.
    * @return this instance for further assertions.

@@ -19,7 +19,6 @@ import com.amazon.ask.Skill;
 import com.amazon.ask.model.RequestEnvelope;
 import com.amazon.ask.model.ResponseEnvelope;
 import com.amazon.ask.request.SkillRequest;
-
 import info.tomfi.alexa.skillstester.steps.ThenFollowup;
 import info.tomfi.alexa.skillstester.steps.ThenResponse;
 import java.util.Map;

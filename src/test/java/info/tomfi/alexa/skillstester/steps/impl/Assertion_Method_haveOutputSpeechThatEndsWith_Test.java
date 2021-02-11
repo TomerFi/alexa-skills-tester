@@ -16,29 +16,17 @@ import static org.assertj.core.api.BDDAssertions.then;
 import static org.assertj.core.api.BDDAssertions.thenExceptionOfType;
 import static org.mockito.BDDMockito.given;
 
-import com.amazon.ask.Skill;
-import com.amazon.ask.model.RequestEnvelope;
 import com.amazon.ask.model.Response;
-import com.amazon.ask.model.ResponseEnvelope;
 import com.amazon.ask.model.ui.OutputSpeech;
 import com.amazon.ask.model.ui.PlainTextOutputSpeech;
 import com.amazon.ask.model.ui.SsmlOutputSpeech;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 
 /** Then response step, assertion method haveOutputSpeechThatEndsWith test cases. */
-@ExtendWith(MockitoExtension.class)
 @Tag("unit-tests")
-final class Assertion_Method_haveOutputSpeechThatEndsWith_Test {
-  @Mock private Skill skill;
-  @Mock private RequestEnvelope requestEnvelope;
-  @Mock private ResponseEnvelope responseEnvelope;
-  @InjectMocks private ThenResponseImpl sut;
-
+final class Assertion_Method_haveOutputSpeechThatEndsWith_Test extends AssertionMethodsFixtures {
   @Test
   void asserting_a_correct_output_speech_with_a_plain_type_will_keep_ongoing_assertion(
       @Mock final Response response, @Mock final PlainTextOutputSpeech speech) {

@@ -15,7 +15,6 @@ package info.tomfi.alexa.skillstester.steps.impl;
 import com.amazon.ask.Skill;
 import com.amazon.ask.model.RequestEnvelope;
 import com.amazon.ask.request.SkillRequest;
-
 import info.tomfi.alexa.skillstester.steps.GivenSkill;
 import info.tomfi.alexa.skillstester.steps.WhenRequest;
 

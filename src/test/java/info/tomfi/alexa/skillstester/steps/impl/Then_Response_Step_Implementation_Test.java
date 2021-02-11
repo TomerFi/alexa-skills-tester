@@ -15,36 +15,28 @@ package info.tomfi.alexa.skillstester.steps.impl;
 import static org.assertj.core.api.BDDAssertions.then;
 import static org.assertj.core.api.BDDAssertions.thenExceptionOfType;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
 
-import com.amazon.ask.Skill;
 import com.amazon.ask.model.RequestEnvelope;
 import com.amazon.ask.model.Response;
 import com.amazon.ask.model.ResponseEnvelope;
+
 import info.tomfi.alexa.skillstester.steps.ThenFollowup;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Spy;
-import org.mockito.junit.jupiter.MockitoExtension;
 
 /**
  * Then step, encapsulating the Skill, implementing assertion methods and the next optionally
  * Followup step logic test cases.
  */
-@ExtendWith(MockitoExtension.class)
 @Tag("unit-tests")
-final class Then_Response_Step_Implementation_Test {
-  @Mock private Skill skill;
-  @Mock private RequestEnvelope requestEnvelope;
+final class Then_Response_Step_Implementation_Test extends FluentStepsFixtures {
   @Mock private ResponseEnvelope responseEnvelope;
-  @Spy @InjectMocks private ThenResponseImpl sut;
+  @InjectMocks private ThenResponseImpl sut;
 
   @Test
-  void following_up_with_an_open_session_will_return_then_followup_instance_encapsulating_the_args(
+  void following_an_open_session_with_a_request_envelope_will_return_a_followup_instance(
       @Mock final Response response, @Mock final RequestEnvelope followupRequestEnvelope)
       throws NoSuchFieldException, SecurityException, IllegalArgumentException,
           IllegalAccessException {
@@ -62,13 +54,14 @@ final class Then_Response_Step_Implementation_Test {
     responseEnvelopeField.setAccessible(true);
     then(responseEnvelopeField.get(followupStep)).isEqualTo(responseEnvelope);
     // then verify followupRequest field
-    var followupRequestEnvelopeField = ThenFollowup.class.getDeclaredField("followupRequestEnvelope");
+    var followupRequestEnvelopeField =
+        ThenFollowup.class.getDeclaredField("followupRequestEnvelope");
     followupRequestEnvelopeField.setAccessible(true);
     then(followupRequestEnvelopeField.get(followupStep)).isEqualTo(followupRequestEnvelope);
   }
 
   @Test
-  void following_up_with_a_closed_session_will_throw_an_assertion_error(
+  void following_a_closed_session_with_a_request_envelope_will_throw_an_assertion_error(
       @Mock final Response response, @Mock final RequestEnvelope followupRequestEnvelope) {
     // stub response with closed session not waiting for followups
     given(response.getShouldEndSession()).willReturn(true);
@@ -77,12 +70,5 @@ final class Then_Response_Step_Implementation_Test {
     thenExceptionOfType(AssertionError.class)
         .isThrownBy(() -> sut.thenFollowupWith(followupRequestEnvelope))
         .withMessage("Session is marked as closed");
-  }
-
-  @Test
-  void invoking_the_sugar_method_named_and_will_do_nothing_but_return_the_same_instance() {
-    then(sut.and()).isEqualTo(sut);
-    verify(sut).and();
-    verifyNoMoreInteractions(sut);
   }
 }

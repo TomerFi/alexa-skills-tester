@@ -16,26 +16,14 @@ import static org.assertj.core.api.BDDAssertions.then;
 import static org.assertj.core.api.BDDAssertions.thenExceptionOfType;
 import static org.mockito.BDDMockito.given;
 
-import com.amazon.ask.Skill;
-import com.amazon.ask.model.RequestEnvelope;
 import com.amazon.ask.model.Response;
-import com.amazon.ask.model.ResponseEnvelope;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 
 /** Then response step, assertion method notWaitForFollowup test cases. */
-@ExtendWith(MockitoExtension.class)
 @Tag("unit-tests")
-final class Assertion_Method_notWaitForFollowup_Test {
-  @Mock private Skill skill;
-  @Mock private RequestEnvelope requestEnvelope;
-  @Mock private ResponseEnvelope responseEnvelope;
-  @InjectMocks private ThenResponseImpl sut;
-
+final class Assertion_Method_notWaitForFollowup_Test extends AssertionMethodsFixtures {
   @Test
   void asserting_with_a_closed_session_will_keep_ongoing_assertion(@Mock final Response response) {
     given(response.getShouldEndSession()).willReturn(true);

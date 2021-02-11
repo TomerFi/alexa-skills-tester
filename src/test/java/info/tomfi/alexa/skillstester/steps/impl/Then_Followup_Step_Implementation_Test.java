@@ -16,24 +16,19 @@ import static org.assertj.core.api.BDDAssertions.then;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
 
-import com.amazon.ask.Skill;
 import com.amazon.ask.model.RequestEnvelope;
 import com.amazon.ask.model.ResponseEnvelope;
 import info.tomfi.alexa.skillstester.steps.ThenResponse;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 
 /**
  * Then followup step, encapsulating the Skill, implementing the next Then step logic test cases.
  */
-@ExtendWith(MockitoExtension.class)
 @Tag("unit-tests")
-final class Then_Followup_Step_Implementation_Test {
-  @Mock private Skill skill;
+final class Then_Followup_Step_Implementation_Test extends FluentStepsFixtures {
   @Mock private ResponseEnvelope responseEnvelope;
   @Mock private RequestEnvelope followRequestEnvelope;
   @InjectMocks private ThenFollowupImpl sut;

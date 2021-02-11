@@ -16,27 +16,13 @@ import static org.assertj.core.api.BDDAssertions.then;
 import static org.assertj.core.api.BDDAssertions.thenExceptionOfType;
 import static org.mockito.BDDMockito.given;
 
-import com.amazon.ask.Skill;
-import com.amazon.ask.model.RequestEnvelope;
-import com.amazon.ask.model.ResponseEnvelope;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
-
 /** Then response step, assertion method haveSessionAttributesOf test cases. */
-@ExtendWith(MockitoExtension.class)
 @Tag("unit-tests")
-final class Assertion_Method_haveSessionAttributesOf_Test {
-  @Mock private Skill skill;
-  @Mock private RequestEnvelope requestEnvelope;
-  @Mock private ResponseEnvelope responseEnvelope;
-  @InjectMocks private ThenResponseImpl sut;
-
+final class Assertion_Method_haveSessionAttributesOf_Test extends AssertionMethodsFixtures {
   @Test
   void asserting_with_existing_session_attributes_will_keep_ongoing_assertion() {
     given(responseEnvelope.getSessionAttributes())
