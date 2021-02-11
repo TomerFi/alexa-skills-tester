@@ -12,7 +12,6 @@
  */
 package info.tomfi.alexa.skillstester.steps.impl;
 
-import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.assertj.core.api.BDDAssertions.then;
 
 import com.amazon.ask.model.RequestEnvelope;
@@ -83,7 +82,7 @@ final class Given_Skill_Step_Implementation_Test extends FluentStepsFixtures {
       throws NoSuchFieldException, SecurityException, IllegalArgumentException,
           IllegalAccessException {
     // when invoking for next step with a json String
-    var whenStep = sut.whenRequestIs(DUMMY_JSON_REQUEST);
+    var whenStep = sut.whenRequestIs(dummyJsonRequestString);
     // then verify the skill field
     var skillField = WhenRequest.class.getDeclaredField("skill");
     skillField.setAccessible(true);
@@ -96,7 +95,7 @@ final class Given_Skill_Step_Implementation_Test extends FluentStepsFixtures {
     var skillRequestField = WhenRequest.class.getDeclaredField("skillRequest");
     skillRequestField.setAccessible(true);
     then(((SkillRequest) skillRequestField.get(whenStep)).getRawRequest())
-        .isEqualTo(DUMMY_JSON_REQUEST.getBytes(UTF_8));
+        .isEqualTo(dummyJsonRequestByte);
     // then verify inEnvelopeMode field is false, setting the when instance for SkillRequest usage
     var inEnvelopeModeField = WhenRequest.class.getDeclaredField("inEnvelopeMode");
     inEnvelopeModeField.setAccessible(true);
@@ -108,7 +107,7 @@ final class Given_Skill_Step_Implementation_Test extends FluentStepsFixtures {
       throws NoSuchFieldException, SecurityException, IllegalArgumentException,
           IllegalAccessException {
     // when invoking for next step a json byte array
-    var whenStep = sut.whenRequestIs(DUMMY_JSON_REQUEST.getBytes(UTF_8));
+    var whenStep = sut.whenRequestIs(dummyJsonRequestByte);
     // then verify the skill field
     var skillField = WhenRequest.class.getDeclaredField("skill");
     skillField.setAccessible(true);
@@ -121,7 +120,7 @@ final class Given_Skill_Step_Implementation_Test extends FluentStepsFixtures {
     var skillRequestField = WhenRequest.class.getDeclaredField("skillRequest");
     skillRequestField.setAccessible(true);
     then(((SkillRequest) skillRequestField.get(whenStep)).getRawRequest())
-        .isEqualTo(DUMMY_JSON_REQUEST.getBytes(UTF_8));
+        .isEqualTo(dummyJsonRequestByte);
     // then verify inEnvelopeMode field is false, setting the when instance for SkillRequest usage
     var inEnvelopeModeField = WhenRequest.class.getDeclaredField("inEnvelopeMode");
     inEnvelopeModeField.setAccessible(true);

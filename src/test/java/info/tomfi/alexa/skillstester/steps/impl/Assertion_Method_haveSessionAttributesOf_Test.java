@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+
 /** Then response step, assertion method haveSessionAttributesOf test cases. */
 @Tag("unit-tests")
 final class Assertion_Method_haveSessionAttributesOf_Test extends AssertionMethodsFixtures {
@@ -45,6 +46,20 @@ final class Assertion_Method_haveSessionAttributesOf_Test extends AssertionMetho
                 sut.haveSessionAttributesOf(
                     Map.of("Key1", (Object) "Value1", "Key4", (Object) "Value4")))
         .withMessage("Session attributes map does not contain key 'Key4'");
+  }
+
+  @Test
+  void asserting_with_an_existing_key_and_wrong_value_will_throw_an_assertion_error() {
+    given(responseEnvelope.getSessionAttributes())
+        .willReturn(
+            Map.of(
+                "Key1", (Object) "Value1", "Key2", (Object) "Value2", "Key3", (Object) "Value3"));
+    thenExceptionOfType(AssertionError.class)
+        .isThrownBy(
+            () ->
+                sut.haveSessionAttributesOf(
+                    Map.of("Key1", (Object) "Value1", "Key2", (Object) "Value4")))
+        .withMessage("Session attribute value of 'Key2', is not 'Value4'");
   }
 
   @Test

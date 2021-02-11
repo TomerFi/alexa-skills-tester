@@ -36,4 +36,12 @@ final class Assertion_Method_haveSessionAttributeOf_Test extends AssertionMethod
         .isThrownBy(() -> sut.haveSessionAttributeOf("Key2", "Value2"))
         .withMessage("Session attributes map does not contain key 'Key2'");
   }
+
+  @Test
+  void asserting_with_an_existing_key_and_wrong_value_will_throw_an_assertion_error() {
+    given(responseEnvelope.getSessionAttributes()).willReturn(Map.of("Key1", (Object) "Value1"));
+    thenExceptionOfType(AssertionError.class)
+        .isThrownBy(() -> sut.haveSessionAttributeOf("Key1", "Value2"))
+        .withMessage("Session attribute value of 'Key1', is not 'Value2'");
+  }
 }

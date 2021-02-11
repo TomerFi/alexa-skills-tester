@@ -27,7 +27,8 @@ import org.mockito.Mock;
 
 /** Then response step, assertion method haveRepromptSpeechThatStartsWith test cases. */
 @Tag("unit-tests")
-final class Assertion_Method_haveRepromptSpeechThatStartsWith_Test extends AssertionMethodsFixtures {
+final class Assertion_Method_haveRepromptSpeechThatStartsWith_Test
+    extends AssertionMethodsFixtures {
   @Test
   void asserting_a_correct_reprompt_speech_with_a_plain_type_will_keep_ongoing_assertion(
       @Mock final Response response,
