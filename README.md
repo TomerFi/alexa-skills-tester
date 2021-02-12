@@ -23,6 +23,7 @@ Take a look at the [Javadoc][5] for API documentation.</br>
 ```
 
 ```java
+// Use the fluent api in your test code
 givenSkill(myCustomSkill) // load your custom skill
     .whenRequestIs(buildLaunchRequestJsonString()) // load a request, takes json or envelopes
     .thenResponseShould() // send the request to the skill and verify the response
@@ -35,6 +36,8 @@ givenSkill(myCustomSkill) // load your custom skill
         .and() // just a sugar method for readability
         .notWaitForFollowup(); // verify the session is closed, the skill not waiting for a followup
 ```
+
+> You can add as many `followupWith(x).thenResponseShould()` as you need.
 
 ## Links
 
