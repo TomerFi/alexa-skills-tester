@@ -16,29 +16,29 @@ import com.amazon.ask.Skill;
 import com.amazon.ask.model.RequestEnvelope;
 import com.amazon.ask.model.ResponseEnvelope;
 import com.amazon.ask.request.SkillRequest;
-import info.tomfi.alexa.skillstester.steps.FollowupWith;
+import info.tomfi.alexa.skillstester.steps.FollowingUp;
 import info.tomfi.alexa.skillstester.steps.ThenResponse;
 
 /** Followup with step, encapsulating the Skill, implementing the next Then step logic. */
-public final class FollowupWithImpl extends FollowupWith {
-  protected FollowupWithImpl(
+public final class FollowingUpImpl extends FollowingUp {
+  protected FollowingUpImpl(
       final Skill skill,
       final ResponseEnvelope responseEnvelope,
       final RequestEnvelope followupRequestEnvelope) {
     super(skill, responseEnvelope, followupRequestEnvelope);
   }
 
-  protected FollowupWithImpl(
+  protected FollowingUpImpl(
       final Skill skill, final ResponseEnvelope responseEnvelope, final String followupJsonString) {
     super(skill, responseEnvelope, followupJsonString);
   }
 
-  protected FollowupWithImpl(
+  protected FollowingUpImpl(
       final Skill skill, final ResponseEnvelope responseEnvelope, final byte[] followupJsonByte) {
     super(skill, responseEnvelope, followupJsonByte);
   }
 
-  protected FollowupWithImpl(
+  protected FollowingUpImpl(
       final Skill skill,
       final ResponseEnvelope responseEnvelope,
       final SkillRequest setSkillRequest) {

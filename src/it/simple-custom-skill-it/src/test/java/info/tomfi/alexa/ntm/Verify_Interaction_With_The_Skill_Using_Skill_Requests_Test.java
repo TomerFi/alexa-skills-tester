@@ -45,7 +45,7 @@ final class Verify_Interaction_With_The_Skill_Using_Skill_Requests_Test {
             .waitForFollowup()
             .haveOutputSpeechOf("What is your name?")
             .haveRepromptSpeechOf("Please tell me your name.")
-        .followupWith(buildMyNameIntentSkillRequest("tomer"))
+        .followingUpWith(buildMyNameIntentSkillRequest("tomer"))
         .thenResponseShould()
             .haveOutputSpeechOf("Nice to meet you tomer!")
             .and()

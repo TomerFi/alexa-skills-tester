@@ -19,7 +19,7 @@ import com.amazon.ask.Skill;
 import com.amazon.ask.model.RequestEnvelope;
 import com.amazon.ask.model.ResponseEnvelope;
 import com.amazon.ask.request.SkillRequest;
-import info.tomfi.alexa.skillstester.steps.FollowupWith;
+import info.tomfi.alexa.skillstester.steps.FollowingUp;
 import info.tomfi.alexa.skillstester.steps.ThenResponse;
 import java.util.Map;
 
@@ -33,27 +33,27 @@ public final class ThenResponseImpl extends ThenResponse {
   }
 
   @Override
-  public FollowupWith followupWith(final RequestEnvelope followupRequestEnvelope) {
+  public FollowingUp followingUpWith(final RequestEnvelope followupRequestEnvelope) {
     waitForFollowup();
-    return new FollowupWithImpl(skill, responseEnvelope, followupRequestEnvelope);
+    return new FollowingUpImpl(skill, responseEnvelope, followupRequestEnvelope);
   }
 
   @Override
-  public FollowupWith followupWith(final String followupJsonString) {
+  public FollowingUp followingUpWith(final String followupJsonString) {
     waitForFollowup();
-    return new FollowupWithImpl(skill, responseEnvelope, followupJsonString);
+    return new FollowingUpImpl(skill, responseEnvelope, followupJsonString);
   }
 
   @Override
-  public FollowupWith followupWith(final byte[] followupJsonByte) {
+  public FollowingUp followingUpWith(final byte[] followupJsonByte) {
     waitForFollowup();
-    return new FollowupWithImpl(skill, responseEnvelope, followupJsonByte);
+    return new FollowingUpImpl(skill, responseEnvelope, followupJsonByte);
   }
 
   @Override
-  public FollowupWith followupWith(final SkillRequest followupSkillRequest) {
+  public FollowingUp followingUpWith(final SkillRequest followupSkillRequest) {
     waitForFollowup();
-    return new FollowupWithImpl(skill, responseEnvelope, followupSkillRequest);
+    return new FollowingUpImpl(skill, responseEnvelope, followupSkillRequest);
   }
 
   @Override
