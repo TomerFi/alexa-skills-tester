@@ -41,7 +41,7 @@ public abstract class ThenResponse {
    * @param requestEnvelope the followup request envelope.
    * @return the next Then step of the fluent api.
    */
-  public abstract FollowupWith followupWith(RequestEnvelope requestEnvelope);
+  public abstract FollowingUp followingUpWith(RequestEnvelope requestEnvelope);
 
   /**
    * Optionally configure a followup Request to the current response.
@@ -49,7 +49,7 @@ public abstract class ThenResponse {
    * @param requestJsonString the followup request json String.
    * @return the next Then step of the fluent api.
    */
-  public abstract FollowupWith followupWith(String requestJsonString);
+  public abstract FollowingUp followingUpWith(String requestJsonString);
 
   /**
    * Optionally configure a followup Request to the current response.
@@ -57,7 +57,7 @@ public abstract class ThenResponse {
    * @param requestJsonByte the followup request json byte array.
    * @return the next Then step of the fluent api.
    */
-  public abstract FollowupWith followupWith(byte[] requestJsonByte);
+  public abstract FollowingUp followingUpWith(byte[] requestJsonByte);
 
   /**
    * Optionally configure a followup Request to the current response.
@@ -65,7 +65,7 @@ public abstract class ThenResponse {
    * @param skillRequest the followup skill request.
    * @return the next Then step of the fluent api.
    */
-  public abstract FollowupWith followupWith(SkillRequest skillRequest);
+  public abstract FollowingUp followingUpWith(SkillRequest skillRequest);
 
   /**
    * Assert the skill response has output speech that is equal to testSpeech.

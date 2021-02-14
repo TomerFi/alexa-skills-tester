@@ -30,14 +30,14 @@ givenSkill(myCustomSkill) // load your custom skill
         .waitForFollowup() // verify the session is open, the skill is waiting for a followup
         .haveOutputSpeechOf("What is your name?") // verify the response speech output
         .haveRepromptSpeechOf("Please tell me your name.") // verify the response repormpt speech
-    .followupWith(buildMyNameIntentRequestJsonString("tomer")) // load a followup request
+    .followingUpWith(buildMyNameIntentRequestJsonString("tomer")) // load a followup request
     .thenResponseShould() // send the request to the skill and verify the response
         .haveOutputSpeechOf("Nice to meet you tomer!") // verify the response speech output
         .and() // just a sugar method for readability
         .notWaitForFollowup(); // verify the session is closed, the skill not waiting for a followup
 ```
 
-> You can add as many `followupWith(x).thenResponseShould()` as you need.
+> You can add as many `followingUpWith(x).thenResponseShould()` as you need.
 
 ## Links
 

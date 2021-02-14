@@ -12,7 +12,7 @@ Contributing is pretty straight-forward:
 
 ```shell
 docker run --rm -e RUN_LOCAL=true -e OUTPUT_FORMAT=tap -e OUTPUT_DETAILS=detailed `
--e LINTER_RULES_PATH=. -e VALIDATE_EDITORCONFIG=true -e VALIDATE_JAVA=true -e VALIDATE_JSON=true `
+-e LINTER_RULES_PATH=. -e VALIDATE_EDITORCONFIG=true -e VALIDATE_JAVA=true `
 -e VALIDATE_MARKDOWN=true -e VALIDATE_XML=true -e VALIDATE_YAML=true `
 -e FILTER_REGEX_EXCLUDE="(.git|.*.tap|/target/)" -v ${PWD}:/tmp/lint ghcr.io/github/super-linter:v3
 ```
@@ -33,8 +33,8 @@ docker run --rm -e RUN_LOCAL=true -e OUTPUT_FORMAT=tap -e OUTPUT_DETAILS=detaile
   And exposing various assertion methods for verifying the response.
 
 - The user can either stop here, if no followup is required,</br>
-  Or use the various `followupWith` overload methods to load a followup request,</br>
-  And get a new instance of [FollowupWithImpl](../src/main/java/info/tomfi/alexa/skillstester/steps/impl/FollowupWithImpl.java)
+  Or use the various `followingUpWith` overload methods to load a followup request,</br>
+  And get a new instance of [FollowingUpImpl](../src/main/java/info/tomfi/alexa/skillstester/steps/impl/FollowingUpImpl.java)
   encapsulating the skill instance, the previous response, and the loaded folloup request.
 
 - The user can then use the various `thenResponseShould` method to send the loaded followup request,</br>
@@ -44,7 +44,7 @@ docker run --rm -e RUN_LOCAL=true -e OUTPUT_FORMAT=tap -e OUTPUT_DETAILS=detaile
 
 The concept here is that the user can actually bounce from
 [ThenResponseImpl](../src/main/java/info/tomfi/alexa/skillstester/steps/impl/ThenResponseImpl.java) to
-[FollowupWithImpl](../src/main/java/info/tomfi/alexa/skillstester/steps/impl/FollowupWithImpl.java),</br>
+[FollowingUpImpl](../src/main/java/info/tomfi/alexa/skillstester/steps/impl/FollowingUpImpl.java),</br>
 As many times needed for verifying the multi-turn interaction with the skill.
 
 ## Unit Testing

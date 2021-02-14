@@ -42,7 +42,7 @@ final class Verify_Interaction_With_The_Skill_Using_Json_Strings_Test {
             .waitForFollowup()
             .haveOutputSpeechOf("What is your name?")
             .haveRepromptSpeechOf("Please tell me your name.")
-        .followupWith(buildMyNameIntentRequestJsonString("tomer"))
+        .followingUpWith(buildMyNameIntentRequestJsonString("tomer"))
         .thenResponseShould()
             .haveOutputSpeechOf("Nice to meet you tomer!")
             .and()

@@ -43,7 +43,7 @@ final class Verify_Interaction_With_The_Skill_Using_Json_Byte_Array_Test {
             .waitForFollowup()
             .haveOutputSpeechOf("What is your name?")
             .haveRepromptSpeechOf("Please tell me your name.")
-        .followupWith(buildMyNameIntentRequestJsonByteArray("tomer"))
+        .followingUpWith(buildMyNameIntentRequestJsonByteArray("tomer"))
         .thenResponseShould()
             .haveOutputSpeechOf("Nice to meet you tomer!")
             .and()

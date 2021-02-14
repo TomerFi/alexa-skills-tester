@@ -20,7 +20,7 @@ import com.amazon.ask.model.RequestEnvelope;
 import com.amazon.ask.model.Response;
 import com.amazon.ask.model.ResponseEnvelope;
 import com.amazon.ask.request.SkillRequest;
-import info.tomfi.alexa.skillstester.steps.FollowupWith;
+import info.tomfi.alexa.skillstester.steps.FollowingUp;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -44,27 +44,27 @@ final class Then_Response_Step_Implementation_Test extends FluentStepsFixtures {
     given(response.getShouldEndSession()).willReturn(false);
     given(responseEnvelope.getResponse()).willReturn(response);
     // when invoking for next step
-    var followupStep = sut.followupWith(followupRequestEnvelope);
+    var followupStep = sut.followingUpWith(followupRequestEnvelope);
     // then verify the skill field
-    var skillField = FollowupWith.class.getDeclaredField("skill");
+    var skillField = FollowingUp.class.getDeclaredField("skill");
     skillField.setAccessible(true);
     then(skillField.get(followupStep)).isEqualTo(skill);
     // then verify responseEnvelope field
-    var responseEnvelopeField = FollowupWith.class.getDeclaredField("responseEnvelope");
+    var responseEnvelopeField = FollowingUp.class.getDeclaredField("responseEnvelope");
     responseEnvelopeField.setAccessible(true);
     then(responseEnvelopeField.get(followupStep)).isEqualTo(responseEnvelope);
     // then verify followupRequestEnvelope field is the RequestEnvelope argument passed
     var followupRequestEnvelopeField =
-        FollowupWith.class.getDeclaredField("followupRequestEnvelope");
+        FollowingUp.class.getDeclaredField("followupRequestEnvelope");
     followupRequestEnvelopeField.setAccessible(true);
     then(followupRequestEnvelopeField.get(followupStep)).isEqualTo(followupRequestEnvelope);
     // then verify followupSkillRequest field is of null value
-    var followupSkillRequestField = FollowupWith.class.getDeclaredField("followupSkillRequest");
+    var followupSkillRequestField = FollowingUp.class.getDeclaredField("followupSkillRequest");
     followupSkillRequestField.setAccessible(true);
     then(followupSkillRequestField.get(followupStep)).isNull();
     // then verify inEnvelopeMode field is true, setting the followup instance for RequestEnvelope
     // usage
-    var inEnvelopeModeField = FollowupWith.class.getDeclaredField("inEnvelopeMode");
+    var inEnvelopeModeField = FollowingUp.class.getDeclaredField("inEnvelopeMode");
     inEnvelopeModeField.setAccessible(true);
     then((boolean) inEnvelopeModeField.get(followupStep)).isTrue();
   }
@@ -77,7 +77,7 @@ final class Then_Response_Step_Implementation_Test extends FluentStepsFixtures {
     given(responseEnvelope.getResponse()).willReturn(response);
     // when invoking for next step, then an assertion error is thrown
     thenExceptionOfType(AssertionError.class)
-        .isThrownBy(() -> sut.followupWith(followupRequestEnvelope))
+        .isThrownBy(() -> sut.followingUpWith(followupRequestEnvelope))
         .withMessage("Session is marked as closed");
   }
 
@@ -90,27 +90,27 @@ final class Then_Response_Step_Implementation_Test extends FluentStepsFixtures {
     given(response.getShouldEndSession()).willReturn(false);
     given(responseEnvelope.getResponse()).willReturn(response);
     // when invoking for next step
-    var followupStep = sut.followupWith(followupSkillRequest);
+    var followupStep = sut.followingUpWith(followupSkillRequest);
     // then verify the skill field
-    var skillField = FollowupWith.class.getDeclaredField("skill");
+    var skillField = FollowingUp.class.getDeclaredField("skill");
     skillField.setAccessible(true);
     then(skillField.get(followupStep)).isEqualTo(skill);
     // then verify responseEnvelope field
-    var responseEnvelopeField = FollowupWith.class.getDeclaredField("responseEnvelope");
+    var responseEnvelopeField = FollowingUp.class.getDeclaredField("responseEnvelope");
     responseEnvelopeField.setAccessible(true);
     then(responseEnvelopeField.get(followupStep)).isEqualTo(responseEnvelope);
     // then verify followupRequestEnvelope field is of null value
     var followupRequestEnvelopeField =
-        FollowupWith.class.getDeclaredField("followupRequestEnvelope");
+        FollowingUp.class.getDeclaredField("followupRequestEnvelope");
     followupRequestEnvelopeField.setAccessible(true);
     then(followupRequestEnvelopeField.get(followupStep)).isNull();
     // then verify followupSkillRequest field the SkillRequest argument passed
-    var followupSkillRequestField = FollowupWith.class.getDeclaredField("followupSkillRequest");
+    var followupSkillRequestField = FollowingUp.class.getDeclaredField("followupSkillRequest");
     followupSkillRequestField.setAccessible(true);
     then(followupSkillRequestField.get(followupStep)).isEqualTo(followupSkillRequest);
     // then verify inEnvelopeMode field is false, setting the followup instance for SkillRequest
     // usage
-    var inEnvelopeModeField = FollowupWith.class.getDeclaredField("inEnvelopeMode");
+    var inEnvelopeModeField = FollowingUp.class.getDeclaredField("inEnvelopeMode");
     inEnvelopeModeField.setAccessible(true);
     then((boolean) inEnvelopeModeField.get(followupStep)).isFalse();
   }
@@ -123,7 +123,7 @@ final class Then_Response_Step_Implementation_Test extends FluentStepsFixtures {
     given(responseEnvelope.getResponse()).willReturn(response);
     // when invoking for next step, then an assertion error is thrown
     thenExceptionOfType(AssertionError.class)
-        .isThrownBy(() -> sut.followupWith(followupSkillRequest))
+        .isThrownBy(() -> sut.followingUpWith(followupSkillRequest))
         .withMessage("Session is marked as closed");
   }
 
@@ -136,28 +136,28 @@ final class Then_Response_Step_Implementation_Test extends FluentStepsFixtures {
     given(response.getShouldEndSession()).willReturn(false);
     given(responseEnvelope.getResponse()).willReturn(response);
     // when invoking for next step
-    var followupStep = sut.followupWith(dummyJsonRequestString);
+    var followupStep = sut.followingUpWith(dummyJsonRequestString);
     // then verify the skill field
-    var skillField = FollowupWith.class.getDeclaredField("skill");
+    var skillField = FollowingUp.class.getDeclaredField("skill");
     skillField.setAccessible(true);
     then(skillField.get(followupStep)).isEqualTo(skill);
     // then verify responseEnvelope field
-    var responseEnvelopeField = FollowupWith.class.getDeclaredField("responseEnvelope");
+    var responseEnvelopeField = FollowingUp.class.getDeclaredField("responseEnvelope");
     responseEnvelopeField.setAccessible(true);
     then(responseEnvelopeField.get(followupStep)).isEqualTo(responseEnvelope);
     // then verify followupRequestEnvelope field is of null value
     var followupRequestEnvelopeField =
-        FollowupWith.class.getDeclaredField("followupRequestEnvelope");
+        FollowingUp.class.getDeclaredField("followupRequestEnvelope");
     followupRequestEnvelopeField.setAccessible(true);
     then(followupRequestEnvelopeField.get(followupStep)).isNull();
     // then verify followupSkillRequest field the SkillRequest argument passed
-    var followupSkillRequestField = FollowupWith.class.getDeclaredField("followupSkillRequest");
+    var followupSkillRequestField = FollowingUp.class.getDeclaredField("followupSkillRequest");
     followupSkillRequestField.setAccessible(true);
     then(((SkillRequest) followupSkillRequestField.get(followupStep)).getRawRequest())
         .isEqualTo(dummyJsonRequestByte);
     // then verify inEnvelopeMode field is false, setting the followup instance for SkillRequest
     // usage
-    var inEnvelopeModeField = FollowupWith.class.getDeclaredField("inEnvelopeMode");
+    var inEnvelopeModeField = FollowingUp.class.getDeclaredField("inEnvelopeMode");
     inEnvelopeModeField.setAccessible(true);
     then((boolean) inEnvelopeModeField.get(followupStep)).isFalse();
   }
@@ -170,7 +170,7 @@ final class Then_Response_Step_Implementation_Test extends FluentStepsFixtures {
     given(responseEnvelope.getResponse()).willReturn(response);
     // when invoking for next step, then an assertion error is thrown
     thenExceptionOfType(AssertionError.class)
-        .isThrownBy(() -> sut.followupWith(dummyJsonRequestString))
+        .isThrownBy(() -> sut.followingUpWith(dummyJsonRequestString))
         .withMessage("Session is marked as closed");
   }
 
@@ -183,28 +183,28 @@ final class Then_Response_Step_Implementation_Test extends FluentStepsFixtures {
     given(response.getShouldEndSession()).willReturn(false);
     given(responseEnvelope.getResponse()).willReturn(response);
     // when invoking for next step
-    var followupStep = sut.followupWith(dummyJsonRequestByte);
+    var followupStep = sut.followingUpWith(dummyJsonRequestByte);
     // then verify the skill field
-    var skillField = FollowupWith.class.getDeclaredField("skill");
+    var skillField = FollowingUp.class.getDeclaredField("skill");
     skillField.setAccessible(true);
     then(skillField.get(followupStep)).isEqualTo(skill);
     // then verify responseEnvelope field
-    var responseEnvelopeField = FollowupWith.class.getDeclaredField("responseEnvelope");
+    var responseEnvelopeField = FollowingUp.class.getDeclaredField("responseEnvelope");
     responseEnvelopeField.setAccessible(true);
     then(responseEnvelopeField.get(followupStep)).isEqualTo(responseEnvelope);
     // then verify followupRequestEnvelope field is of null value
     var followupRequestEnvelopeField =
-        FollowupWith.class.getDeclaredField("followupRequestEnvelope");
+        FollowingUp.class.getDeclaredField("followupRequestEnvelope");
     followupRequestEnvelopeField.setAccessible(true);
     then(followupRequestEnvelopeField.get(followupStep)).isNull();
     // then verify followupSkillRequest field the SkillRequest argument passed
-    var followupSkillRequestField = FollowupWith.class.getDeclaredField("followupSkillRequest");
+    var followupSkillRequestField = FollowingUp.class.getDeclaredField("followupSkillRequest");
     followupSkillRequestField.setAccessible(true);
     then(((SkillRequest) followupSkillRequestField.get(followupStep)).getRawRequest())
         .isEqualTo(dummyJsonRequestByte);
     // then verify inEnvelopeMode field is false, setting the followup instance for SkillRequest
     // usage
-    var inEnvelopeModeField = FollowupWith.class.getDeclaredField("inEnvelopeMode");
+    var inEnvelopeModeField = FollowingUp.class.getDeclaredField("inEnvelopeMode");
     inEnvelopeModeField.setAccessible(true);
     then((boolean) inEnvelopeModeField.get(followupStep)).isFalse();
   }
@@ -217,7 +217,7 @@ final class Then_Response_Step_Implementation_Test extends FluentStepsFixtures {
     given(responseEnvelope.getResponse()).willReturn(response);
     // when invoking for next step, then an assertion error is thrown
     thenExceptionOfType(AssertionError.class)
-        .isThrownBy(() -> sut.followupWith(dummyJsonRequestByte))
+        .isThrownBy(() -> sut.followingUpWith(dummyJsonRequestByte))
         .withMessage("Session is marked as closed");
   }
 }

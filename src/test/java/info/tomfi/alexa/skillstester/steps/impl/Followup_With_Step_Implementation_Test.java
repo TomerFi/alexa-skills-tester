@@ -40,7 +40,7 @@ final class Followup_With_Step_Implementation_Test extends FluentStepsFixtures {
       throws NoSuchFieldException, SecurityException, IllegalArgumentException,
           IllegalAccessException {
     // s
-    var sut = new FollowupWithImpl(skill, responseEnvelope, followupRequestEnvelope);
+    var sut = new FollowingUpImpl(skill, responseEnvelope, followupRequestEnvelope);
     // stub skill with mock response envelope when matched with the expected argument
     given(skill.invoke(eq(followupRequestEnvelope))).willReturn(responseEnvelope);
     // when invoking for next step
@@ -64,7 +64,7 @@ final class Followup_With_Step_Implementation_Test extends FluentStepsFixtures {
     // stub skill response with response envelope
     given(skillResponse.getResponse()).willReturn(responseEnvelope);
     // stub skill with mock response envelope
-    var sut = new FollowupWithImpl(skill, responseEnvelope, followupSkillRequest);
+    var sut = new FollowingUpImpl(skill, responseEnvelope, followupSkillRequest);
     // stub skill with mock response envelope when matched with the expected argument
     given(skill.execute(eq(followupSkillRequest))).willReturn(skillResponse);
     // when invoking for next step
@@ -87,7 +87,7 @@ final class Followup_With_Step_Implementation_Test extends FluentStepsFixtures {
     // stub skill response with response envelope
     given(skillResponse.getResponse()).willReturn(responseEnvelope);
     // stub skill with mock response envelope
-    var sut = new FollowupWithImpl(skill, responseEnvelope, dummyJsonRequestString);
+    var sut = new FollowingUpImpl(skill, responseEnvelope, dummyJsonRequestString);
     // stub skill with mock response envelope when matched with the expected argument
     given(skill.execute(argThat(sr -> Arrays.equals(sr.getRawRequest(), dummyJsonRequestByte))))
         .willReturn(skillResponse);
@@ -111,7 +111,7 @@ final class Followup_With_Step_Implementation_Test extends FluentStepsFixtures {
     // stub skill response with response envelope
     given(skillResponse.getResponse()).willReturn(responseEnvelope);
     // stub skill with mock response envelope
-    var sut = new FollowupWithImpl(skill, responseEnvelope, dummyJsonRequestByte);
+    var sut = new FollowingUpImpl(skill, responseEnvelope, dummyJsonRequestByte);
     // stub skill with mock response envelope when matched with the expected argument
     given(skill.execute(argThat(sr -> Arrays.equals(sr.getRawRequest(), dummyJsonRequestByte))))
         .willReturn(skillResponse);

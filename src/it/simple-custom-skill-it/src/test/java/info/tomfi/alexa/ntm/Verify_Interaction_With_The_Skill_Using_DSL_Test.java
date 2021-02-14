@@ -53,7 +53,7 @@ final class Verify_Interaction_With_The_Skill_Using_DSL_Test {
             .waitForFollowup()
             .haveOutputSpeechOf("What is your name?")
             .haveRepromptSpeechOf("Please tell me your name.")
-        .followupWith(buildMyNameIntentRequestEnvelope("tomer"))
+        .followingUpWith(buildMyNameIntentRequestEnvelope("tomer"))
         .thenResponseShould()
             .haveOutputSpeechOf("Nice to meet you tomer!")
             .and()
