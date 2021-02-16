@@ -1,7 +1,7 @@
 <!-- markdownlint-disable MD013 -->
 # Testing tools for Alexa skills written in Java</br>[![maven-central-version]][3] [![java-min-version]][4] [![javadoc-io-badge]][5]</br>[![gh-build-status]][0] [![codecov-coverage]][1] [![conventional-commits]][2]
 
-Ever wanted to test you alexa skill with real requests?</br>
+Ever wanted to test your alexa skill with real requests?</br>
 No deploying, hosting, or even configuring the skill interface is needed.
 
 All you need is your Java skill and this dependency,</br>
