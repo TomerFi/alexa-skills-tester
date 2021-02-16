@@ -31,6 +31,11 @@ final class Assertion_Method_haveNoSessionAttributes_Test extends AssertionMetho
   }
 
   @Test
+  void asserting_with_a_null_session_attributes_object_will_keep_ongoing_assertion() {
+    then(sut.haveNoSessionAttributes()).isEqualTo(sut);
+  }
+
+  @Test
   void asserting_with_a_non_empty_session_attributes_map_will_throw_an_assertion_error() {
     given(responseEnvelope.getSessionAttributes()).willReturn(Map.of("Key1", (Object) "Value1"));
     thenExceptionOfType(AssertionError.class)

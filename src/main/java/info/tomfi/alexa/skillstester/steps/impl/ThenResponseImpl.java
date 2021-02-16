@@ -265,7 +265,9 @@ public final class ThenResponseImpl extends ThenResponse {
 
   @Override
   public ThenResponseImpl haveNoSessionAttributes() {
-    assert responseEnvelope.getSessionAttributes().isEmpty() : "Found session attributes";
+    assert isNull(responseEnvelope.getSessionAttributes())
+        || responseEnvelope.getSessionAttributes().isEmpty()
+        : "Found session attributes";
     return this;
   }
 
