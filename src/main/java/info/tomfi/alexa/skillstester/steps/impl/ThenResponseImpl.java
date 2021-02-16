@@ -149,6 +149,12 @@ public final class ThenResponseImpl extends ThenResponse {
   }
 
   @Override
+  public ThenResponseImpl haveNoOutputSpeech() {
+    assert isNull(responseEnvelope.getResponse().getOutputSpeech()) : "Found output speech object";
+    return this;
+  }
+
+  @Override
   public ThenResponseImpl haveNoReprompt() {
     assert isNull(responseEnvelope.getResponse().getReprompt()) : "Found reprompt object";
     return this;
