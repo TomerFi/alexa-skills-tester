@@ -150,10 +150,7 @@ public final class ThenResponseImpl extends ThenResponse {
 
   @Override
   public ThenResponseImpl beEmpty() {
-    haveNoOutputSpeech();
-    haveNoReprompt();
-    haveNoCard();
-    haveNoSessionAttributes();
+    assert isNull(responseEnvelope.getResponse()) : "Response object is not empty";
     return this;
   }
 
