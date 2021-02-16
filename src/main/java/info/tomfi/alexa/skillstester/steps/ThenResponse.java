@@ -146,6 +146,13 @@ public abstract class ThenResponse {
   public abstract ThenResponse waitForFollowup();
 
   /**
+   * Assert the response has no output speech object.
+   *
+   * @return this instance for further assertions.
+   */
+  public abstract ThenResponse haveNoOutputSpeech();
+
+  /**
    * Assert the response has no reprompt object.
    *
    * @return this instance for further assertions.
