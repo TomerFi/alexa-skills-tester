@@ -24,7 +24,7 @@
     <junit-jupiter.version>5.7.1</junit-jupiter.version>
     <mockito.version>3.7.7</mockito.version>
     <!-- DEPENDENCY CONVERGENCE RESOLUTION -->
-    <ask-sdk-model-runtime.version>1.0.4</ask-sdk-model-runtime.version>
+    <ask-sdk-model-runtime.version>1.0.5</ask-sdk-model-runtime.version>
     <commons-codec.version>1.15</commons-codec.version>
     <commons-io.version>2.8.0</commons-io.version>
     <commons-logging.version>1.2</commons-logging.version>
