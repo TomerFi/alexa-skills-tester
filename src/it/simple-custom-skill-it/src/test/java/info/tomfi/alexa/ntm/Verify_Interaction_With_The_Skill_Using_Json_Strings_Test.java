@@ -13,9 +13,14 @@
 package info.tomfi.alexa.ntm;
 
 import static info.tomfi.alexa.skillstester.SkillsTester.givenSkill;
+import static java.util.stream.Collectors.joining;
 
 import com.amazon.ask.Skill;
 import com.amazon.ask.Skills;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -27,70 +32,43 @@ final class Verify_Interaction_With_The_Skill_Using_Json_Strings_Test {
 
   @BeforeEach
   void initializeSkill() {
-    sut = Skills.standard()
-        .addRequestHandler(new LaunchRequestHandlerImpl())
-        .addRequestHandler(new MyNameIntentRequestHandler())
+    sut = Skills.standard().addRequestHandler(new LaunchRequestHandlerImpl())
+        .addRequestHandler(new MyNameIntentRequestHandler()).addRequestHandler(new SessionEndedRequestHandlerImpl())
         .build();
   }
 
   @Test
-  void using_request_json_as_string_type() {
+  void following_up_with_an_intnet_request_json_as_string_type() throws IOException, URISyntaxException {
     // verify interaction with the skill
     givenSkill(sut)
-        .whenRequestIs(buildLaunchRequestJsonString())
+        .whenRequestIs(readResourceFile("launch_request.json"))
         .thenResponseShould()
             .waitForFollowup()
             .haveOutputSpeechOf("What is your name?")
             .haveRepromptSpeechOf("Please tell me your name.")
-        .followingUpWith(buildMyNameIntentRequestJsonString("tomer"))
+        .followingUpWith(readResourceFile("my_name_intent.json"))
         .thenResponseShould()
-            .haveOutputSpeechOf("Nice to meet you tomer!")
+            .haveOutputSpeechOf("Nice to meet you master!")
             .and()
             .notWaitForFollowup();
   }
 
-  private String buildLaunchRequestJsonString() {
-    return "{"
-        + "\"version\": \"1.0\","
-        + "\"session\": {"
-        + "\"new\": true"
-          + "},"
-        + "\"context\": {"
-          + "\"System\": {}"
-        + "},"
-        + "\"request\": {"
-          + "\"type\": \"LaunchRequest\","
-          + "\"requestId\": \"amzn1.echo-api.request.fake-request-id3\","
-          + "\"timestamp\": \"2021-02-11T15:30:00Z\","
-          + "\"locale\": \"en-US\""
-          + "}"
-        + "}";
+  @Test
+  void following_up_with_a_session_ended_request_json_as_string_type() throws IOException, URISyntaxException {
+    // verify interaction with the skill
+    givenSkill(sut)
+        .whenRequestIs(readResourceFile("launch_request.json"))
+        .thenResponseShould()
+            .waitForFollowup()
+            .haveOutputSpeechOf("What is your name?")
+            .haveRepromptSpeechOf("Please tell me your name.")
+        .followingUpWith(readResourceFile("session_ended.json"))
+        .thenResponseShould().beEmpty();
   }
 
-  private String buildMyNameIntentRequestJsonString(final String name) {
-    return String.format("{"
-        + "\"version\": \"1.0\","
-        + "\"session\": {"
-        + "\"new\": false"
-          + "},"
-        + "\"context\": {"
-          + "\"System\": {}"
-          + "},"
-        + "\"request\": {"
-          + "\"type\": \"IntentRequest\","
-          + "\"requestId\": \"amzn1.echo-api.request.fake-request-id3\","
-          + "\"timestamp\": \"2021-02-11T15:30:00Z\","
-          + "\"locale\": \"en-US\","
-          + "\"intent\": {"
-            + "\"name\": \"MyNameIntent\","
-            + "\"slots\": {"
-              + "\"nameSlot\": {"
-                + "\"name\": \"nameSlot\","
-                + "\"value\": \"%s\""
-                + "}"
-              + "}"
-            + "}"
-          + "}"
-        + "}", name);
+  private String readResourceFile(final String fileName) throws IOException, URISyntaxException {
+    var lines = Files.readAllLines(
+      Paths.get(getClass().getClassLoader().getResource(fileName).toURI()));
+    return lines.stream().collect(joining("\n"));
   }
 }

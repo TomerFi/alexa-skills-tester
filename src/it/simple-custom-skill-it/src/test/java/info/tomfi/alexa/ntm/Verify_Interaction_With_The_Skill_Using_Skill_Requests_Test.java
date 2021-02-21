@@ -13,12 +13,12 @@
 package info.tomfi.alexa.ntm;
 
 import static info.tomfi.alexa.skillstester.SkillsTester.givenSkill;
-import static java.nio.charset.StandardCharsets.UTF_8;
 
 import com.amazon.ask.Skill;
 import com.amazon.ask.Skills;
 import com.amazon.ask.request.SkillRequest;
 import com.amazon.ask.request.impl.BaseSkillRequest;
+import java.io.IOException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -33,69 +33,41 @@ final class Verify_Interaction_With_The_Skill_Using_Skill_Requests_Test {
     sut = Skills.standard()
         .addRequestHandler(new LaunchRequestHandlerImpl())
         .addRequestHandler(new MyNameIntentRequestHandler())
+        .addRequestHandler(new SessionEndedRequestHandlerImpl())
         .build();
   }
 
   @Test
-  void using_a_skill_request_type() {
+  void following_up_with_an_intnet_request_json_as_skill_request_type() throws IOException {
     // verify interaction with the skill
     givenSkill(sut)
-        .whenRequestIs(buildLaunchSkillRequest())
+        .whenRequestIs(readResourceFile("launch_request.json"))
         .thenResponseShould()
             .waitForFollowup()
             .haveOutputSpeechOf("What is your name?")
             .haveRepromptSpeechOf("Please tell me your name.")
-        .followingUpWith(buildMyNameIntentSkillRequest("tomer"))
+        .followingUpWith(readResourceFile("my_name_intent.json"))
         .thenResponseShould()
-            .haveOutputSpeechOf("Nice to meet you tomer!")
+            .haveOutputSpeechOf("Nice to meet you master!")
             .and()
             .notWaitForFollowup();
   }
 
-  private SkillRequest buildLaunchSkillRequest() {
-    var strRequest = "{"
-        + "\"version\": \"1.0\","
-        + "\"session\": {"
-        + "\"new\": true"
-          + "},"
-        + "\"context\": {"
-          + "\"System\": {}"
-        + "},"
-        + "\"request\": {"
-          + "\"type\": \"LaunchRequest\","
-          + "\"requestId\": \"amzn1.echo-api.request.fake-request-id4\","
-          + "\"timestamp\": \"2021-02-11T15:30:00Z\","
-          + "\"locale\": \"en-US\""
-          + "}"
-        + "}";
-    return new BaseSkillRequest(strRequest.getBytes(UTF_8));
+  @Test
+  void following_up_with_a_session_ended_request_json_as_skill_request_type() throws IOException {
+    // verify interaction with the skill
+    givenSkill(sut)
+        .whenRequestIs(readResourceFile("launch_request.json"))
+        .thenResponseShould()
+            .waitForFollowup()
+            .haveOutputSpeechOf("What is your name?")
+            .haveRepromptSpeechOf("Please tell me your name.")
+        .followingUpWith(readResourceFile("session_ended.json"))
+        .thenResponseShould().beEmpty();
   }
 
-  private SkillRequest buildMyNameIntentSkillRequest(final String name) {
-    var strRequest = String.format("{"
-        + "\"version\": \"1.0\","
-        + "\"session\": {"
-        + "\"new\": false"
-          + "},"
-        + "\"context\": {"
-          + "\"System\": {}"
-          + "},"
-        + "\"request\": {"
-          + "\"type\": \"IntentRequest\","
-          + "\"requestId\": \"amzn1.echo-api.request.fake-request-id4\","
-          + "\"timestamp\": \"2021-02-11T15:30:00Z\","
-          + "\"locale\": \"en-US\","
-          + "\"intent\": {"
-            + "\"name\": \"MyNameIntent\","
-            + "\"slots\": {"
-              + "\"nameSlot\": {"
-                + "\"name\": \"nameSlot\","
-                + "\"value\": \"%s\""
-                + "}"
-              + "}"
-            + "}"
-          + "}"
-        + "}", name);
-    return new BaseSkillRequest(strRequest.getBytes(UTF_8));
+  private SkillRequest readResourceFile(final String fileName) throws IOException {
+    return new BaseSkillRequest(
+      getClass().getClassLoader().getResourceAsStream(fileName).readAllBytes());
   }
 }

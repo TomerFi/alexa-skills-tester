@@ -28,12 +28,19 @@
     <dependency>
       <groupId>info.tomfi.alexa</groupId>
       <artifactId>alexa-skills-tester</artifactId>
-      <version>@project.version@</version>
+      <!--<version>@project.version@</version>-->
+      <version>0.2.3</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
+      <version>5.7.0</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-params</artifactId>
       <version>5.7.0</version>
       <scope>test</scope>
     </dependency>
