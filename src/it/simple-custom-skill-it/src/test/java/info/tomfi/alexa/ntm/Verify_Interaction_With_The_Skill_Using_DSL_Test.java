@@ -53,9 +53,9 @@ final class Verify_Interaction_With_The_Skill_Using_DSL_Test {
             .waitForFollowup()
             .haveOutputSpeechOf("What is your name?")
             .haveRepromptSpeechOf("Please tell me your name.")
-        .followingUpWith(buildMyNameIntentRequestEnvelope("tomer"))
+        .followingUpWith(buildMyNameIntentRequestEnvelope("master"))
         .thenResponseShould()
-            .haveOutputSpeechOf("Nice to meet you tomer!")
+            .haveOutputSpeechOf("Nice to meet you master!")
             .and()
             .notWaitForFollowup();
   }
@@ -63,7 +63,7 @@ final class Verify_Interaction_With_The_Skill_Using_DSL_Test {
   private RequestEnvelope buildLaunchRequestEnvelope() {
     var launchRequest = LaunchRequest.builder()
         .withLocale("en-US")
-        .withRequestId("amzn1.echo-api.request.fake-request-id1")
+        .withRequestId("amzn1.echo-api.request.fake-request-id")
         .withTimestamp(now())
         .build();
     var newSession = Session.builder().withNew(true).build();
@@ -78,7 +78,7 @@ final class Verify_Interaction_With_The_Skill_Using_DSL_Test {
         .build();
     var followupRequest = IntentRequest.builder()
         .withLocale("en-US")
-        .withRequestId("amzn1.echo-api.request.fake-request-id1")
+        .withRequestId("amzn1.echo-api.request.fake-request-id")
         .withIntent(myNameIsIntent)
         .withTimestamp(now())
         .build();

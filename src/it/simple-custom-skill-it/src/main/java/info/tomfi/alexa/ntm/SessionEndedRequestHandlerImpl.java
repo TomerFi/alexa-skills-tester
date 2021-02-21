@@ -13,27 +13,20 @@
 package info.tomfi.alexa.ntm;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
-import com.amazon.ask.dispatcher.request.handler.impl.LaunchRequestHandler;
-import com.amazon.ask.model.LaunchRequest;
+import com.amazon.ask.dispatcher.request.handler.impl.SessionEndedRequestHandler;
 import com.amazon.ask.model.Response;
+import com.amazon.ask.model.SessionEndedRequest;
 import java.util.Optional;
 
-/**
- * LaunchRequest handler returning 'What is your name?' and 'Please tell me your name.' as a
- * reprompt, not ending the session.
- */
-public final class LaunchRequestHandlerImpl implements LaunchRequestHandler {
+/** SessionEndedRequest handler returning and empty response. */
+public final class SessionEndedRequestHandlerImpl implements SessionEndedRequestHandler {
   @Override
-  public boolean canHandle(final HandlerInput input, final LaunchRequest request) {
+  public boolean canHandle(final HandlerInput input, final SessionEndedRequest request) {
     return true;
   }
 
   @Override
-  public Optional<Response> handle(final HandlerInput input, final LaunchRequest request) {
-    return input.getResponseBuilder()
-        .withSpeech("What is your name?")
-        .withReprompt("Please tell me your name.")
-        .withShouldEndSession(false)
-        .build();
+  public Optional<Response> handle(final HandlerInput input, final SessionEndedRequest request) {
+    return Optional.empty();
   }
 }

@@ -48,7 +48,7 @@ givenSkill(myCustomSkill) // load your custom skill
 
 This repository and/or the tool deployed with its sources has no direct relation with Amazon.</br>
 This an open-source tool based on the documentation for [Alexa developers][6] and maintained by
-@TomerFi and hopefully future contributers.</br>
+@TomerFi and hopefully future contributors.</br>
 At this moment, there is no guaranteed correlation between this tool and [ask-sdk][9], I (@TomerFi)
 will do my best to keep this repository updated.
 
