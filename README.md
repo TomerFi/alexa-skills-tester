@@ -24,7 +24,7 @@ Please also see this [Blog post][8] I've written about using the dependency.</br
 ```
 
 ```java
-// Use the bdd style fluent api in your test code
+// Use the bdd style fluent dsl in your test code
 givenSkill(myCustomSkill) // load your custom skill
     .whenRequestIs(launchRequestJson) // load a request, takes json or envelopes
     .thenResponseShould() // send the request to the skill and verify the response
