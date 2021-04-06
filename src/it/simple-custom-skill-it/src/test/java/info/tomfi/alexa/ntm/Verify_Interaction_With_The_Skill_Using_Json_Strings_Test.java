@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright Tomer Figenblat.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,12 +33,14 @@ final class Verify_Interaction_With_The_Skill_Using_Json_Strings_Test {
   @BeforeEach
   void initializeSkill() {
     sut = Skills.standard().addRequestHandler(new LaunchRequestHandlerImpl())
-        .addRequestHandler(new MyNameIntentRequestHandler()).addRequestHandler(new SessionEndedRequestHandlerImpl())
+        .addRequestHandler(
+          new MyNameIntentRequestHandler()).addRequestHandler(new SessionEndedRequestHandlerImpl())
         .build();
   }
 
   @Test
-  void following_up_with_an_intnet_request_json_as_string_type() throws IOException, URISyntaxException {
+  void following_up_with_an_intnet_request_json_as_string_type()
+      throws IOException, URISyntaxException {
     // verify interaction with the skill
     givenSkill(sut)
         .whenRequestIs(readResourceFile("launch_request.json"))
@@ -54,7 +56,8 @@ final class Verify_Interaction_With_The_Skill_Using_Json_Strings_Test {
   }
 
   @Test
-  void following_up_with_a_session_ended_request_json_as_string_type() throws IOException, URISyntaxException {
+  void following_up_with_a_session_ended_request_json_as_string_type()
+      throws IOException, URISyntaxException {
     // verify interaction with the skill
     givenSkill(sut)
         .whenRequestIs(readResourceFile("launch_request.json"))
@@ -68,7 +71,7 @@ final class Verify_Interaction_With_The_Skill_Using_Json_Strings_Test {
 
   private String readResourceFile(final String fileName) throws IOException, URISyntaxException {
     var lines = Files.readAllLines(
-      Paths.get(getClass().getClassLoader().getResource(fileName).toURI()));
+        Paths.get(getClass().getClassLoader().getResource(fileName).toURI()));
     return lines.stream().collect(joining("\n"));
   }
 }
