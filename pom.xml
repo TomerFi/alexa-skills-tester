@@ -18,7 +18,7 @@
     <maven.compiler.release>11</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <!-- DEPENDENCIES -->
-    <ask-sdk.version>2.38.0</ask-sdk.version>
+    <ask-sdk.version>2.38.1</ask-sdk.version>
     <assertj.version>3.19.0</assertj.version>
     <extra-enforcer-rules.version>1.3</extra-enforcer-rules.version>
     <junit-jupiter.version>5.7.1</junit-jupiter.version>
