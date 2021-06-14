@@ -26,7 +26,7 @@
     <!-- DEPENDENCY CONVERGENCE RESOLUTION -->
     <ask-sdk-model-runtime.version>1.0.5</ask-sdk-model-runtime.version>
     <commons-codec.version>1.15</commons-codec.version>
-    <commons-io.version>2.9.0</commons-io.version>
+    <commons-io.version>2.10.0</commons-io.version>
     <commons-logging.version>1.2</commons-logging.version>
     <jackson.version>2.12.3</jackson.version>
     <!-- Plugins -->
