@@ -29,7 +29,7 @@ if [[ ($# == "--help") || $# == "-h" ]]; then
 fi
 # utility function for incrementing the bump number
 increment() { echo $(("$1" + 1)); }
-# use git-semver-tags to get the latest semver tag and read its parts seperately
+# use git-semver-tags to get the latest semver tag and read its parts separately
 last_semver=$(git-semver-tags | head -n 1)
 read last_major last_minor last_patch <<<$(sed "s/\./ /g" <<<$last_semver)
 # use conventional-recommended-bump to get the next bump recommendation
