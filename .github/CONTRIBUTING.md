@@ -1,4 +1,4 @@
-# Contributing to `alexa-skills-tester`
+# Contributing to `alexa-skills-tester`</br>[![conventional-commits]][0]
 
 :clap: First off, thank you for taking the time to contribute. :clap:
 
@@ -11,10 +11,9 @@ Contributing is pretty straight-forward:
 ## Run Superlinter Locally
 
 ```shell
-docker run --rm -e RUN_LOCAL=true -e OUTPUT_FORMAT=tap -e OUTPUT_DETAILS=detailed \
--e LINTER_RULES_PATH=. -e VALIDATE_EDITORCONFIG=true -e VALIDATE_JAVA=true \
--e VALIDATE_MARKDOWN=true -e VALIDATE_XML=true -e VALIDATE_YAML=true \
--e FILTER_REGEX_EXCLUDE="(.git|.*.tap|/target/)" -v ${PWD}:/tmp/lint ghcr.io/github/super-linter:slim-v4
+docker run --rm -e RUN_LOCAL=true -e LINTER_RULES_PATH=. -e VALIDATE_EDITORCONFIG=true \
+-e VALIDATE_JAVA=true -e VALIDATE_MARKDOWN=true -e VALIDATE_XML=true -e VALIDATE_YAML=true \
+-e FILTER_REGEX_EXCLUDE="(.git|/target/)" -v ${PWD}:/tmp/lint ghcr.io/github/super-linter:slim-v4
 ```
 
 ## Code walkthrough
@@ -61,3 +60,8 @@ and executed with the [Platform Plugin](https://github.com/sormuras/junit-platfo
 ## Code of Conduct
 
 Please check the [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) document before contributing.
+
+<!-- Real Links -->
+[0]: https://conventionalcommits.org
+<!-- Badges Links -->
+[conventional-commits]: https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg

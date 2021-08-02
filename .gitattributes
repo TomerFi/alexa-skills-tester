@@ -1,33 +1,33 @@
 # Normalize text files (crlf -> lf)
 #* text=auto
 # Language specific
-*.py text eol=crlf diff=python
-*.pyc text eol=crlf diff=python
+*.py text eol=lf diff=python
+*.pyc text eol=lf diff=python
 *.cs text eol=crlf diff=csharp
 *.java text eol=lf diff=java
-*.groovy text eol=crlf diff=java
-*.proto text eol=crlf diff=text
+*.groovy text eol=lf diff=java
+*.proto text eol=lf diff=text
 # Documents
-*.csv text eol=crlf
+*.csv text eol=lf
 *.doc text eol=crlf diff=text
 *.docx text eol=crlf diff=text
 *.pdf text eol=crlf diff=text
 *.rtf text eol=crlf diff=text
 # Documentation
-*.markdown text eol=crlf
-*.md text eol=crlf
-*.mdtxt text eol=crlf
-*.mdtext text eol=crlf
-*.txt text eol=crlf
-*.rst text eol=crlf
-CHANGELOG text eol=crlf
-CONTRIBUTING text eol=crlf
-*COPYRIGHT* text eol=crlf
-LICENSE text eol=crlf
-*README* text eol=crlf
+*.markdown text eol=lf
+*.md text eol=lf
+*.mdtxt text eol=lf
+*.mdtext text eol=lf
+*.txt text eol=lf
+*.rst text eol=lf
+CHANGELOG text eol=lf
+CONTRIBUTING text eol=lf
+*COPYRIGHT* text eol=lf
+LICENSE text eol=lf
+*README* text eol=lf
 # Configs
 *.cnf text eol=lf
-*.conf text eol=crlf
+*.conf text eol=lf
 *.config text eol=lf
 *.lock binary
 *.npmignore text eol=lf
@@ -35,7 +35,7 @@ LICENSE text eol=crlf
 *.toml text eol=lf
 *.yaml text eol=lf
 *.yml text eol=lf
-.editorconfig text eol=crlf
+.editorconfig text eol=lf
 .env text eol=lf
 package-lock.json binary
 Makefile text eol=lf
@@ -63,20 +63,20 @@ makefile text eol=lf
 *.cmd text eol=crlf
 *.ps1 text eol=crlf
 # Docker
-*.dockerignore text eol=crlf
-*-dockerignore text eol=crlf
-Dockerfile text eol=crlf
-Dockerfile* text eol=crlf
+*.dockerignore text eol=lf
+*-dockerignore text eol=lf
+Dockerfile text eol=lf
+Dockerfile* text eol=lf
 # Git
-*.gitattributes text eol=crlf
-.gitignore text eol=crlf
-.gitmodules text eol=clrf
+*.gitattributes text eol=lf
+.gitignore text eol=lf
+.gitmodules text eol=rf
 # Web files
 *.coffee text eol=lf
 *.css text eol=lf diff=css
 *.htm text eol=lf diff=html
 *.html text eol=lf diff=html
-*.ini text eol=crlf
+*.ini text eol=lf
 *.js text eol=lf
 *.json text eol=lf
 *.jsp text eol=lf
@@ -88,7 +88,7 @@ Dockerfile* text eol=crlf
 *.map binary
 *.php text eol=lf diff=php
 *.scss text eol=lf diff=css
-*.xml text eol=crlf
+*.xml text eol=lf
 *.xhtml text eol=lf diff=html
 # Binary files
 *.class binary

@@ -1,8 +1,8 @@
 <!-- markdownlint-disable MD013 -->
-# Testing tools for Alexa skills written in Java</br>[![maven-central-version]][3] [![java-min-version]][4] [![javadoc-io-badge]][5]</br>[![gh-build-status]][0] [![codecov-coverage]][1] [![conventional-commits]][2]
+# Testing tools for Alexa skills written in Java</br>[![maven-central-version]][3] [![java-min-version]][4] [![javadoc-io-badge]][5]</br>[![gh-build-status]][0] [![codecov-coverage]][1]
 
 Ever wanted to test your alexa skill with real requests?</br>
-No deploying, hosting, or even configuring the skill interface is needed.
+No deploying, hosting, or even configuring the skill interface should be needed for this.
 
 All you need is your Java skill and this dependency,</br>
 And you can fluently test your skill within the context of integration, or even unit tests.
@@ -47,15 +47,11 @@ givenSkill(myCustomSkill) // load your custom skill
 ## Disclaimer
 
 This repository and/or the tool deployed with its sources has no direct relation with Amazon.</br>
-This an open-source tool based on the documentation for [Alexa developers][6] and maintained by
-@TomerFi and hopefully future contributors.</br>
-At this moment, there is no guaranteed correlation between this tool and [ask-sdk][9], I (@TomerFi)
-will do my best to keep this repository updated.
+This an open-source tool based on the documentation for [Alexa developers][6].
 
 <!-- Real Links -->
-[0]: https://github.com/TomerFi/alexa-skills-tester/actions?query=workflow%3APre-release
+[0]: https://github.com/TomerFi/alexa-skills-tester/actions/workflows/pre_release.yml
 [1]: https://codecov.io/gh/TomerFi/alexa-skills-tester
-[2]: https://conventionalcommits.org
 [3]: https://search.maven.org/artifact/info.tomfi.alexa/alexa-skills-tester
 [4]: https://openjdk.java.net/projects/jdk/11/
 [5]: https://javadoc.io/doc/info.tomfi.alexa/alexa-skills-tester
@@ -65,8 +61,7 @@ will do my best to keep this repository updated.
 [9]: https://developer.amazon.com/en-US/docs/alexa/alexa-skills-kit-sdk-for-java/overview.html
 <!-- Badges Links -->
 [codecov-coverage]: https://codecov.io/gh/TomerFi/alexa-skills-tester/branch/master/graph/badge.svg
-[conventional-commits]: https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg
-[gh-build-status]: https://github.com/TomerFi/alexa-skills-tester/workflows/Release/badge.svg
+[gh-build-status]: https://github.com/TomerFi/hebcal-api/actions/workflows/pre_release.yml/badge.svg
 [maven-central-version]: https://badgen.net/maven/v/maven-central/info.tomfi.alexa/alexa-skills-tester?icon=maven&label=Maven%20Central
 [javadoc-io-badge]: https://javadoc.io/badge2/info.tomfi.alexa/alexa-skills-tester/Javadoc.io.svg
 [java-min-version]: https://badgen.net/badge/Java%20Version/11/5382a1
