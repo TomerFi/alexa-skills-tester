@@ -9,6 +9,7 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
+    environment: deployment
     name: Deploy and release
     steps:
       - name: Source checkout
