@@ -61,7 +61,7 @@ This an open-source tool based on the documentation for [Alexa developers][6].
 [9]: https://developer.amazon.com/en-US/docs/alexa/alexa-skills-kit-sdk-for-java/overview.html
 <!-- Badges Links -->
 [codecov-coverage]: https://codecov.io/gh/TomerFi/alexa-skills-tester/branch/master/graph/badge.svg
-[gh-build-status]: https://github.com/TomerFi/hebcal-api/actions/workflows/pre_release.yml/badge.svg
+[gh-build-status]: https://github.com/TomerFi/alexa-skills-tester/actions/workflows/pre_release.yml/badge.svg
 [maven-central-version]: https://badgen.net/maven/v/maven-central/info.tomfi.alexa/alexa-skills-tester?icon=maven&label=Maven%20Central
 [javadoc-io-badge]: https://javadoc.io/badge2/info.tomfi.alexa/alexa-skills-tester/Javadoc.io.svg
 [java-min-version]: https://badgen.net/badge/Java%20Version/11/5382a1

@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Source checkout
         uses: actions/checkout@v2.3.4
+        with:
+          fetch-depth: 0
 
       - name: Check for spelling mistakes
         uses: reviewdog/action-misspell@v1.9
@@ -57,14 +59,17 @@ jobs:
           distribution: adopt
           java-version: 11
 
-      - name: Verify project
+      - name: Verify the project and create coverage report
         run: mvn clean verify jacoco:report -B -ff
 
-      - name: Upload coverage report as artifact
+      - name: Upload coverage reports
         uses: actions/upload-artifact@v2.2.4
         with:
-          name: coverage-report
-          path: target/site/jacoco/jacoco.xml
+          name: reports
+          if-no-files-found: error
+          path: |
+            target/site/jacoco/jacoco.xml
+            target/junit-platform/TEST-junit-jupiter.xml
 
   coverage:
     runs-on: ubuntu-latest
@@ -77,10 +82,18 @@ jobs:
       - name: Download coverage report from artifacts
         uses: actions/download-artifact@v2
         with:
-          name: coverage-report
+          name: reports
+          path: reports
+
+      - name: Report test summary
+        uses: EnricoMi/publish-unit-test-result-action@v1.19
+        if: always()
+        with:
+          test_changes_limit: 0
+          files: reports/junit-platform/TEST-junit-jupiter.xml
 
       - name: Push to codecov
         uses: codecov/codecov-action@v2.0.2
         with:
-          files: jacoco.xml
+          file: reports/site/jacoco/jacoco.xml
           fail_ci_if_error: true
