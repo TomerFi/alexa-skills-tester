@@ -3,6 +3,11 @@ name: Release
 
 on:
   workflow_dispatch:
+    inputs:
+      tweet:
+        description: "Tweet new release?"
+        required: false
+        default: "yes"
 
 jobs:
   release:
@@ -67,6 +72,7 @@ jobs:
           tag: ${{ steps.bumper.outputs.new_version }}
 
       - name: Tweet new release
+        if: ${{ github.event.inputs.tweet == 'yes' }}
         uses: lazy-actions/tweet-action@1.0.1
         with:
           oauth_consumer_key: ${{ secrets.TWITTER_API_KEY }}
