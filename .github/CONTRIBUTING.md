@@ -13,32 +13,37 @@ Contributing is pretty straight-forward:
 ```shell
 docker run --rm -e RUN_LOCAL=true -e LINTER_RULES_PATH=. -e VALIDATE_EDITORCONFIG=true \
 -e VALIDATE_JAVA=true -e VALIDATE_MARKDOWN=true -e VALIDATE_XML=true -e VALIDATE_YAML=true \
--e VALIDATE_SHELL_SHFMT=true -e FILTER_REGEX_EXCLUDE="(.git|/target/)" \
 -v ${PWD}:/tmp/lint ghcr.io/github/super-linter:slim-v4
 ```
 
 ## Code walkthrough
 
-- The user uses the static tool [SkillTester#givenSkill](../src/main/java/info/tomfi/alexa/skillstester/SkillsTester.java),</br>
-  To get a new instance of [GivenSkillImpl](../src/main/java/info/tomfi/alexa/skillstester/steps/impl/GivenSkillImpl.java)
+- The user uses the static tool
+  [SkillTester#givenSkill](../src/main/java/info/tomfi/alexa/skillstester/SkillsTester.java),</br>
+  To get a new instance of
+  [GivenSkillImpl](../src/main/java/info/tomfi/alexa/skillstester/steps/impl/GivenSkillImpl.java)
   encapsulating the skill instance.
 
 - The user can then use the various `whenRequestIs` overload methods to load the request,</br>
-  And get a new instance of [WhenRequestImpl](../src/main/java/info/tomfi/alexa/skillstester/steps/impl/WhenRequestImpl.java)
+  And get a new instance of
+  [WhenRequestImpl](../src/main/java/info/tomfi/alexa/skillstester/steps/impl/WhenRequestImpl.java)
   encapsulating the skill instance and the request.
 
 - The user can then use the various `thenResponseShould` method to send the loaded request,</br>
-  And get a new instance of [ThenResponseImpl](../src/main/java/info/tomfi/alexa/skillstester/steps/impl/ThenResponseImpl.java)
+  And get a new instance of
+  [ThenResponseImpl](../src/main/java/info/tomfi/alexa/skillstester/steps/impl/ThenResponseImpl.java)
   encapsulating the skill instance and the response,</br>
   And exposing various assertion methods for verifying the response.
 
 - The user can either stop here, if no followup is required,</br>
   Or use the various `followingUpWith` overload methods to load a followup request,</br>
-  And get a new instance of [FollowingUpImpl](../src/main/java/info/tomfi/alexa/skillstester/steps/impl/FollowingUpImpl.java)
+  And get a new instance of
+  [FollowingUpImpl](../src/main/java/info/tomfi/alexa/skillstester/steps/impl/FollowingUpImpl.java)
   encapsulating the skill instance, the previous response, and the loaded folloup request.
 
 - The user can then use the various `thenResponseShould` method to send the loaded followup request,</br>
-  And get a new instance of [ThenResponseImpl](../src/main/java/info/tomfi/alexa/skillstester/steps/impl/ThenResponseImpl.java)
+  And get a new instance of
+  [ThenResponseImpl](../src/main/java/info/tomfi/alexa/skillstester/steps/impl/ThenResponseImpl.java)
   encapsulating the skill instance and the response,</br>
   And exposing various assertion methods for verifying the response.
 
