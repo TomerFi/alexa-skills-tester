@@ -17,7 +17,7 @@ jobs:
       - name: Label scope by content
         uses: actions/labeler@v3
         with:
-
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
           configuration-path: ".github/configs/content_labels.yml"
           sync-labels: true
 
