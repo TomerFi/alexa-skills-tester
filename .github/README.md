@@ -18,7 +18,7 @@ Please also see this [Blog post][8] I've written about using the dependency.</br
 <dependency>
   <groupId>info.tomfi.alexa</groupId>
   <artifactId>alexa-skills-tester</artifactId>
-  <version>VERSION</version>
+  <version>0.2.7</version>
   <scope>test</scope>
 </dependency>
 ```
