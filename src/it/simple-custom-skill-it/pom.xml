@@ -29,7 +29,7 @@
       <groupId>info.tomfi.alexa</groupId>
       <artifactId>alexa-skills-tester</artifactId>
       <!--<version>@project.version@</version>-->
-      <version>0.2.3</version>
+      <version>0.2.7</version>
       <scope>test</scope>
     </dependency>
     <dependency>
