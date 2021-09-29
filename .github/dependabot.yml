@@ -13,6 +13,18 @@ updates:
       prefix: "build"
       include: "scope"
 
+  - package-ecosystem: "maven"
+    directory: "/src/it/simple-custom-skill-it"
+    schedule:
+      interval: "daily"
+    assignees:
+      - "TomerFi"
+    labels:
+      - "type: dependencies"
+    commit-message:
+      prefix: "build"
+      include: "scope"
+
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
