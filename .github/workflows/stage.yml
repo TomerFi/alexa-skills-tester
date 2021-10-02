@@ -43,8 +43,15 @@ jobs:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
         run: mvn deploy jacoco:report -Pprepare-deployment,sign-deployment,deploy-ossrh -B -ff
 
+      - name: Upload integration test logs
+        uses: action/upload-artifact@v2.2.4
+        if: always()
+        with:
+          name: it-logs
+          path: target/it/simple-custom-skill-it/build.log
+          if-no-files-found: warn
+
       - name: Push coverage report
         uses: codecov/codecov-action@v2.1.0
         with:
           file: target/site/jacoco/jacoco.xml
-          fail_ci_if_error: true
