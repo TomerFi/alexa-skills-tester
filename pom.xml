@@ -30,6 +30,7 @@
     <commons-logging.version>1.2</commons-logging.version>
     <httpclient.version>4.5.13</httpclient.version>
     <jackson.version>2.13.1</jackson.version>
+    <slf4j.version>1.7.32</slf4j.version>
     <!-- Plugins -->
     <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
     <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
@@ -161,6 +162,11 @@
         <groupId>commons-logging</groupId>
         <artifactId>commons-logging</artifactId>
         <version>${commons-logging.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>${slf4j.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
