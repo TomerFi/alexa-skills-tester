@@ -11,6 +11,8 @@ Head on over to the [Wiki section][7] for more information.</br>
 Take a look at the [Javadoc][5] for API documentation.</br>
 Please also see this [Blog post][8] I've written about using the dependency.</br>
 
+For more usage examples, I use this dependency for [integration tests][10] as part of the build process in [my own live skill][11].
+
 ## Usage example
 
 ```xml
@@ -59,6 +61,8 @@ This an open-source tool based on the documentation for [Alexa developers][6].
 [7]: https://github.com/TomerFi/alexa-skills-tester/wiki
 [8]: https://dev.to/tomerfi/alexa-skills-testing-4pfd
 [9]: https://developer.amazon.com/en-US/docs/alexa/alexa-skills-kit-sdk-for-java/overview.html
+[10]: https://github.com/TomerFi/alexa-skill-shabbat-times/tree/master/lambda/src/it/shabbat-times-interaction-it/src/test/java/info/tomfi/alexa/shabbattimes/it
+[11]: https://github.com/TomerFi/alexa-skill-shabbat-times
 <!-- Badges Links -->
 [codecov-coverage]: https://codecov.io/gh/TomerFi/alexa-skills-tester/branch/master/graph/badge.svg
 [gh-build-status]: https://github.com/TomerFi/alexa-skills-tester/actions/workflows/stage.yml/badge.svg
