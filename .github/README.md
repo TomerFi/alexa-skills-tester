@@ -11,7 +11,8 @@ Head on over to the [Wiki section][7] for more information.</br>
 Take a look at the [Javadoc][5] for API documentation.</br>
 Please also see this [Blog post][8] I've written about using the dependency.</br>
 
-For more usage examples, I use this dependency for [integration tests][10] as part of the build process in [my own live skill][11].
+For more usage examples,
+I use this tool for [integration tests][10] as part of the build process in [my own live skill][11].
 
 ## Usage example
 
