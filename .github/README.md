@@ -21,7 +21,7 @@ I use this tool for [integration tests][10] as part of the build process in [my 
 <dependency>
   <groupId>info.tomfi.alexa</groupId>
   <artifactId>alexa-skills-tester</artifactId>
-  <version>0.2.7</version>
+  <version>0.2.8</version>
   <scope>test</scope>
 </dependency>
 ```
