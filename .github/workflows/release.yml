@@ -77,7 +77,6 @@ jobs:
             })
             core.setOutput('html_url', response.data.html_url)
 
-
       - name: Update readme usage section
         run: |
           sed -i 's/<version>.*<\/version>/<version>${{ steps.bumper.outputs.new_version }}<\/version>/g' .github/README.md
