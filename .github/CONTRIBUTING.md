@@ -64,11 +64,19 @@ and executed with the [Platform Plugin](https://github.com/sormuras/junit-platfo
 - [simple-custom-skill-it](../src/it/simple-custom-skill-it/README.md) is a simple multi-turn custom
   skill used for integration tests.
 
+## Commit messages
+
+Commit messages must:
+
+- adhere the [Conventional Commits Specification][0]
+- be signed-off based on the [Developer Certificate of Origin][1]
+
 ## Code of Conduct
 
 Please check the [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) document before contributing.
 
 <!-- Real Links -->
 [0]: https://conventionalcommits.org
+[1]: https://developercertificate.org
 <!-- Badges Links -->
 [conventional-commits]: https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg
