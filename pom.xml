@@ -5,7 +5,7 @@
 
   <groupId>info.tomfi.alexa</groupId>
   <artifactId>alexa-skills-tester</artifactId>
-  <version>0.2.9-SNAPSHOT</version>
+  <version>0.2.10-SNAPSHOT</version>
   <packaging>jar</packaging>
   <name>Alexa Skill Tester</name>
   <description>Testing tools for Alexa Skills written in Java.</description>
