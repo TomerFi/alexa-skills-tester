@@ -91,13 +91,13 @@ jobs:
         run: >
           sed -i
           's/<version>.*<\/version>/<version>${{ steps.bumper.outputs.new_version }}<\/version>/g'
-          .github/README.md
+          README.md
 
       # yamllint disable rule:line-length
       # editorconfig-checker-disable
       - name: Push modifications
         run: |
-          git add .github/README.md
+          git add README.md
           git commit -m "docs: updated usage section with ${{ steps.bumper.outputs.new_version }} [skip ci]"
           git push
       # yamllint enable rule:line-length
