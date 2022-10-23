@@ -7,8 +7,8 @@
   <artifactId>alexa-skills-tester</artifactId>
   <version>0.2.12-SNAPSHOT</version>
   <packaging>jar</packaging>
-  <name>Alexa Skill Tester</name>
-  <description>Testing tools for Alexa Skills written in Java.</description>
+  <name>Alexa Skills Tester</name>
+  <description>No hassle testing tools for Java Alexa Skills</description>
   <url>https://github.com/TomerFi/alexa-skills-tester</url>
   <inceptionYear>2021</inceptionYear>
 
