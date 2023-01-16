@@ -22,7 +22,7 @@
     <assertj.version>3.24.1</assertj.version>
     <extra-enforcer-rules.version>1.6.1</extra-enforcer-rules.version>
     <junit-jupiter.version>5.9.2</junit-jupiter.version>
-    <mockito.version>4.11.0</mockito.version>
+    <mockito.version>5.0.0</mockito.version>
     <!-- DEPENDENCY CONVERGENCE RESOLUTION -->
     <ask-sdk-model-runtime.version>1.0.6</ask-sdk-model-runtime.version>
     <commons-codec.version>1.15</commons-codec.version>
