@@ -55,7 +55,7 @@ jobs:
         run: mvn clean verify jacoco:report -B -ff
 
       - name: Upload integration test logs
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: it-logs
