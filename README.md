@@ -83,7 +83,7 @@
 <dependency>
   <groupId>info.tomfi.alexa</groupId>
   <artifactId>alexa-skills-tester</artifactId>
-  <version>0.2.13</version>
+  <version>0.2.14</version>
   <scope>test</scope>
 </dependency>
 ```
