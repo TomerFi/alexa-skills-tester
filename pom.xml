@@ -19,7 +19,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <!-- DEPENDENCIES -->
     <ask-sdk.version>2.86.0</ask-sdk.version>
-    <assertj.version>3.25.1</assertj.version>
+    <assertj.version>3.25.2</assertj.version>
     <extra-enforcer-rules.version>1.7.0</extra-enforcer-rules.version>
     <junit-jupiter.version>5.10.1</junit-jupiter.version>
     <mockito.version>5.2.0</mockito.version>
