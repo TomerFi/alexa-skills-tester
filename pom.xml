@@ -5,7 +5,7 @@
 
   <groupId>info.tomfi.alexa</groupId>
   <artifactId>alexa-skills-tester</artifactId>
-  <version>0.2.15-SNAPSHOT</version>
+  <version>0.2.15</version>
   <packaging>jar</packaging>
   <name>Alexa Skills Tester</name>
   <description>No hassle testing tools for Java Alexa Skills</description>
@@ -80,7 +80,7 @@
     <url>https://github.com/TomerFi/alexa-skills-tester</url>
     <connection>scm:git:git@github.com:TomerFi/alexa-skills-tester.git</connection>
     <developerConnection>scm:git:git@github.com:TomerFi/alexa-skills-tester.git</developerConnection>
-    <tag>HEAD</tag>
+    <tag>0.2.15</tag>
   </scm>
 
   <ciManagement>
