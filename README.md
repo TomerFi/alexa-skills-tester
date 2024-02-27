@@ -1,18 +1,11 @@
+# Alexa Skills Tester is Archived
+
+<details>
+<summary>OLD README</summary>
+
 <h1 align="left">
   Testing tools for Java Alexa skills
   <br/>
-  <a href="https://search.maven.org/artifact/info.tomfi.alexa/alexa-skills-tester">
-    <img src="https://badgen.net/maven/v/maven-central/info.tomfi.alexa/alexa-skills-tester?icon=maven&label=Maven%20Central"/>
-  </a>
-  <a href="https://openjdk.java.net/projects/jdk/11/">
-    <img src="https://badgen.net/badge/Java%20Version/11/5382a1"/>
-  </a>
-  <a href="https://javadoc.io/doc/info.tomfi.alexa/alexa-skills-tester">
-    <img src="https://javadoc.io/badge2/info.tomfi.alexa/alexa-skills-tester/Javadoc.io.svg"/>
-  </a>
-  <a href="https://codecov.io/gh/TomerFi/alexa-skills-tester">
-    <img src="https://codecov.io/gh/TomerFi/alexa-skills-tester/branch/master/graph/badge.svg"/>
-  </a>
 </h1>
 
 <p align="left">
@@ -120,4 +113,6 @@ givenSkill(myCustomSkill) // load your custom skill
 This repository and/or the tool deployed with its sources has no direct relation with Amazon.<br/>
 This an open-source tool based on the documentation for <a href="https://developer.amazon.com/en-US/docs/alexa/custom-skills/request-and-response-json-reference.html">Alexa developers</a>.
 </p>
+</details>
+
 </details>

@@ -1,3 +1,8 @@
+# Alexa Skills Tester is Archived
+
+<details>
+<summary>OLD CONTRIBUTING</summary>
+
 # Contributing to *alexa-skills-tester*
 
 :clap: First off, thank you for taking the time to contribute. :clap:
@@ -45,3 +50,5 @@ docker run --rm -e RUN_LOCAL=true -e IGNORE_GITIGNORED_FILES=true -e IGNORE_GENE
 -e VALIDATE_MARKDOWN=true -e VALIDATE_XML=true -e VALIDATE_YAML=true \
 -v ${PWD}:/tmp/lint ghcr.io/github/super-linter:slim-v4
 ```
+
+</details>
